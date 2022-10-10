@@ -9,8 +9,8 @@ class Sitio {
     get numOfelements () {
         return this.elements.length
     };
-    //Loop is not working... Need corrections to counter the numbers of conections between elements from Sitio.
-    get conections () {
+    //Loop is not working... Need corrections to count the numbers of connections between elements from Sitio.
+    get connections () {
         let counter = 0;
         for (let i = 0; i < this.elements.length; i ++) {
             if (this.elements[i].exchange(this.elements[i++])) {
