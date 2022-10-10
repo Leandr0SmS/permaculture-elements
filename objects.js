@@ -9,7 +9,7 @@ class Sitio {
     get numOfelements () {
         return this.elements.length
     };
-    //need correction
+    //Loop is not working... Need corrections to counter the numbers of conections between elements from Sitio.
     get conections () {
         let counter = 0;
         for (let i = 0; i < this.elements.length; i ++) {
