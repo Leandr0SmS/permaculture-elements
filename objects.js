@@ -21,7 +21,7 @@ class Sitio {
         this._name = name;
     };
     set inputs (inputs) {
-        this._inputs = [inputs]
+        this._inputss = [inputs]
     };
     set outputs (outputs) {
         this._outputs = [outputs];
@@ -39,11 +39,13 @@ class Sitio {
     exchange (obj) {
         let gives = [];
         let recives = []; 
+        //lopp for gives
         for (let i = 0; i < this.outputs.length; i ++) {
             if (obj.inputs.includes(this.outputs[i])){
                gives.push(this.outputs[i]);
             }
         };
+        //loop for recives
         for (let j = 0; j < this.inputs.length; j ++) {
             if (obj.outputs.includes(this.inputs[j])) {
                 recives.push(this.inputs[j]);
@@ -75,22 +77,28 @@ class Sitio {
     }
 
     //  !!!  It isn't working !!! Need correction to return counter with the number of conections between elements !!!
-    get connections () {
+    getRelationships() {
         let counter = 0;
-        if (matutu.elements[0].exchange(matutu.elements[1])) {
-            counter ++;
+        const relationships = []
+        for (let i = 0; i < this.elements.length; i++) {
+          for (let ii = 0; ii < this.elements.length; ii++) {
+            if (this.elements[i].name === this.elements[ii].name) {
+              continue
+            }
+            for (let iii = 0; iii < this.elements[i].inputs.length; iii++) {
+              for (let iiii = 0; iiii < this.elements[ii].outputs.length; iiii++) {
+                if (this.elements[i].inputs[iii] === this.elements[ii].outputs[iiii]) {
+                  counter ++;
+                  relationships.push( 
+                    `${this.elements[i].name} inputs: ${this.elements[i].inputs[iii]} --> ${this.elements[ii].name} outputs: ${this.elements[ii].outputs[iiii]}`
+                  )
+                }
+              }
+            }
+          }
         }
-        if (matutu.elements[1].exchange(matutu.elements[2])) {
-            counter ++;
-        }
-        if (matutu.elements[2].exchange(matutu.elements[3])) {
-            counter ++;
-        }
-        if (matutu.elements[3].exchange(matutu.elements[0])) {
-            counter ++;
-        }
-        return counter;
-    }
+        return {relationships, counter}
+      }
 };
 
 class SitioElement extends Sitio {
@@ -107,11 +115,5 @@ const fosse = new SitioElement ('Fosse', ['sewage'], [], []);
 matutu.elements.push(chicken, house, garden, fosse);
 module.exports = {chicken, house, garden, fosse};
 
-console.log(matutu.connections);
-
-// That is the result I would expect
-console.log(matutu.elements[0].exchange(matutu.elements[1]));
-console.log(matutu.elements[1].exchange(matutu.elements[2]));
-console.log(matutu.elements[2].exchange(matutu.elements[3]));
-console.log(matutu.elements[3].exchange(matutu.elements[0]));
-
+console.log(matutu);
+console.log(matutu.getRelationships());
