@@ -74,10 +74,21 @@ class Sitio {
         }
     }
 
-    //  !!!  It isn't working !!! Need correction to return counter with the number of combinations between elements !!!
-    get conections () {
+    //  !!!  It isn't working !!! Need correction to return counter with the number of conections between elements !!!
+    get connections () {
         let counter = 0;
-        
+        if (matutu.elements[0].exchange(matutu.elements[1])) {
+            counter ++;
+        }
+        if (matutu.elements[1].exchange(matutu.elements[2])) {
+            counter ++;
+        }
+        if (matutu.elements[2].exchange(matutu.elements[3])) {
+            counter ++;
+        }
+        if (matutu.elements[3].exchange(matutu.elements[0])) {
+            counter ++;
+        }
         return counter;
     }
 };
@@ -96,5 +107,11 @@ const fosse = new SitioElement ('Fosse', ['sewage'], [], []);
 matutu.elements.push(chicken, house, garden, fosse);
 module.exports = {chicken, house, garden, fosse};
 
+console.log(matutu.connections);
 
+// That is the result I would expect
+console.log(matutu.elements[0].exchange(matutu.elements[1]));
+console.log(matutu.elements[1].exchange(matutu.elements[2]));
+console.log(matutu.elements[2].exchange(matutu.elements[3]));
+console.log(matutu.elements[3].exchange(matutu.elements[0]));
 
