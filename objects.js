@@ -1,36 +1,13 @@
 class Sitio {
-    constructor (name, elements) {
-        this._name = name;
-        this.elements = elements;
-    }
-    get name () {
-        return this._name;
-    };
-    get numOfelements () {
-        return this.elements.length
-    };
-    //Loop is not working... Need corrections to count the numbers of connections between elements from Sitio.
-    get connections () {
-        let counter = 0;
-        for (let i = 0; i < this.elements.length; i ++) {
-            if (this.elements[i].exchange(this.elements[i++])) {
-                if (this.elements[i].exchange(this.elements[i++]).recives || this.elements[i].exchange(this.elements[i++]).gives) {
-                    counter++;
-                } else if (this.elements[i].exchange(this.elements[i++]).recives && this.elements[i].exchange(this.elements[i++]).gives) {
-                    counter += 2;
-                } 
-            }
-        }
-        return counter;
-    }
-}
-
-class SitioElement {
-    constructor (name, inputs, outputs) {
+    constructor (name, inputs, outputs, elements) {
         this._name = name;
         this._inputs = inputs;
         this._outputs = outputs;
-    }
+        this.elements = elements;
+
+    };
+
+    //getter and setters
     get name () {
         return this._name;
     };
@@ -49,24 +26,32 @@ class SitioElement {
     set outputs (outputs) {
         this._outputs = [outputs];
     };
+    get numOfelements () {
+        return this.elements.length
+    };
 
+    //tell to terminal what element is
     howAmI () {
         return `\nI am a(n) ${this.name}:\nI need: ${this.inputs}.\nI produce: ${this.outputs}.`;
     };
     
+    //Method to compare two elements inputs and outputs. 
     exchange (obj) {
         let gives = [];
         let recives = []; 
+        //lopp for gives
         for (let i = 0; i < this.outputs.length; i ++) {
-             if (obj.inputs.includes(this.outputs[i])){
-                gives.push(this.outputs[i]);
-             }
+            if (obj.inputs.includes(this.outputs[i])){
+               gives.push(this.outputs[i]);
+            }
         };
+        //loop for recives
         for (let j = 0; j < this.inputs.length; j ++) {
             if (obj.outputs.includes(this.inputs[j])) {
                 recives.push(this.inputs[j]);
             }
         };
+        //returns conditions
         if (gives.length === 0 && recives.length === 0) {
             return false;
         } else if (gives.length > 0 && recives.length > 0) {
@@ -78,6 +63,7 @@ class SitioElement {
         };
     };
 
+    //Method to print in the terminal what are the elements exchanges with other argument element
     sayYourExchangeWith (obj) {
         if (this.exchange(obj).gives && this.exchange(obj).recives) {
             return `\nI ${this.name} give to ${obj.name}: ${this.exchange(obj).gives}\nI recive from ${obj.name}: ${this.exchange(obj).recives}`;
@@ -89,18 +75,28 @@ class SitioElement {
             return 'There is no exchange.';
         }
     }
+
+    //  !!!  It isn't working !!! Need correction to return counter with the number of combinations between elements !!!
+    get conections () {
+        let counter = 0;
+        
+        return counter;
+    }
+};
+
+class SitioElement extends Sitio {
+    constructor (name, inputs, outputs, elements) {
+        super(name, inputs, outputs, elements);
+    }
 }
 
-const matutu = new Sitio ("Matutu", []);
-const chicken = new SitioElement ("chicken", ["food", "water", "shelter", "portion"], ["food", "fertilizer"]);
-const house = new SitioElement ("house", ["water", "eletricity", "gas", "food", "medicins"], ['shelter', "seeds", "sewage"]);
-const garden = new SitioElement ("garden", ["water", "work", "seeds", "fertilizer"], ["food", "portion", "medicins"]);
-const fosse = new SitioElement ('Fosse', ['sewage'], []);
-
+const matutu = new Sitio ("Matutu", ['food', 'portion', 'gas', 'oil'], ['fertilizer', 'bananas', 'açaí'], []);
+const chicken = new SitioElement ("chicken", ["food", "water", "shelter", "portion"], ["food", "fertilizer"], []);
+const house = new SitioElement ("house", ["water", "eletricity", "gas", "food", "medicins"], ['shelter', "seeds", "sewage"], []);
+const garden = new SitioElement ("garden", ["water", "work", "seeds", "fertilizer"], ["food", "portion", "medicins"], []);
+const fosse = new SitioElement ('Fosse', ['sewage'], [], []);
+matutu.elements.push(chicken, house, garden, fosse);
 module.exports = {chicken, house, garden, fosse};
 
-console.log(chicken.sayYourExchangeWith(house));
-console.log(house.exchange(fosse));
-//console.log(house.sayYourExchangeWith(fosse));
 
 
