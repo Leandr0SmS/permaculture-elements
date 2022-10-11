@@ -39,13 +39,11 @@ class Sitio {
     exchange (obj) {
         let gives = [];
         let recives = []; 
-        //lopp for gives
         for (let i = 0; i < this.outputs.length; i ++) {
             if (obj.inputs.includes(this.outputs[i])){
                gives.push(this.outputs[i]);
             }
         };
-        //loop for recives
         for (let j = 0; j < this.inputs.length; j ++) {
             if (obj.outputs.includes(this.inputs[j])) {
                 recives.push(this.inputs[j]);
