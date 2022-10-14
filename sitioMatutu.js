@@ -76,7 +76,7 @@ class Sitio {
         }
     }
 
-    //  !!!  It isn't working !!! Need correction to return counter with the number of conections between elements !!!
+    //return the connection between elements and the number of connections
     getRelationships() {
         let counter = 0;
         const relationships = []
