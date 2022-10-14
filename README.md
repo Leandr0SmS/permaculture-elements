@@ -1,16 +1,23 @@
 # Project Title
 
-        This is a project to help people how pretend to make a permaculture desing. It helps to undestand what type of connection your system have
+           This is a project to help people how pretend to make a permaculture desing. 
+        It helps to undestand what type of connection your system have
 
 ## Description
 
 ### Intro to Permaculture:
         
-        "Permaculture is an approach to land management and settlement design that adopts arrangements observed in flourishing natural ecosystems. It   includes a set of design principles derived using whole-systems thinking. It applies these principles in fields such as regenerative agriculture, town planning, rewilding, and community resilience." (wikipedia)
+           "Permaculture is an approach to land management and settlement design that adopts 
+        arrangements observed in flourishing natural ecosystems. 
+           It   includes a set of design principles derived using whole-systems thinking. 
+           It applies these principles in fields such as regenerative agriculture, 
+        town planning, rewilding, and community resilience." (wikipedia)
 
 ### Propose
 
-        Its very important for apply permaculture to have a good system design, an important step is analysing and connecting system components. That's the goal of this project.
+           Its very important for apply permaculture to have a good system design, an important 
+        step is analysing and connecting system components. 
+           That's the goal of this project.
 
 ## Authors
 
