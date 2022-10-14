@@ -14,6 +14,7 @@
 
 ## Authors
 
+[Leandro Simões](https://github.com/Leandr0SmS)
 [Dylson Valente](https://github.com/n370)
 
 ## License
