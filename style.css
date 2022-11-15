@@ -1,9 +1,12 @@
 body {
-    background-color: black;
+    background-color:white;
 }
 
 #sitoName {
     font-family: monospace, Arial, Helvetica, sans-serif;
     text-align: center;
-    color:antiquewhite;
+}
+
+#elementsNames {
+    font-family: monospace, Arial, Helvetica, sans-serif;
 }

@@ -32,7 +32,7 @@ class Sitio {
 
     //tell to terminal what element is
     howAmI () {
-        return `\nI am a(n) ${this.name}:\nI need: ${this.inputs}.\nI produce: ${this.outputs}.`;
+        return `\nI am a(n) ${this.name}:\nI need: ${this.inputs.join(', ')}.\nI produce: ${this.outputs.join(', ')}.`;
     };
     
     //Method to compare two elements inputs and outputs. 
@@ -118,13 +118,13 @@ matutu.elements.push(chicken, house, garden, fosse);
 //console.log(matutu);
 //console.log(matutu.getRelationships());
 
-//DOM
-
-const sitioName = matutu.name;
+//DOM title
 const title = document.getElementById("sitoName");
-title.innerText = sitioName;
+title.innerText = matutu.name;
 
+//D3 elements
 d3.select('section').selectAll('div')
-.data(matutu.elements);
-console.log(matutu.elements);
-
+.data(matutu.elements)
+.enter()
+.append('div')
+.text((d) => d.howAmI());
