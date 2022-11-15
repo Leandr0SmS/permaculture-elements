@@ -107,13 +107,24 @@ class SitioElement extends Sitio {
     }
 }
 
-const matutu = new Sitio ("Matutu", ['food', 'portion', 'gas', 'oil'], ['fertilizer', 'bananas', 'açaí'], []);
+
+const matutu = new Sitio ("Sítio São Sojé do Matutu", ['food', 'portion', 'gas', 'oil'], ['fertilizer', 'bananas', 'açaí'], []);
 const chicken = new SitioElement ("chicken", ["food", "water", "shelter", "portion"], ["food", "fertilizer"], []);
 const house = new SitioElement ("house", ["water", "eletricity", "gas", "food", "medicins"], ['shelter', "seeds", "sewage"], []);
 const garden = new SitioElement ("garden", ["water", "work", "seeds", "fertilizer"], ["food", "portion", "medicins"], []);
 const fosse = new SitioElement ('Fosse', ['sewage'], [], []);
 matutu.elements.push(chicken, house, garden, fosse);
-module.exports = {chicken, house, garden, fosse};
 
-console.log(matutu);
-console.log(matutu.getRelationships());
+//console.log(matutu);
+//console.log(matutu.getRelationships());
+
+//DOM
+
+const sitioName = matutu.name;
+const title = document.getElementById("sitoName");
+title.innerText = sitioName;
+
+d3.select('section').selectAll('div')
+.data(matutu.elements);
+console.log(matutu.elements);
+

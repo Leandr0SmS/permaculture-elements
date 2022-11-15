@@ -1,0 +1,9 @@
+body {
+    background-color: black;
+}
+
+#sitoName {
+    font-family: monospace, Arial, Helvetica, sans-serif;
+    text-align: center;
+    color:antiquewhite;
+}
