@@ -121,10 +121,11 @@ matutu.elements.push(chicken, house, garden, fosse);
 //DOM title
 const title = document.getElementById("sitoName");
 title.innerText = matutu.name;
+document.getElementById('elementsNames').innerText = `Elements: ${matutu.elements.length}`
 
 //D3 elements
-d3.select('section').selectAll('div')
+d3.select('ul').selectAll('li')
 .data(matutu.elements)
 .enter()
-.append('div')
-.text((d) => d.howAmI());
+.append('li')
+.text((d) => d.name);
