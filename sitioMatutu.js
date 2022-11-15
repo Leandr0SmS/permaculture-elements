@@ -124,8 +124,35 @@ title.innerText = matutu.name;
 document.getElementById('elementsNames').innerText = `Elements: ${matutu.elements.length}`
 
 //D3 elements
+//elements name
 d3.select('ul').selectAll('li')
-.data(matutu.elements)
-.enter()
-.append('li')
-.text((d) => d.name);
+               .data(matutu.elements)
+               .enter()
+               .append('li')
+               .text((d) => d.name);
+
+//graphic
+const w = 900;
+const h = 400;
+
+const visSvg = d3.select("#graph")
+            .append("svg")
+            .attr("id", "svggraph")
+            .attr("width", w)
+            .attr("height", h);
+
+visSvg.selectAll('circle')
+      .data(matutu.elements)
+      .enter()
+      .append('circle')
+      .attr('r', 5)
+      .attr('cx', (d) => Math.random() * 800)
+      .attr('cy', (d) => h - (Math.random() * 300)) // y is always inverted
+      .append('title')
+      .text((d) => d.name);
+
+visSvg.selectAll('text')
+      .data(matutu.elements)
+      .enter()
+      .append('text')
+      .text((d) => d.name)

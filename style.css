@@ -11,3 +11,11 @@ body {
 #elementsNames {
     font-family: monospace, Arial, Helvetica, sans-serif;
 }
+
+#listElements {
+    align-items: center;
+}
+
+#svggraph {
+    background-color: rgb(255, 255, 255);
+}
