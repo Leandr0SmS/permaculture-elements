@@ -129,3 +129,28 @@ d3.select('ul').selectAll('li')
 .enter()
 .append('li')
 .text((d) => d.name);
+
+//graphic
+const w = 800;
+const h = 500;
+
+//Math.pow(x, 2) - 2(a*x) + Math.pow(a, 2) + Math.pow(y, 2) -2(b*y) + Math.pow(b, 2) = Math.pow(r, 2) 
+
+const visSvg = d3.select("#graph")
+            .append("svg")
+            .attr("id", "svggraph")
+            .attr("width", w)
+            .attr("height", h);
+
+const circles = visSvg.selectAll('circle')
+      .data(elements)
+      .enter()
+      .append('circle');
+
+const circlesAttr = circles
+      .attr('r', 5)
+      .attr('cx', (d) => Math.random() * 800)
+      .attr('cy', (d) => h - (Math.random() * 300)) // y is always inverted
+      .style("fill", "white")
+      .append('title')
+      .text((d) => d.name);
