@@ -118,22 +118,23 @@ matutu.elements.push(chicken, house, garden, fosse);
 //console.log(matutu);
 //console.log(matutu.getRelationships());
 
+let elements = matutu.elements
 //DOM title
 const title = document.getElementById("sitoName");
 title.innerText = matutu.name;
-document.getElementById('elementsNames').innerText = `Elements: ${matutu.elements.length}`
+document.getElementById('elementsNames').innerText = `Elements: ${elements.length}`
 
 //D3 elements
 //elements name
 d3.select('ul').selectAll('li')
-               .data(matutu.elements)
+               .data(elements)
                .enter()
                .append('li')
                .text((d) => d.name);
 
 //graphic
-const w = 900;
-const h = 400;
+const w = 800;
+const h = 500;
 
 //Math.pow(x, 2) - 2(a*x) + Math.pow(a, 2) + Math.pow(y, 2) -2(b*y) + Math.pow(b, 2) = Math.pow(r, 2) 
 
@@ -144,7 +145,7 @@ const visSvg = d3.select("#graph")
             .attr("height", h);
 
 const circles = visSvg.selectAll('circle')
-      .data(matutu.elements)
+      .data(elements)
       .enter()
       .append('circle');
 
@@ -152,11 +153,16 @@ const circlesAttr = circles
       .attr('r', 5)
       .attr('cx', (d) => Math.random() * 800)
       .attr('cy', (d) => h - (Math.random() * 300)) // y is always inverted
+      .style("fill", "white")
       .append('title')
       .text((d) => d.name);
 
-visSvg.selectAll('text')
-      .data(matutu.elements)
-      .enter()
-      .append('text')
-      .text((d) => d.name)
+
+const arc = d3.arc()
+      .innerRadius(0)
+      .outerRadius(100)
+      .startAngle(0)
+      .endAngle(Math.PI / 2);
+arc(); 
+
+const arcArrays = d3.pie()(elements);
