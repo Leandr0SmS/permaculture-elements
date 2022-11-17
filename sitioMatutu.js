@@ -135,16 +135,16 @@ const h = 500;
 
 //Math.pow(x, 2) - 2(a*x) + Math.pow(a, 2) + Math.pow(y, 2) -2(b*y) + Math.pow(b, 2) = Math.pow(r, 2) 
 
-/*
+//function to random (x, y) for dots positions
 const randomXY = function (array) {
     let result = [];
     for (let i = 0; i < array.length; i ++) {
-        result.push([(Math.random() * w), (Math.random() * h)]);
+        result.push([(Math.floor(Math.random() * (w - 300))), Math.floor((Math.random() * (h - 200)))]);
     }
     return result;
 }
 console.log(randomXY(elements));
-*/
+
 
 const visSvg = d3.select("#graph")
             .append("svg")
