@@ -114,19 +114,20 @@ const house = new SitioElement ("house", ["water", "eletricity", "gas", "food", 
 const garden = new SitioElement ("garden", ["water", "work", "seeds", "fertilizer"], ["food", "portion", "medicins"], []);
 const fosse = new SitioElement ('Fosse', ['sewage'], [], []);
 matutu.elements.push(chicken, house, garden, fosse);
-const elements = matutu.elements;
 
+let elements = matutu.elements
 //DOM title
 const title = document.getElementById("sitoName");
 title.innerText = matutu.name;
 document.getElementById('elementsNames').innerText = `Elements: ${elements.length}`
 
 //D3 elements
+//elements name
 d3.select('ul').selectAll('li')
-.data(elements)
-.enter()
-.append('li')
-.text((d) => d.name);
+               .data(elements)
+               .enter()
+               .append('li')
+               .text((d) => d.name);
 
 //graphic
 const w = 800;
@@ -134,16 +135,15 @@ const h = 500;
 
 //Math.pow(x, 2) - 2(a*x) + Math.pow(a, 2) + Math.pow(y, 2) -2(b*y) + Math.pow(b, 2) = Math.pow(r, 2) 
 
-/*
+//function to random (x, y) for dots positions
 const randomXY = function (array) {
     let result = [];
     for (let i = 0; i < array.length; i ++) {
-        result.push([(Math.random() * w), (Math.random() * h)]);
+        result.push([(Math.floor(Math.random() * (w - 300))), Math.floor((Math.random() * (h - 200)))]);
     }
     return result;
 }
-console.log(randomXY(elements));
-*/
+const randomPosition = randomXY(elements);
 
 const visSvg = d3.select("#graph")
             .append("svg")
@@ -158,8 +158,26 @@ const circles = visSvg.selectAll('circle')
 
 const circlesAttr = circles
       .attr('r', 5)
-      .attr('cx', (d) => Math.random() * 800)
-      .attr('cy', (d) => h - (Math.random() * 300)) // y is always inverted
+      .attr('cx', (d, i) => randomPosition[i][0])
+      .attr('cy', (d, i) => h - randomPosition[i][1]) // y is always inverted
       .style("fill", "white")
       .append('title')
       .text((d) => d.name);
+
+const circlesTextLegend = visSvg.selectAll('text')
+      .data(elements)
+      .enter()
+      .append('text')
+      .text((d) => d.name)
+      .attr('x', (d, i) => randomPosition[i][0] + 10)
+      .attr('y', (d, i) => h - randomPosition[i][1])
+      .style("fill", "white");
+
+const arc = d3.arc()
+      .innerRadius(0)
+      .outerRadius(100)
+      .startAngle(0)
+      .endAngle(Math.PI / 2);
+arc(); 
+
+const arcArrays = d3.pie()(elements);
