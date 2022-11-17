@@ -4,6 +4,7 @@ class Sitio {
         this._inputs = inputs;
         this._outputs = outputs;
         this.elements = elements;
+        this.randomXY = [];
 
     };
 
@@ -99,6 +100,12 @@ class Sitio {
         }
         return {relationships, counter}
       }
+
+    newRandomXY (w, h) {
+        for (let i = 0; i < this.elements.length; i ++) {
+            this.elements[i].randomXY.push((Math.floor(Math.random() * (w - 300))), Math.floor((Math.random() * (h - 200))));
+        }
+    }
 };
 
 class SitioElement extends Sitio {
@@ -135,15 +142,9 @@ const h = 500;
 
 //Math.pow(x, 2) - 2(a*x) + Math.pow(a, 2) + Math.pow(y, 2) -2(b*y) + Math.pow(b, 2) = Math.pow(r, 2) 
 
-//function to random (x, y) for dots positions
-const randomXY = function (array) {
-    let result = [];
-    for (let i = 0; i < array.length; i ++) {
-        result.push([(Math.floor(Math.random() * (w - 300))), Math.floor((Math.random() * (h - 200)))]);
-    }
-    return result;
-}
-const randomPosition = randomXY(elements);
+//generating random positions for the elements
+matutu.newRandomXY(w, h);
+console.log(elements);
 
 const visSvg = d3.select("#graph")
             .append("svg")
@@ -158,8 +159,8 @@ const circles = visSvg.selectAll('circle')
 
 const circlesAttr = circles
       .attr('r', 10)
-      .attr('cx', (d, i) => randomPosition[i][0])
-      .attr('cy', (d, i) => h - randomPosition[i][1]) // y is always inverted
+      .attr('cx', (d) => d.randomXY[0])
+      .attr('cy', (d) => h - d.randomXY[1]) // y is always inverted
       .style("fill", "white")
       .append('title')
       .text((d) => d.name);
@@ -169,8 +170,8 @@ const circlesTextLegend = visSvg.selectAll('text')
       .enter()
       .append('text')
       .text((d) => d.name)
-      .attr('x', (d, i) => randomPosition[i][0] + 15)
-      .attr('y', (d, i) => h - randomPosition[i][1])
+      .attr('x', (d) => d.randomXY[0] + 15)
+      .attr('y', (d) => h - d.randomXY[1])
       .style("fill", "white");
 
 const arc = d3.arc()
