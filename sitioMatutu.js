@@ -101,9 +101,13 @@ class Sitio {
         return {relationships, counter}
       }
 
+    // define cirles positions
     newRandomXY (w, h) {
+        function randomRange(myMin, myMax) {
+            return Math.floor(Math.random() * (myMax - myMin + 1)) + myMin; 
+        }
         for (let i = 0; i < this.elements.length; i ++) {
-            this.elements[i].randomXY.push((Math.floor(Math.random() * (w - 300))), Math.floor((Math.random() * (h - 200))));
+            this.elements[i].randomXY.push(randomRange((w / 8), (w * 7 / 8)), randomRange((h / 8), (h * 7 / 8)));
         }
     }
 };
@@ -150,6 +154,7 @@ const visSvg = d3.select("#svgGraph")
             .attr("width", w)
             .attr("height", h)
             .style('background-color', 'rgb(62, 62, 62)')
+            .style('border-radius', '5%')
 
 const circles = visSvg.selectAll('circle')
       .data(elements)
