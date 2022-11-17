@@ -163,12 +163,12 @@ const circlesAttr = circles
       .style("fill", "white")
       .on('mouseover', function (d, i) {
         d3.select(this).transition()
-            .duration('50')
+            .duration('500')
             .attr('opacity', '.55');
         })
       .on('mouseout', function (d, i) {
         d3.select(this).transition()
-            .duration('50')
+            .duration('500')
             .attr('opacity', '1');
         })
       .append('title')
@@ -181,7 +181,17 @@ const circlesTextLegend = visSvg.selectAll('text')
       .text((d) => d.name)
       .attr('x', (d) => d.randomXY[0] + 15)
       .attr('y', (d) => h - d.randomXY[1])
-      .style("fill", "white");
+      .style("fill", "white")
+      .on('mouseover', function (d, i) {
+        d3.select(this).transition()
+            .duration('500')
+            .attr('opacity', '.55');
+        })
+      .on('mouseout', function (d, i) {
+        d3.select(this).transition()
+            .duration('500')
+            .attr('opacity', '1');
+        });
 
 const connections = visSvg.selectAll('line')
       .data(connectionLines)
