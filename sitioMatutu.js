@@ -91,7 +91,7 @@ class Sitio {
                 if (this.elements[i].inputs[iii] === this.elements[ii].outputs[iiii]) {
                   counter ++;
                   relationships.push( 
-                    `${this.elements[i].name} inputs: ${this.elements[i].inputs[iii]} --> ${this.elements[ii].name} outputs: ${this.elements[ii].outputs[iiii]}`
+                    {'positionX1Y1': this.elements[ii].randomXY, 'outputsX1Y1': this.elements[ii].outputs[iiii], 'positionX2Y2': this.elements[i].randomXY, 'inputsX2Y2': this.elements[i].inputs[iii]}
                   )
                 }
               }
@@ -144,7 +144,9 @@ const h = 500;
 
 //generating random positions for the elements
 matutu.newRandomXY(w, h);
-console.log(elements);
+console.log(matutu.elements)
+const connectionLines = matutu.getRelationships().relationships;
+console.log(connectionLines);
 
 const visSvg = d3.select("#graph")
             .append("svg")
@@ -176,9 +178,15 @@ const circlesTextLegend = visSvg.selectAll('text')
 
 //<line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" />
 const connections = visSvg.selectAll('line')
-      .data(elements)
+      .data(connectionLines)
       .enter()
       .append('line')
+      .attr('x1', (d) => d.positionX1Y1[0])
+      .attr('y1', (d) => h - d.positionX1Y1[1])
+      .attr('x2', (d) => d.positionX2Y2[0])
+      .attr('y2', (d) => h- d.positionX2Y2[1])
+      .style("stroke", "rgb(255,0,0)")
+      .style("stroke-width", 2);
 
 
 const arc = d3.arc()
