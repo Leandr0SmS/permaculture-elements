@@ -143,8 +143,7 @@ const randomXY = function (array) {
     }
     return result;
 }
-console.log(randomXY(elements));
-
+const randomPosition = randomXY(elements);
 
 const visSvg = d3.select("#graph")
             .append("svg")
@@ -159,12 +158,20 @@ const circles = visSvg.selectAll('circle')
 
 const circlesAttr = circles
       .attr('r', 5)
-      .attr('cx', (d, i) => randomXY(elements)[i][0])
-      .attr('cy', (d, i) => h - randomXY(elements)[i][1]) // y is always inverted
+      .attr('cx', (d, i) => randomPosition[i][0])
+      .attr('cy', (d, i) => h - randomPosition[i][1]) // y is always inverted
       .style("fill", "white")
       .append('title')
       .text((d) => d.name);
 
+const circlesTextLegend = visSvg.selectAll('text')
+      .data(elements)
+      .enter()
+      .append('text')
+      .text((d) => d.name)
+      .attr('x', (d, i) => randomPosition[i][0] + 10)
+      .attr('y', (d, i) => h - randomPosition[i][1])
+      .style("fill", "white");
 
 const arc = d3.arc()
       .innerRadius(0)
