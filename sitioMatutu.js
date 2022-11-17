@@ -130,23 +130,20 @@ document.getElementById('elementsNames').innerText = `Elements: ${elements.lengt
 
 //D3 elements
 //elements name
-d3.select('ul').selectAll('li')
+const elementList = d3.select('ul').selectAll('li')
                .data(elements)
                .enter()
                .append('li')
-               .text((d) => d.name);
+               .text((d) => d.name)
+               //.on('mouseover', (d) => d.howAmI())
 
 //graphic
 const w = 800;
 const h = 500;
 
-//Math.pow(x, 2) - 2(a*x) + Math.pow(a, 2) + Math.pow(y, 2) -2(b*y) + Math.pow(b, 2) = Math.pow(r, 2) 
-
 //generating random positions for the elements
 matutu.newRandomXY(w, h);
-console.log(matutu.elements)
 const connectionLines = matutu.getRelationships().relationships;
-console.log(connectionLines);
 
 const visSvg = d3.select("#graph")
             .append("svg")
@@ -165,7 +162,7 @@ const circlesAttr = circles
       .attr('cy', (d) => h - d.randomXY[1]) // y is always inverted
       .style("fill", "white")
       .append('title')
-      .text((d) => d.name);
+      .text((d) => d.howAmI());
 
 const circlesTextLegend = visSvg.selectAll('text')
       .data(elements)
