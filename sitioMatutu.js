@@ -145,11 +145,11 @@ const h = 500;
 matutu.newRandomXY(w, h);
 const connectionLines = matutu.getRelationships().relationships;
 
-const visSvg = d3.select("#graph")
+const visSvg = d3.select("#svgGraph")
             .append("svg")
-            .attr("id", "svggraph")
             .attr("width", w)
-            .attr("height", h);
+            .attr("height", h)
+            .style('background-color', 'rgb(62, 62, 62)')
 
 const circles = visSvg.selectAll('circle')
       .data(elements)
