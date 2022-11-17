@@ -115,9 +115,6 @@ const garden = new SitioElement ("garden", ["water", "work", "seeds", "fertilize
 const fosse = new SitioElement ('Fosse', ['sewage'], [], []);
 matutu.elements.push(chicken, house, garden, fosse);
 
-//console.log(matutu);
-//console.log(matutu.getRelationships());
-
 let elements = matutu.elements
 //DOM title
 const title = document.getElementById("sitoName");
@@ -138,6 +135,17 @@ const h = 500;
 
 //Math.pow(x, 2) - 2(a*x) + Math.pow(a, 2) + Math.pow(y, 2) -2(b*y) + Math.pow(b, 2) = Math.pow(r, 2) 
 
+/*
+const randomXY = function (array) {
+    let result = [];
+    for (let i = 0; i < array.length; i ++) {
+        result.push([(Math.random() * w), (Math.random() * h)]);
+    }
+    return result;
+}
+console.log(randomXY(elements));
+*/
+
 const visSvg = d3.select("#graph")
             .append("svg")
             .attr("id", "svggraph")
@@ -151,7 +159,7 @@ const circles = visSvg.selectAll('circle')
 
 const circlesAttr = circles
       .attr('r', 5)
-      .attr('cx', (d) => Math.random() * 800)
+      .attr('cx', (d) => Math.random() * 600)
       .attr('cy', (d) => h - (Math.random() * 300)) // y is always inverted
       .style("fill", "white")
       .append('title')
