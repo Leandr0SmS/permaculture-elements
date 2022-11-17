@@ -161,8 +161,18 @@ const circlesAttr = circles
       .attr('cx', (d) => d.randomXY[0])
       .attr('cy', (d) => h - d.randomXY[1]) // y is always inverted
       .style("fill", "white")
+      .on('mouseover', function (d, i) {
+        d3.select(this).transition()
+            .duration('50')
+            .attr('opacity', '.55');
+        })
+      .on('mouseout', function (d, i) {
+        d3.select(this).transition()
+            .duration('50')
+            .attr('opacity', '1');
+        })
       .append('title')
-      .text((d) => d.howAmI());
+      .text((d) => d.howAmI())
 
 const circlesTextLegend = visSvg.selectAll('text')
       .data(elements)
