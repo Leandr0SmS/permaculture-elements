@@ -159,8 +159,8 @@ const circles = visSvg.selectAll('circle')
 
 const circlesAttr = circles
       .attr('r', 5)
-      .attr('cx', (d) => Math.random() * 600)
-      .attr('cy', (d) => h - (Math.random() * 300)) // y is always inverted
+      .attr('cx', (d, i) => randomXY(elements)[i][0])
+      .attr('cy', (d, i) => h - randomXY(elements)[i][1]) // y is always inverted
       .style("fill", "white")
       .append('title')
       .text((d) => d.name);
