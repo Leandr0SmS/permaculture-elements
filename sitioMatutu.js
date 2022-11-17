@@ -114,18 +114,16 @@ const house = new SitioElement ("house", ["water", "eletricity", "gas", "food", 
 const garden = new SitioElement ("garden", ["water", "work", "seeds", "fertilizer"], ["food", "portion", "medicins"], []);
 const fosse = new SitioElement ('Fosse', ['sewage'], [], []);
 matutu.elements.push(chicken, house, garden, fosse);
-
-//console.log(matutu);
-//console.log(matutu.getRelationships());
+const elements = matutu.elements;
 
 //DOM title
 const title = document.getElementById("sitoName");
 title.innerText = matutu.name;
-document.getElementById('elementsNames').innerText = `Elements: ${matutu.elements.length}`
+document.getElementById('elementsNames').innerText = `Elements: ${elements.length}`
 
 //D3 elements
 d3.select('ul').selectAll('li')
-.data(matutu.elements)
+.data(elements)
 .enter()
 .append('li')
 .text((d) => d.name);
@@ -135,6 +133,17 @@ const w = 800;
 const h = 500;
 
 //Math.pow(x, 2) - 2(a*x) + Math.pow(a, 2) + Math.pow(y, 2) -2(b*y) + Math.pow(b, 2) = Math.pow(r, 2) 
+
+/*
+const randomXY = function (array) {
+    let result = [];
+    for (let i = 0; i < array.length; i ++) {
+        result.push([(Math.random() * w), (Math.random() * h)]);
+    }
+    return result;
+}
+console.log(randomXY(elements));
+*/
 
 const visSvg = d3.select("#graph")
             .append("svg")
