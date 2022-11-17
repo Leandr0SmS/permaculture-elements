@@ -176,7 +176,6 @@ const circlesTextLegend = visSvg.selectAll('text')
       .attr('y', (d) => h - d.randomXY[1])
       .style("fill", "white");
 
-//<line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" />
 const connections = visSvg.selectAll('line')
       .data(connectionLines)
       .enter()
@@ -194,6 +193,5 @@ const arc = d3.arc()
       .outerRadius(100)
       .startAngle(0)
       .endAngle(Math.PI / 2);
-arc(); 
 
 const arcArrays = d3.pie()(elements);
