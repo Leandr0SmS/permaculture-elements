@@ -4,6 +4,7 @@ class Sitio {
         this._inputs = inputs;
         this._outputs = outputs;
         this.elements = elements;
+        this.randomXY = [];
 
     };
 
@@ -90,7 +91,7 @@ class Sitio {
                 if (this.elements[i].inputs[iii] === this.elements[ii].outputs[iiii]) {
                   counter ++;
                   relationships.push( 
-                    `${this.elements[i].name} inputs: ${this.elements[i].inputs[iii]} --> ${this.elements[ii].name} outputs: ${this.elements[ii].outputs[iiii]}`
+                    {'positionX1Y1': this.elements[ii].randomXY, 'outputsX1Y1': this.elements[ii].outputs[iiii], 'positionX2Y2': this.elements[i].randomXY, 'inputsX2Y2': this.elements[i].inputs[iii]}
                   )
                 }
               }
@@ -99,6 +100,12 @@ class Sitio {
         }
         return {relationships, counter}
       }
+
+    newRandomXY (w, h) {
+        for (let i = 0; i < this.elements.length; i ++) {
+            this.elements[i].randomXY.push((Math.floor(Math.random() * (w - 300))), Math.floor((Math.random() * (h - 200))));
+        }
+    }
 };
 
 class SitioElement extends Sitio {
@@ -135,15 +142,11 @@ const h = 500;
 
 //Math.pow(x, 2) - 2(a*x) + Math.pow(a, 2) + Math.pow(y, 2) -2(b*y) + Math.pow(b, 2) = Math.pow(r, 2) 
 
-//function to random (x, y) for dots positions
-const randomXY = function (array) {
-    let result = [];
-    for (let i = 0; i < array.length; i ++) {
-        result.push([(Math.floor(Math.random() * (w - 300))), Math.floor((Math.random() * (h - 200)))]);
-    }
-    return result;
-}
-const randomPosition = randomXY(elements);
+//generating random positions for the elements
+matutu.newRandomXY(w, h);
+console.log(matutu.elements)
+const connectionLines = matutu.getRelationships().relationships;
+console.log(connectionLines);
 
 const visSvg = d3.select("#graph")
             .append("svg")
@@ -158,8 +161,8 @@ const circles = visSvg.selectAll('circle')
 
 const circlesAttr = circles
       .attr('r', 10)
-      .attr('cx', (d, i) => randomPosition[i][0])
-      .attr('cy', (d, i) => h - randomPosition[i][1]) // y is always inverted
+      .attr('cx', (d) => d.randomXY[0])
+      .attr('cy', (d) => h - d.randomXY[1]) // y is always inverted
       .style("fill", "white")
       .append('title')
       .text((d) => d.name);
@@ -169,15 +172,26 @@ const circlesTextLegend = visSvg.selectAll('text')
       .enter()
       .append('text')
       .text((d) => d.name)
-      .attr('x', (d, i) => randomPosition[i][0] + 15)
-      .attr('y', (d, i) => h - randomPosition[i][1])
+      .attr('x', (d) => d.randomXY[0] + 15)
+      .attr('y', (d) => h - d.randomXY[1])
       .style("fill", "white");
+
+const connections = visSvg.selectAll('line')
+      .data(connectionLines)
+      .enter()
+      .append('line')
+      .attr('x1', (d) => d.positionX1Y1[0])
+      .attr('y1', (d) => h - d.positionX1Y1[1])
+      .attr('x2', (d) => d.positionX2Y2[0])
+      .attr('y2', (d) => h- d.positionX2Y2[1])
+      .style("stroke", "rgb(255,0,0)")
+      .style("stroke-width", 2);
+
 
 const arc = d3.arc()
       .innerRadius(0)
       .outerRadius(100)
       .startAngle(0)
       .endAngle(Math.PI / 2);
-arc(); 
 
 const arcArrays = d3.pie()(elements);
