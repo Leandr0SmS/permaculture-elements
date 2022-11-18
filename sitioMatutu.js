@@ -162,7 +162,7 @@ const circles = visSvg.selectAll('circle')
       .append('circle');
 
 const circlesAttr = circles
-      .attr('r', 10)
+      .attr('r', 20)
       .attr('cx', (d) => d.randomXY[0])
       .attr('cy', (d) => h - d.randomXY[1]) // y is always inverted
       .style("fill", "white")
@@ -184,7 +184,7 @@ const circlesTextLegend = visSvg.selectAll('text')
       .enter()
       .append('text')
       .text((d) => d.name)
-      .attr('x', (d) => d.randomXY[0] + 15)
+      .attr('x', (d) => d.randomXY[0] + 25)
       .attr('y', (d) => h - d.randomXY[1])
       .style("fill", "white")
       .on('mouseover', function (d, i) {
@@ -207,7 +207,9 @@ const connections = visSvg.selectAll('line')
       .attr('x2', (d) => d.positionX2Y2[0])
       .attr('y2', (d) => h- d.positionX2Y2[1])
       .style("stroke", "rgb(255,0,0)")
-      .style("stroke-width", 2);
+      .style("stroke-width", 5)
+      .append('title')
+      .text((d) => d.inputsX2Y2);
 
 
 const arc = d3.arc()
