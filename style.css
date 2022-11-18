@@ -15,3 +15,9 @@ body {
 #listElements {
     align-items: center;
 }
+
+.textLegend {
+    font-size: 120%;
+    font-family: monospace, Arial, Helvetica, sans-serif;
+    color:rgb(127, 133, 249);
+}

@@ -179,11 +179,25 @@ const circlesAttr = circles
       .append('title')
       .text((d) => d.howAmI())
 
+const connections = visSvg.selectAll('line')
+      .data(connectionLines)
+      .enter()
+      .append('line')
+      .attr('x1', (d) => d.positionX1Y1[0])
+      .attr('y1', (d) => h - d.positionX1Y1[1])
+      .attr('x2', (d) => d.positionX2Y2[0])
+      .attr('y2', (d) => h- d.positionX2Y2[1])
+      .style("stroke", "rgb(255,0,0)")
+      .style("stroke-width", 5)
+      .append('title')
+      .text((d) => d.inputsX2Y2);
+
 const circlesTextLegend = visSvg.selectAll('text')
       .data(elements)
       .enter()
       .append('text')
       .text((d) => d.name)
+      .attr('class', 'textLegend')
       .attr('x', (d) => d.randomXY[0] + 25)
       .attr('y', (d) => h - d.randomXY[1])
       .style("fill", "white")
@@ -197,19 +211,6 @@ const circlesTextLegend = visSvg.selectAll('text')
             .duration('500')
             .attr('opacity', '1');
         });
-
-const connections = visSvg.selectAll('line')
-      .data(connectionLines)
-      .enter()
-      .append('line')
-      .attr('x1', (d) => d.positionX1Y1[0])
-      .attr('y1', (d) => h - d.positionX1Y1[1])
-      .attr('x2', (d) => d.positionX2Y2[0])
-      .attr('y2', (d) => h- d.positionX2Y2[1])
-      .style("stroke", "rgb(255,0,0)")
-      .style("stroke-width", 5)
-      .append('title')
-      .text((d) => d.inputsX2Y2);
 
 
 const arc = d3.arc()
