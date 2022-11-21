@@ -28,7 +28,7 @@ const h = 500;
 
 //generating random positions for the elements
 matutu.newRandomXY(w, h);
-const connectionLines = matutu.getRelationships().relationships;
+const connectionLines = matutu.getRelationships().relationshipsLines;
 
 const visSvg = d3.select("#svgGraph")
       .append("svg")

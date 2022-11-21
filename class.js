@@ -80,7 +80,7 @@ class Sitio {
     //return the connection between elements and the number of connections
     getRelationships() {
         let counter = 0;
-        const relationships = []
+        const relationshipsLines = []
         for (let i = 0; i < this.elements.length; i++) {
           for (let ii = 0; ii < this.elements.length; ii++) {
             if (this.elements[i].name === this.elements[ii].name) {
@@ -90,7 +90,7 @@ class Sitio {
               for (let iiii = 0; iiii < this.elements[ii].outputs.length; iiii++) {
                 if (this.elements[i].inputs[iii] === this.elements[ii].outputs[iiii]) {
                   counter ++;
-                  relationships.push( 
+                  relationshipsLines.push( 
                     {'positionX1Y1': this.elements[ii].randomXY, 'outputsX1Y1': this.elements[ii].outputs[iiii], 'positionX2Y2': this.elements[i].randomXY, 'inputsX2Y2': this.elements[i].inputs[iii]}
                   )
                 }
@@ -98,7 +98,7 @@ class Sitio {
             }
           }
         }
-        return {relationships, counter}
+        return {relationshipsLines, counter}
       }
 
     // define cirles positions
