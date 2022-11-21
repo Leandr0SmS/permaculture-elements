@@ -15,7 +15,7 @@ const elementList = d3.select('ul').selectAll('li')
       .text((d) => d.name)
       .on('mouseover', function (d, i) {
             d3.select(this)
-                  .text((d) => `${d.name}  ==>  ${d.howAmI()}`);
+                  .text((d) => `${d.name}  ==> Inputs: ${d.inputs.join(', ')} / Outputs: ${d.outputs.join(', ')}`);
             })
       .on('mouseout', function (d, i) {
             d3.select(this)
