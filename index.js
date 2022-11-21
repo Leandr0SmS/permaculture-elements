@@ -9,11 +9,11 @@ document.getElementById('elementsNames').innerText = `Elements: ${elements.lengt
 //D3 elements
 //elements name
 const elementList = d3.select('ul').selectAll('li')
-               .data(elements)
-               .enter()
-               .append('li')
-               .text((d) => d.name)
-               //.on('mouseover', (d) => d.howAmI())
+      .data(elements)
+      .enter()
+      .append('li')
+      .text((d) => d.name)
+      //.on('mouseover', (d) => d.howAmI())
 
 //graphic
 const w = 800;
@@ -24,11 +24,11 @@ matutu.newRandomXY(w, h);
 const connectionLines = matutu.getRelationships().relationships;
 
 const visSvg = d3.select("#svgGraph")
-            .append("svg")
-            .attr("width", w)
-            .attr("height", h)
-            .style('background-color', 'rgb(62, 62, 62)')
-            .style('border-radius', '5%')
+      .append("svg")
+      .attr("width", w)
+      .attr("height", h)
+      .style('background-color', 'rgb(62, 62, 62)')
+      .style('border-radius', '5%')
 
 const circles = visSvg.selectAll('circle')
       .data(elements)
@@ -41,15 +41,15 @@ const circlesAttr = circles
       .attr('cy', (d) => h - d.randomXY[1]) // y is always inverted
       .style("fill", "white")
       .on('mouseover', function (d, i) {
-        d3.select(this).transition()
-            .duration('500')
-            .attr('opacity', '.55');
-        })
+            d3.select(this).transition()
+                .duration('500')
+                .attr('opacity', '.55');
+            })
       .on('mouseout', function (d, i) {
-        d3.select(this).transition()
-            .duration('500')
-            .attr('opacity', '1');
-        })
+            d3.select(this).transition()
+                .duration('500')
+                .attr('opacity', '1');
+            })
       .append('title')
       .text((d) => d.howAmI())
 
@@ -76,21 +76,13 @@ const circlesTextLegend = visSvg.selectAll('text')
       .attr('y', (d) => h - d.randomXY[1])
       .style("fill", "white")
       .on('mouseover', function (d, i) {
-        d3.select(this).transition()
-            .duration('500')
-            .attr('opacity', '.55');
-        })
+            d3.select(this).transition()
+                .duration('500')
+                .attr('opacity', '.55');
+            })
       .on('mouseout', function (d, i) {
-        d3.select(this).transition()
-            .duration('500')
-            .attr('opacity', '1');
-        });
+            d3.select(this).transition()
+                .duration('500')
+                .attr('opacity', '1');
+            });
 
-
-const arc = d3.arc()
-      .innerRadius(0)
-      .outerRadius(100)
-      .startAngle(0)
-      .endAngle(Math.PI / 2);
-
-const arcArrays = d3.pie()(elements);
