@@ -12,11 +12,19 @@
   <body>
     <h1>Working in progress...</h1>
     <form>
-      <fieldset>
-        <legend class="form-legend">Whats the name of your settlement?</legend>
-        <label><input id="sitio-name" type="text" name="sitio-name" size="40"> Name:</label>
+      <fieldset class="fieldset">
+        <legend class="form-legend">Whats the name of your permaculture system?</legend>
+        <input id="system-name" type="text" name="sitio-name" size="40" required>
       </fieldset>
-      <button id="submit-button" type="submit" required>Submit</button>
+      <fieldset class="fieldset">
+        <legend class="form-legend">What does your system need (inputs)?</legend>
+        <input id="system-inputs" type="text" name="system-inputs" size="40">
+      </fieldset>
+      <fieldset class="fieldset">
+        <legend class="form-legend">What does your system provide (outputs)?</legend>
+        <input id="system-outputs" type="text" name="system-outputs" size="40">
+      </fieldset>
+      <button id="submit-button" type="submit">Create a Settlement</button>
     </form>
 	<script type="module" src="index-form.js"></script>
   </body>

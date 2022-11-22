@@ -12,8 +12,14 @@ h1 {
     color:aliceblue;
 }
 
+.fieldset {
+    margin: 2%;
+}
+
 .form-legend {
     color:aliceblue;
+    font-family: monospace, Arial, Helvetica, sans-serif;
+    font-size: medium;
 }
 
 #submit-button {
