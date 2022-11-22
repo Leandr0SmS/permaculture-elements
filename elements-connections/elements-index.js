@@ -1,4 +1,4 @@
-import { matutu } from "./class.js";
+import { matutu } from "../class";
 
 let elements = matutu.elements
 //DOM title
