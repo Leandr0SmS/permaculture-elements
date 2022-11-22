@@ -31,7 +31,9 @@ const h = 500;
 
 //generating random positions for the elements
 matutu.newRandomXY(w, h);
+//generating connections
 const connectionLines = matutu.getRelationships().relationshipsLines;
+const connectionsObj = matutu.getRelationships().relationships;
 
 const visSvg = d3.select("#svgGraph")
       .append("svg")
@@ -61,7 +63,9 @@ const circlesAttr = circles
                 .attr('opacity', '1');
             })
       .append('title')
-      .text((d) => d.howAmI());
+      .text((d) => {
+            return d.name;
+      });
 
 const connections = visSvg.selectAll('line')
       .data(connectionLines)
