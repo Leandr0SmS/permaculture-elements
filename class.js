@@ -92,7 +92,12 @@ class Element {
                 if (this.elements[i].inputs[iii] === this.elements[ii].outputs[iiii]) {
                   counter ++;
                   relationshipsLines.push( 
-                    {'positionX1Y1': this.elements[ii].randomXY, 'outputsX1Y1': this.elements[ii].outputs[iiii], 'positionX2Y2': this.elements[i].randomXY, 'inputsX2Y2': this.elements[i].inputs[iii]}
+                    {
+                        'positionX1Y1': this.elements[ii].randomXY, 
+                        'outputsX1Y1': this.elements[ii].outputs[iiii], 
+                        'positionX2Y2': this.elements[i].randomXY, 
+                        'inputsX2Y2': this.elements[i].inputs[iii]
+                    }
                   )
                   relationships.push(
                     { 
