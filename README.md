@@ -16,8 +16,8 @@
 ### Propose
 
          Its very important for apply permaculture to have a good system design, an important 
-        step is analysing and connecting system components. 
-         That's the goal of this project.
+        step is analysing and connecting system components. That's the goal of this project.
+         Another objective of this project is to improve the learning of code in html, css and javascript.
 
 ## Authors
 
