@@ -1,4 +1,4 @@
-class Sitio {
+class Element {
     constructor (name, inputs, outputs, elements) {
         this._name = name;
         this._inputs = inputs;
@@ -112,18 +112,11 @@ class Sitio {
     }
 };
 
-class SitioElement extends Sitio {
-    constructor (name, inputs, outputs, elements) {
-        super(name, inputs, outputs, elements);
-    }
-}
-
-
-const matutu = new Sitio ("Sítio São José do Matutu", ['food', 'portion', 'gas', 'oil'], ['fertilizer', 'bananas', 'açaí'], []);
-const chicken = new SitioElement ("chicken", ["food", "water", "shelter", "portion"], ["food", "fertilizer"], []);
-const house = new SitioElement ("house", ["water", "eletricity", "gas", "food", "medicins"], ['shelter', "seeds", "sewage"], []);
-const garden = new SitioElement ("garden", ["water", "work", "seeds", "fertilizer"], ["food", "portion", "medicins"], []);
-const fosse = new SitioElement ('Fosse', ['sewage'], [], []);
+const matutu = new Element ("Sítio São José do Matutu", ['food', 'portion', 'gas', 'oil'], ['fertilizer', 'bananas', 'açaí'], []);
+const chicken = new Element ("chicken", ["food", "water", "shelter", "portion"], ["food", "fertilizer"], []);
+const house = new Element ("house", ["water", "eletricity", "gas", "food", "medicins"], ['shelter', "seeds", "sewage"], []);
+const garden = new Element ("garden", ["water", "work", "seeds", "fertilizer"], ["food", "portion", "medicins"], []);
+const fosse = new Element ('Fosse', ['sewage'], [], []);
 matutu.elements.push(chicken, house, garden, fosse);
 
 export {matutu};
