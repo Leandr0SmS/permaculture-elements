@@ -80,6 +80,7 @@ class Element {
     //return the connection between elements and the number of connections
     getRelationships() {
         let counter = 0;
+        const relationships = [];
         const relationshipsLines = []
         for (let i = 0; i < this.elements.length; i++) {
           for (let ii = 0; ii < this.elements.length; ii++) {
@@ -93,12 +94,15 @@ class Element {
                   relationshipsLines.push( 
                     {'positionX1Y1': this.elements[ii].randomXY, 'outputsX1Y1': this.elements[ii].outputs[iiii], 'positionX2Y2': this.elements[i].randomXY, 'inputsX2Y2': this.elements[i].inputs[iii]}
                   )
+                  relationships.push(
+                    `${this.elements[ii].name} outputs: ${this.elements[ii].outputs[iiii]} --> ${this.elements[i].name} inputs: ${this.elements[i].inputs[iii]}`
+                  )
                 }
               }
             }
           }
         }
-        return {relationshipsLines, counter}
+        return {relationshipsLines, counter, relationships}
       }
 
     // define cirles positions

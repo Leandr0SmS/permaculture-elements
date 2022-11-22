@@ -61,7 +61,7 @@ const circlesAttr = circles
                 .attr('opacity', '1');
             })
       .append('title')
-      .text((d) => d.howAmI())
+      .text((d) => d.howAmI());
 
 const connections = visSvg.selectAll('line')
       .data(connectionLines)
