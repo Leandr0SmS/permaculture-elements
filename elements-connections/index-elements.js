@@ -13,14 +13,17 @@ const elementList = d3.select('ul').selectAll('li')
       .enter()
       .append('li')
       .text((d) => d.name)
+      .attr('class', 'elements-li')
       .on('mouseover', function (d, i) {
             d3.select(this)
+                  .style('color', 'yellow')
                   .text((d) => `${d.name}  ==> Inputs: ${d.inputs.join(', ')} / Outputs: ${d.outputs.join(', ')}`);
             })
       .on('mouseout', function (d, i) {
             d3.select(this)
+                  .style('color', 'aliceblue')
                   .text((d) => d.name);
-            })
+            });
 
 //graphic
 const w = 800;

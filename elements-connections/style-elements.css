@@ -8,6 +8,10 @@ body {
     text-align: center;
 }
 
+.elements-li {
+    font-family: monospace, Arial, Helvetica, sans-serif;
+}
+
 #elementsNames {
     font-family: monospace, Arial, Helvetica, sans-serif;
 }
