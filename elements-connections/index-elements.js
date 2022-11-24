@@ -42,16 +42,30 @@ const visSvg = d3.select("#svgGraph")
       .style('background-color', 'rgb(62, 62, 62)')
       .style('border-radius', '5%')
 
-const circles = visSvg.selectAll('circle')
+const connections = visSvg.selectAll('line')
+      .data(connectionLines)
+      .enter()
+      .append('line')
+      .attr('x1', (d) => d.positionX1Y1[0])
+      .attr('y1', (d) => h - d.positionX1Y1[1])
+      .attr('x2', (d) => d.positionX2Y2[0])
+      .attr('y2', (d) => h- d.positionX2Y2[1])
+      .style("stroke", "rgb(255,0,0)")
+      .style("stroke-width", 5)
+      .append('title')
+      .text((d) => d.inputsX2Y2);
+
+const node = visSvg.selectAll('circle')
       .data(elements)
       .enter()
-      .append('circle');
-
-const circlesAttr = circles
+      .append('g')
+      .append('circle')
       .attr('r', 20)
       .attr('cx', (d) => d.randomXY[0])
       .attr('cy', (d) => h - d.randomXY[1]) // y is always inverted
-      .style("fill", "white")
+      .style("fill", "Tomato");
+
+const g = visSvg.selectAll('g')
       .on('mouseover', function (d, i) {
             d3.select(this).transition()
                 .duration('500')
@@ -67,22 +81,7 @@ const circlesAttr = circles
             return d.name;
       });
 
-const connections = visSvg.selectAll('line')
-      .data(connectionLines)
-      .enter()
-      .append('line')
-      .attr('x1', (d) => d.positionX1Y1[0])
-      .attr('y1', (d) => h - d.positionX1Y1[1])
-      .attr('x2', (d) => d.positionX2Y2[0])
-      .attr('y2', (d) => h- d.positionX2Y2[1])
-      .style("stroke", "rgb(255,0,0)")
-      .style("stroke-width", 5)
-      .append('title')
-      .text((d) => d.inputsX2Y2);
-
-const circlesTextLegend = visSvg.selectAll('text')
-      .data(elements)
-      .enter()
+const circlesTextLegend = visSvg.selectAll('g')
       .append('text')
       .text((d) => d.name)
       .attr('class', 'textLegend')
@@ -100,15 +99,3 @@ const circlesTextLegend = visSvg.selectAll('text')
                 .attr('opacity', '1');
             });
 
-circles.on('mouseover', function (d, i) {
-      d3.select(this).transition()
-          .duration('500')
-          .attr('opacity', '.55')
-          .style("fill", "red")
-      })
-      .on('mouseout', function (d, i) {
-            d3.select(this).transition()
-                .duration('500')
-                .attr('opacity', '1')
-                .style("fill", "white");
-      });
