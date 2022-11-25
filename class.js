@@ -101,9 +101,9 @@ class Element {
                   )
                   relationships.push(
                     { 
-                        'elementOutput': this.elements[ii].name,
+                        'elementOutput': this.elements[ii],
                         'output': this.elements[ii].outputs[iiii],
-                        'elementInput': this.elements[i].name,
+                        'elementInput': this.elements[i],
                         'input': this.elements[i].inputs[iii],
                         }
                   )
@@ -126,10 +126,10 @@ class Element {
     }
 
     //function to creat lines for each node
-    elementOutputs (elementName) {
+    elementOutputs (array) {
         let elementLines = [];
-        for (let obj of this.getRelationships().relationships) {
-            if (obj.elementOutput.name === elementName) {
+        for (let obj of array) {
+            if (obj.elementOutput.name === this.name) {
                 elementLines.push(
                     {
                         'outputsX1Y1': obj.elementOutput.randomXY,

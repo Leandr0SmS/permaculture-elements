@@ -29,28 +29,10 @@ const elementList = d3.select('ul').selectAll('li')
 const w = 800;
 const h = 500;
 
+//function to find relations between elements of matutu
+const elementsRelations = matutu.getRelationships().relationships;
 //generating random positions for the elements
 matutu.newRandomXY(w, h);
-//generating connections
-const connectionLines = matutu.getRelationships().relationshipsLines;
-const nodesOutputs = matutu.getRelationships().relationships;
-
-//function to creat lines for each node
-function elementOutputs (elementName, array) {
-      let elementLines = [];
-      for (let obj of array) {
-          if (obj.elementOutput.name === elementName) {
-              elementLines.push(
-                  {
-                      'outputsX1Y1': obj.elementOutput.randomXY,
-                      'outputsX2Y2': obj.elementInput.randomXY,
-                      'output': obj.output
-                  }
-              )
-          }
-      }
-      return elementLines;
-  }
 
 const visSvg = d3.select("#svgGraph")
       .append("svg")
@@ -58,19 +40,27 @@ const visSvg = d3.select("#svgGraph")
       .attr("height", h)
       .style('background-color', 'rgb(62, 62, 62)')
       .style('border-radius', '5%')
-
-const connections = visSvg.selectAll('g')
-      .data(nodesOutputs)
-      .enter()
-      .append('line')
-      .attr('x1', (d) => elementOutputs(d.name, nodesOutputs))
-      .attr('y1', (d) => h - d.positionX1Y1[1])
-      .attr('x2', (d) => d.positionX2Y2[0])
-      .attr('y2', (d) => h- d.positionX2Y2[1])
-      .style("stroke", "rgb(255,0,0)")
-      .style("stroke-width", 5)
-      .append('title')
-      .text((d) => d.inputsX2Y2);
+      
+//for each element of matutu, creat a line for each output
+for (let elem of elements) {
+      console.log(elementsRelations);
+      console.log(elem.name)
+      let lines = elem.elementOutputs(elementsRelations);
+      console.log(lines);
+      visSvg.selectAll('g')
+            //returns a array with outputsX1Y1, outputsx2Y2 and the thing they are exchanging
+            .data(lines)
+            .enter()
+            .append('line')
+            .attr('x1', (d) => d.outputsX1Y1[0])
+            .attr('y1', (d) => h - d.outputsX1Y1[1])
+            .attr('x2', (d) => d.outputsX2Y2[0])
+            .attr('y2', (d) => h - d.outputsX2Y2[1])
+            .style("stroke", "rgb(255,0,0)")
+            .style("stroke-width", 5)
+            .append('title')
+            .text((d) => d.output);
+}
 
 const node = visSvg.selectAll('circle')
       .data(elements)
