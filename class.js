@@ -124,6 +124,23 @@ class Element {
             this.elements[i].randomXY.push(randomRange((w / 8), (w * 7 / 8)), randomRange((h / 8), (h * 7 / 8)));
         }
     }
+
+    //function to creat lines for each node
+    elementOutputs (elementName) {
+        let elementLines = [];
+        for (let obj of this.getRelationships().relationships) {
+            if (obj.elementOutput.name === elementName) {
+                elementLines.push(
+                    {
+                        'outputsX1Y1': obj.elementOutput.randomXY,
+                        'outputsX2Y2': obj.elementInput.randomXY,
+                        'output': obj.output
+                    }
+                )
+            }
+        }
+        return elementLines;
+    }
 };
 
 const matutu = new Element ("Sítio São José do Matutu", ['food', 'portion', 'gas', 'oil'], ['fertilizer', 'bananas', 'açaí'], []);

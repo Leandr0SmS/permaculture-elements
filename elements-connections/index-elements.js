@@ -33,7 +33,24 @@ const h = 500;
 matutu.newRandomXY(w, h);
 //generating connections
 const connectionLines = matutu.getRelationships().relationshipsLines;
-const connectionsObj = matutu.getRelationships().relationships;
+const nodesOutputs = matutu.getRelationships().relationships;
+
+//function to creat lines for each node
+function elementOutputs (elementName, array) {
+      let elementLines = [];
+      for (let obj of array) {
+          if (obj.elementOutput.name === elementName) {
+              elementLines.push(
+                  {
+                      'outputsX1Y1': obj.elementOutput.randomXY,
+                      'outputsX2Y2': obj.elementInput.randomXY,
+                      'output': obj.output
+                  }
+              )
+          }
+      }
+      return elementLines;
+  }
 
 const visSvg = d3.select("#svgGraph")
       .append("svg")
@@ -42,11 +59,11 @@ const visSvg = d3.select("#svgGraph")
       .style('background-color', 'rgb(62, 62, 62)')
       .style('border-radius', '5%')
 
-const connections = visSvg.selectAll('line')
-      .data(connectionLines)
+const connections = visSvg.selectAll('g')
+      .data(nodesOutputs)
       .enter()
       .append('line')
-      .attr('x1', (d) => d.positionX1Y1[0])
+      .attr('x1', (d) => elementOutputs(d.name, nodesOutputs))
       .attr('y1', (d) => h - d.positionX1Y1[1])
       .attr('x2', (d) => d.positionX2Y2[0])
       .attr('y2', (d) => h- d.positionX2Y2[1])
