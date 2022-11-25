@@ -44,7 +44,6 @@ const visSvg = d3.select("#svgGraph")
 //for each element of matutu, creat a line for each output
 for (let elem of elements) {
       let outputsLines = elem.elementOutputs(elementsRelations);
-      console.log(outputsLines)
       
       let g = visSvg.selectAll('g')
             //returns a array with outputsX1Y1, outputsx2Y2 and the thing they are exchanging
