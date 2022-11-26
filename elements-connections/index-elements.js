@@ -69,17 +69,20 @@ for (let elem of elements) {
             .attr('class', 'IntextLegend')
             .attr('x', (d) => d.outputsX1Y1[0] + 25)
             .attr('y', (d) => h - d.outputsX1Y1[1] - 20)
+            .attr('opacity', '.50')
             .style("fill", "red")
             .on('mouseover', function (d, i) {
                   d3.select(`#outputs${elem.name}`).transition()
-                      .duration('500')
+                      .duration('50')
                       .attr('opacity', '1')
                   })
             .on('mouseout', function (d, i) {
                   d3.select(`#outputs${elem.name}`).transition()
-                      .duration('500')
+                      .duration('50')
                       .attr('opacity', '.50');
-                  });
+                  })
+            .append('title')
+            .text((d) => d.output);
       
       /*const outputCircles = gOut
             .append('circle')
@@ -117,17 +120,20 @@ for (let elem of elements) {
             .attr('class', 'IntextLegend')
             .attr('x', (d) => d.inputsX1Y1[0] + 25)
             .attr('y', (d) => h - d.inputsX1Y1[1] + 20)
+            .attr('opacity', '.50')
             .style("fill", "green")
             .on('mouseover', function (d, i) {
                   d3.select(`#inputs${elem.name}`).transition()
-                      .duration('500')
-                      .attr('opacity', '1')
+                      .duration('50')
+                      .attr('opacity', '1.5')
                   })
             .on('mouseout', function (d, i) {
                   d3.select(`#inputs${elem.name}`).transition()
-                      .duration('500')
+                      .duration('50')
                       .attr('opacity', '.50');
-                  });
+                  })
+            .append('title')
+            .text((d) => d.input);
       
       /*const inputCircles = gIn
             .append('circle')
