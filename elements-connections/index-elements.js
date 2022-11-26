@@ -57,7 +57,7 @@ for (let elem of elements) {
             .attr('y1', (d) => h - d.outputsX1Y1[1] - 5)
             .attr('x2', (d) => d.InputsX2Y2[0] + 5)
             .attr('y2', (d) => h - d.InputsX2Y2[1] - 5)
-            .attr('opacity', '.40')
+            .attr('opacity', '.50')
             .style("stroke", "rgb(255,0,0)")
             .style("stroke-width", 5)
             .append('title')
@@ -77,7 +77,7 @@ for (let elem of elements) {
             .on('mouseout', function (d, i) {
                   d3.select('.outputs').transition()
                       .duration('500')
-                      .attr('opacity', '.40');
+                      .attr('opacity', '.50');
                   });
       
       /*const outputCircles = gOut
@@ -104,7 +104,7 @@ for (let elem of elements) {
             .attr('y1', (d) => h - d.inputsX1Y1[1] - 5)
             .attr('x2', (d) => d.outputsX2Y2[0] - 5)
             .attr('y2', (d) => h - d.outputsX2Y2[1] - 5)
-            .attr('opacity', '.40')
+            .attr('opacity', '.50')
             .style("stroke", "green")
             .style("stroke-width", 5)
             .append('title')
@@ -124,7 +124,7 @@ for (let elem of elements) {
             .on('mouseout', function (d, i) {
                   d3.select('.inputs').transition()
                       .duration('500')
-                      .attr('opacity', '.40');
+                      .attr('opacity', '.50');
                   });
       
       /*const inputCircles = gIn
@@ -142,7 +142,9 @@ const circle = visSvg.selectAll('circle')
       .attr('r', 15)
       .attr('cx', (d) => d.randomXY[0])
       .attr('cy', (d) => h - d.randomXY[1]) // y is always inverted
-      .style("fill", "Tomato");
+      .style("fill", "Tomato")
+      .append('title')
+      .text((d) => d.howAmI());
 
 const circlesTextLegend = visSvg.selectAll('textLegend')
       .data(elements)
