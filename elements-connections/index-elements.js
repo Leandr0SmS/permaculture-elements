@@ -125,7 +125,7 @@ for (let elem of elements) {
             .on('mouseover', function (d, i) {
                   d3.select(`#inputs${elem.name}`).transition()
                       .duration('50')
-                      .attr('opacity', '1.5')
+                      .attr('opacity', '1')
                   })
             .on('mouseout', function (d, i) {
                   d3.select(`#inputs${elem.name}`).transition()
