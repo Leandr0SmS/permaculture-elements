@@ -50,7 +50,8 @@ for (let elem of elements) {
             .data(outputsLines)
             .enter()
             .append('g')
-            .attr('class', 'outputs');
+            .attr('class', 'outputs')
+            .attr('id', `outputs${elem.name}`);
 
       gOut.append('line')
             .attr('x1', (d) => d.outputsX1Y1[0] + 5)
@@ -97,7 +98,8 @@ for (let elem of elements) {
             .data(inputsLines)
             .enter()
             .append('g')
-            .attr('class', 'inputs');
+            .attr('class', 'inputs')
+            .attr('id', `inputs${elem.name}`);
 
       gIn.append('line')
             .attr('x1', (d) => d.inputsX1Y1[0] - 5)
