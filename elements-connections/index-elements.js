@@ -71,12 +71,12 @@ for (let elem of elements) {
             .attr('y', (d) => h - d.outputsX1Y1[1] - 20)
             .style("fill", "red")
             .on('mouseover', function (d, i) {
-                  d3.select('.outputs').transition()
+                  d3.select(`#outputs${elem.name}`).transition()
                       .duration('500')
                       .attr('opacity', '1')
                   })
             .on('mouseout', function (d, i) {
-                  d3.select('.outputs').transition()
+                  d3.select(`#outputs${elem.name}`).transition()
                       .duration('500')
                       .attr('opacity', '.50');
                   });
@@ -119,12 +119,12 @@ for (let elem of elements) {
             .attr('y', (d) => h - d.inputsX1Y1[1] + 20)
             .style("fill", "green")
             .on('mouseover', function (d, i) {
-                  d3.select('.inputs').transition()
+                  d3.select(`#inputs${elem.name}`).transition()
                       .duration('500')
                       .attr('opacity', '1')
                   })
             .on('mouseout', function (d, i) {
-                  d3.select('.inputs').transition()
+                  d3.select(`#inputs${elem.name}`).transition()
                       .duration('500')
                       .attr('opacity', '.50');
                   });
