@@ -125,21 +125,33 @@ class Element {
         }
     }
 
-    //function to creat lines for each node
-    elementOutputs (array) {
-        let elementLines = [];
-        for (let obj of array) {
+    //function to creat outputs lines for each node
+    elementsIn_Outputs (relationships) {
+        let outputsLines = [];
+        let inputsLines = [];
+        for (let obj of relationships) {
             if (obj.elementOutput.name === this.name) {
-                elementLines.push(
+                outputsLines.push(
                     {
+                        'elemOutputName': obj.elementOutput.name,
                         'outputsX1Y1': obj.elementOutput.randomXY,
-                        'outputsX2Y2': obj.elementInput.randomXY,
+                        'InputsX2Y2': obj.elementInput.randomXY,
                         'output': obj.output
                     }
                 )
             }
+            if (obj.elementInput.name === this.name) {
+                inputsLines.push(
+                    {
+                        'elemInputName': obj.elementInput.name,
+                        'inputsX1Y1': obj.elementInput.randomXY,
+                        'outputsX2Y2': obj.elementOutput.randomXY,
+                        'input': obj.input
+                    }
+                )
+            }
         }
-        return elementLines;
+        return {outputsLines, inputsLines};
     }
 };
 

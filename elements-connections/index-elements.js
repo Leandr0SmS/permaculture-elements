@@ -43,61 +43,108 @@ const visSvg = d3.select("#svgGraph")
       
 //for each element of matutu, creat a line for each output
 for (let elem of elements) {
-      let outputsLines = elem.elementOutputs(elementsRelations);
+      let outputsLines = elem.elementsIn_Outputs(elementsRelations).outputsLines;
       
-      let g = visSvg.selectAll('g')
+      let gOut = visSvg.selectAll('.outputs')
             //returns a array with outputsX1Y1, outputsx2Y2 and the thing they are exchanging
             .data(outputsLines)
             .enter()
-            .append('g');
+            .append('g')
+            .attr('class', 'outputs');
 
-      g.append('line')
-            .attr('x1', (d) => d.outputsX1Y1[0])
-            .attr('y1', (d) => h - d.outputsX1Y1[1])
-            .attr('x2', (d) => d.outputsX2Y2[0])
-            .attr('y2', (d) => h - d.outputsX2Y2[1])
+      gOut.append('line')
+            .attr('x1', (d) => d.outputsX1Y1[0] + 5)
+            .attr('y1', (d) => h - d.outputsX1Y1[1] - 5)
+            .attr('x2', (d) => d.InputsX2Y2[0] + 5)
+            .attr('y2', (d) => h - d.InputsX2Y2[1] - 5)
+            .attr('opacity', '.40')
             .style("stroke", "rgb(255,0,0)")
             .style("stroke-width", 5)
             .append('title')
             .text((d) => d.output);
 
-      const outputCircles = g
-            .append('circle')
-            .attr('r', 20)
-            .attr('cx', (d) => d.outputsX1Y1[0])
-            .attr('cy', (d) => h - d.outputsX1Y1[1]) // y is always inverted
-            .style("fill", "Tomato");
-
-      const inputCircles = g
-            .append('circle')
-            .attr('r', 20)
-            .attr('cx', (d) => d.outputsX2Y2[0])
-            .attr('cy', (d) => h - d.outputsX2Y2[1]) // y is always inverted
-            .style("fill", "Tomato");
-
+      gOut.append('text')
+            .text('Outputs')
+            .attr('class', 'IntextLegend')
+            .attr('x', (d) => d.outputsX1Y1[0] + 25)
+            .attr('y', (d) => h - d.outputsX1Y1[1] - 20)
+            .style("fill", "red")
+            .on('mouseover', function (d, i) {
+                  d3.select('.outputs').transition()
+                      .duration('500')
+                      .attr('opacity', '1')
+                  })
+            .on('mouseout', function (d, i) {
+                  d3.select('.outputs').transition()
+                      .duration('500')
+                      .attr('opacity', '.40');
+                  });
       
-      g.on('mouseover', function (d, i) {
-            d3.select(this).transition()
-                .duration('500')
-                .attr('opacity', '.55');
-            })
-      .on('mouseout', function (d, i) {
-            d3.select(this).transition()
-                .duration('500')
-                .attr('opacity', '1');
-            });
+      /*const outputCircles = gOut
+            .append('circle')
+            .attr('r', 20)
+            .attr('cx', (d) => d.outputsX1Y1[0] + 10)
+            .attr('cy', (d) => h - d.outputsX1Y1[1] - 10) // y is always inverted
+            .style("fill", "Tomato");*/
 }
 
-/*const node = visSvg.selectAll('g').selectAll('circle')
+//for each element of matutu, creat a line for each input
+for (let elem of elements) {
+      let inputsLines = elem.elementsIn_Outputs(elementsRelations).inputsLines;
+
+      let gIn = visSvg.selectAll('.inputs')
+            //returns a array with outputsX1Y1, outputsx2Y2 and the thing they are exchanging
+            .data(inputsLines)
+            .enter()
+            .append('g')
+            .attr('class', 'inputs');
+
+      gIn.append('line')
+            .attr('x1', (d) => d.inputsX1Y1[0] - 5)
+            .attr('y1', (d) => h - d.inputsX1Y1[1] - 5)
+            .attr('x2', (d) => d.outputsX2Y2[0] - 5)
+            .attr('y2', (d) => h - d.outputsX2Y2[1] - 5)
+            .attr('opacity', '.40')
+            .style("stroke", "green")
+            .style("stroke-width", 5)
+            .append('title')
+            .text((d) => d.input);
+
+      gIn.append('text')
+            .text('inputs')
+            .attr('class', 'IntextLegend')
+            .attr('x', (d) => d.inputsX1Y1[0] + 25)
+            .attr('y', (d) => h - d.inputsX1Y1[1] + 20)
+            .style("fill", "green")
+            .on('mouseover', function (d, i) {
+                  d3.select('.inputs').transition()
+                      .duration('500')
+                      .attr('opacity', '1')
+                  })
+            .on('mouseout', function (d, i) {
+                  d3.select('.inputs').transition()
+                      .duration('500')
+                      .attr('opacity', '.40');
+                  });
+      
+      /*const inputCircles = gIn
+            .append('circle')
+            .attr('r', 20)
+            .attr('cx', (d) => d.inputsX1Y1[0] - 10)
+            .attr('cy', (d) => h - d.inputsX1Y1[1] - 10) // y is always inverted
+            .style("fill", "green");*/
+}
+
+const circle = visSvg.selectAll('circle')
       .data(elements)
       .enter()
       .append('circle')
-      .attr('r', 20)
+      .attr('r', 15)
       .attr('cx', (d) => d.randomXY[0])
       .attr('cy', (d) => h - d.randomXY[1]) // y is always inverted
-      .style("fill", "Tomato");*/
+      .style("fill", "Tomato");
 
-const circlesTextLegend = visSvg.selectAll('text')
+const circlesTextLegend = visSvg.selectAll('textLegend')
       .data(elements)
       .enter()
       .append('text')
@@ -105,14 +152,4 @@ const circlesTextLegend = visSvg.selectAll('text')
       .attr('class', 'textLegend')
       .attr('x', (d) => d.randomXY[0] + 25)
       .attr('y', (d) => h - d.randomXY[1])
-      .style("fill", "white")
-      .on('mouseover', function (d, i) {
-            d3.select(this).transition()
-                .duration('500')
-                .attr('opacity', '.55');
-            })
-      .on('mouseout', function (d, i) {
-            d3.select(this).transition()
-                .duration('500')
-                .attr('opacity', '1');
-            });
+      .style("fill", "white");
