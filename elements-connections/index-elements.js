@@ -50,8 +50,7 @@ for (let elem of elements) {
             .data(outputsLines)
             .enter()
             .append('g')
-            .attr('class', 'outputs')
-            .attr('class', `outputs${elem.name}`);
+            .attr('class', 'outputs');
 
       gOut.append('line')
             .attr('x1', (d) => d.outputsX1Y1[0] + 5)
@@ -59,6 +58,7 @@ for (let elem of elements) {
             .attr('x2', (d) => d.InputsX2Y2[0] + 5)
             .attr('y2', (d) => h - d.InputsX2Y2[1] - 5)
             .attr('opacity', '.50')
+            .attr('class', `outputs${elem.name}`)
             .style("stroke", "rgb(255,0,0)")
             .style("stroke-width", 5)
             .append('title')
@@ -72,12 +72,12 @@ for (let elem of elements) {
             .attr('opacity', '.50')
             .style("fill", "red")
             .on('mouseover', function (d, i) {
-                  d3.select(`.outputs${elem.name}`).transition()
+                  d3.selectAll(`.outputs${elem.name}`).transition()
                       .duration('50')
                       .style("stroke", "rgb(255,255,255)")
                   })
             .on('mouseout', function (d, i) {
-                  d3.select(`.outputs${elem.name}`).transition()
+                  d3.selectAll(`.outputs${elem.name}`).transition()
                       .duration('50')
                       .style("stroke", "rgb(255,0,0)");
                   })
@@ -101,8 +101,7 @@ for (let elem of elements) {
             .data(inputsLines)
             .enter()
             .append('g')
-            .attr('class', 'inputs')
-            .attr('class', `inputs${elem.name}`);
+            .attr('class', 'inputs');
 
       gIn.append('line')
             .attr('x1', (d) => d.inputsX1Y1[0] - 5)
@@ -110,6 +109,7 @@ for (let elem of elements) {
             .attr('x2', (d) => d.outputsX2Y2[0] - 5)
             .attr('y2', (d) => h - d.outputsX2Y2[1] - 5)
             .attr('opacity', '.50')
+            .attr('class', `inputs${elem.name}`)
             .style("stroke", "green")
             .style("stroke-width", 5)
             .append('title')
@@ -123,12 +123,12 @@ for (let elem of elements) {
             .attr('opacity', '.50')
             .style("fill", "green")
             .on('mouseover', function (d, i) {
-                  d3.select(`.inputs${elem.name}`).transition()
+                  d3.selectAll(`.inputs${elem.name}`).transition()
                       .duration('50')
                       .style("stroke", "white");
                   })
             .on('mouseout', function (d, i) {
-                  d3.select(`.inputs${elem.name}`).transition()
+                  d3.selectAll(`.inputs${elem.name}`).transition()
                       .duration('50')
                       .style("stroke", "green");
                   })
