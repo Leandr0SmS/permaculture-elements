@@ -51,7 +51,7 @@ for (let elem of elements) {
             .enter()
             .append('g')
             .attr('class', 'outputs')
-            .attr('id', `outputs${elem.name}`);
+            .attr('class', `outputs${elem.name}`);
 
       gOut.append('line')
             .attr('x1', (d) => d.outputsX1Y1[0] + 5)
@@ -72,14 +72,14 @@ for (let elem of elements) {
             .attr('opacity', '.50')
             .style("fill", "red")
             .on('mouseover', function (d, i) {
-                  d3.select(`#outputs${elem.name}`).transition()
+                  d3.select(`.outputs${elem.name}`).transition()
                       .duration('50')
-                      .attr('opacity', '1')
+                      .style("stroke", "rgb(255,255,255)")
                   })
             .on('mouseout', function (d, i) {
-                  d3.select(`#outputs${elem.name}`).transition()
+                  d3.select(`.outputs${elem.name}`).transition()
                       .duration('50')
-                      .attr('opacity', '.50');
+                      .style("stroke", "rgb(255,0,0)");
                   })
             .append('title')
             .text((d) => d.output);
@@ -102,7 +102,7 @@ for (let elem of elements) {
             .enter()
             .append('g')
             .attr('class', 'inputs')
-            .attr('id', `inputs${elem.name}`);
+            .attr('class', `inputs${elem.name}`);
 
       gIn.append('line')
             .attr('x1', (d) => d.inputsX1Y1[0] - 5)
@@ -123,14 +123,14 @@ for (let elem of elements) {
             .attr('opacity', '.50')
             .style("fill", "green")
             .on('mouseover', function (d, i) {
-                  d3.select(`#inputs${elem.name}`).transition()
+                  d3.select(`.inputs${elem.name}`).transition()
                       .duration('50')
-                      .attr('opacity', '1')
+                      .style("stroke", "white");
                   })
             .on('mouseout', function (d, i) {
-                  d3.select(`#inputs${elem.name}`).transition()
+                  d3.select(`.inputs${elem.name}`).transition()
                       .duration('50')
-                      .attr('opacity', '.50');
+                      .style("stroke", "green");
                   })
             .append('title')
             .text((d) => d.input);
