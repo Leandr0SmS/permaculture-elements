@@ -1,10 +1,10 @@
 body {
-    background-color:black;
+    background-color: #1b1b32;
     color:aliceblue;
 }
 
 #sitoName {
-    font-family: monospace, Arial, Helvetica, sans-serif;
+    font-family: Tahoma, monospace, Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
