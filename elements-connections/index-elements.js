@@ -38,7 +38,7 @@ const visSvg = d3.select("#svgGraph")
       .append("svg")
       .attr("width", w)
       .attr("height", h)
-      .style('background-color', '#0a0a23')
+      .style('background-color', '#1b1b32') // #3b3b4f // #0a0a23 // #1b1b32
       .style('border-radius', '5%')
       
 //for each element of matutu, creat a line for each output

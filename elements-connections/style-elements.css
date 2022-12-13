@@ -1,19 +1,27 @@
 body {
-    background-color: #1b1b32;
+    box-sizing: border-box;
+    margin: 0;
+    background-color: #3b3b4f;
     color:aliceblue;
 }
 
 #sitoName {
     font-family: Tahoma, monospace, Arial, Helvetica, sans-serif;
     text-align: center;
+    font-size: 3rem;
 }
 
 .elements-li {
     font-family: monospace, Arial, Helvetica, sans-serif;
 }
 
+#elementsNames-container {
+    background-color: #1b1b32;
+}
+
 #elementsNames {
     font-family: monospace, Arial, Helvetica, sans-serif;
+    padding: 1.5% 3%;
 }
 
 #listElements {
