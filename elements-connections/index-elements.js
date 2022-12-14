@@ -8,21 +8,23 @@ document.getElementById('elementsNames').innerText = `Elements: ${elements.lengt
 
 //D3 elements
 //elements name
-const elementList = d3.select('ul').selectAll('li')
+const elementList = d3.select("#listElements").selectAll('div')
       .data(elements)
       .enter()
-      .append('li')
-      .text((d) => d.name)
-      .attr('class', 'elements-li')
+      .append('div')
+      .text((d) => d.name.toUpperCase())
+      .attr('class', 'elements-list-div')
       .on('mouseover', function (d, i) {
             d3.select(this)
-                  .style('color', 'yellow')
-                  .text((d) => `${d.name}  ==> Inputs: ${d.inputs.join(', ')} / Outputs: ${d.outputs.join(', ')}`);
+                  .style('color', '#f5f6f7')
+                  .style('padding', '2% 2%')
+                  .text((d) => `${d.name.toUpperCase()}  { Inputs: [ ${d.inputs.join(', ')} ], Outputs: [ ${d.outputs.join(', ')}] }`);
             })
       .on('mouseout', function (d, i) {
             d3.select(this)
-                  .style('color', 'aliceblue')
-                  .text((d) => d.name);
+                  .style('color', '#f5f6f7')
+                  .style('padding', '1% 1%')
+                  .text((d) => d.name.toUpperCase());
             });
 
 //graphic
@@ -39,7 +41,7 @@ const visSvg = d3.select("#svgGraph")
       .attr("width", w)
       .attr("height", h)
       .style('background-color', '#1b1b32') // #3b3b4f // #0a0a23 // #1b1b32
-      .style('border-radius', '5%')
+      .style('border-radius', '25px')
       
 //for each element of matutu, creat a line for each output
 for (let elem of elements) {
