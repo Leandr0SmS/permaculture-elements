@@ -16,13 +16,13 @@ const elementList = d3.select("#listElements").selectAll('div')
       .attr('class', 'elements-list-div')
       .on('mouseover', function (d, i) {
             d3.select(this)
-                  .style('color', '#f5f6f7')
+                  .style('color', 'var(--font)')
                   .style('padding', '2% 2%')
                   .text((d) => `${d.name.toUpperCase()}  { Inputs: [ ${d.inputs.join(', ')} ], Outputs: [ ${d.outputs.join(', ')}] }`);
             })
       .on('mouseout', function (d, i) {
             d3.select(this)
-                  .style('color', '#f5f6f7')
+                  .style('color', 'var(--font)')
                   .style('padding', '1% 1%')
                   .text((d) => d.name.toUpperCase());
             });

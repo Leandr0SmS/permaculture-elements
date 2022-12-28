@@ -1,14 +1,25 @@
+:root {
+    --background: #3b3b4f;
+    --div: #1b1b32;
+    --font: #f5f6f7;
+
+}
+
 body {
     box-sizing: border-box;
     margin: 0;
-    background-color: #3b3b4f;
-    color:aliceblue;
+    background-color: var(--background);
+    color: var(--font);
 }
 
 #sitoName {
     font-family: Tahoma, monospace, Arial, Helvetica, sans-serif;
     text-align: center;
     font-size: 2rem;
+    background-color: var(--div);
+    padding: 2%;
+    margin: 0 auto;
+    border-bottom: 3px solid var(--font);
 }
 
 .elements-list-div {
@@ -17,14 +28,13 @@ body {
     margin-bottom: 2%;
     padding: 1% 1%;
     text-align: center;
-    background-color: #1b1b32;
-    border: 1px solid #f5f6f7;
+    background-color: var(--div);
+    border: 1px solid var(--font);
     border-radius: 25px;
 }
 
 #elementsNames-container {
-    background-color: #1b1b32;
-    border-top: 3px solid #f5f6f7;
+    background-color: var(--background);
 }
 
 #elementsNames {
@@ -48,7 +58,7 @@ body {
 }
 
 svg {
-    border: 1px solid #f5f6f7;
+    border: 1px solid var(--font);
     margin-bottom: 2%;
 }
 
