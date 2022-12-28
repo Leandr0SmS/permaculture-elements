@@ -8,12 +8,7 @@ body {
 #sitoName {
     font-family: Tahoma, monospace, Arial, Helvetica, sans-serif;
     text-align: center;
-    font-size: 3rem;
-}
-
-#listElements {
-    display: flex;
-    justify-content: space-around;
+    font-size: 2rem;
 }
 
 .elements-list-div {
@@ -36,10 +31,15 @@ body {
     font-family: monospace, Arial, Helvetica, sans-serif;
     padding: 1.5% 3%;
     margin-top: 0;
+    font-size: 1rem;
 }
 
 #listElements {
     align-items: center;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 #svgGraph {
