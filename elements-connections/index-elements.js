@@ -22,7 +22,7 @@ const elementList = d3.select("#listElements").selectAll('div')
             })
       .on('click', function () {
             d3.select(this)
-                  .style('padding', '0.5rem')
+                  .style('padding', '0.2rem 0.8rem')
                   .style('width', '5rem')
                   .text((d) => d.name.toUpperCase());
             });
