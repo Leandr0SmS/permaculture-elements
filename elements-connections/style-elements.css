@@ -12,6 +12,8 @@ body {
     color: var(--font);
 }
 
+/*header*/
+
 #sitoName {
     font-family: Tahoma, monospace, Arial, Helvetica, sans-serif;
     text-align: center;
@@ -21,6 +23,8 @@ body {
     margin: 0 auto;
     border-bottom: 3px solid var(--font);
 }
+
+/*Elements counter and list*/
 
 #elementsNames-container {
     margin: 0 auto;
@@ -54,6 +58,8 @@ body {
     border: 1px solid var(--font);
     border-radius: 25px;
 }
+
+/*SVG*/
 
 #svgGraph {
     display: flex;
