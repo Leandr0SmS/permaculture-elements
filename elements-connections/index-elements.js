@@ -14,14 +14,16 @@ const elementList = d3.select("#listElements").selectAll('div')
       .append('div')
       .text((d) => d.name.toUpperCase())
       .attr('class', 'elements-list-div')
-      .on('mouseover', function () {
+      .on('dblclick', function () {
             d3.select(this)
                   .style('padding', '2% 2%')
+                  .style('width', '20rem')
                   .text((d) => `${d.name.toUpperCase()}: Inputs:  ${d.inputs.join(', ')} / Outputs: ${d.outputs.join(', ')}`);
             })
-      .on('mouseout', function () {
+      .on('click', function () {
             d3.select(this)
-                  .style('padding', '1% 1%')
+                  .style('padding', '0.5rem')
+                  .style('width', '5rem')
                   .text((d) => d.name.toUpperCase());
             });
 
