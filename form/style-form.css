@@ -26,21 +26,35 @@ body {
     text-align: center;
 }
 
+/*Form*/
+
 .fieldset {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
     width: 60rem;
+    font-size: 1rem;
 }
 
 .form-legend {
     font-family: monospace, Arial, Helvetica, sans-serif;
-    font-size: medium;
+    font-size: 1.5rem;
 }
 
-.form-label {
-    margin-top: 1rem;
+.add-words-div {
+    margin-top: 1.5rem;
 }
+
+.add-btn {
+    color: var(--div);
+}
+
+.fa-solid {
+    color: var(--div);
+}
+
+
+/*submit buttom*/
 
 .buttom-div {
     display: flex;

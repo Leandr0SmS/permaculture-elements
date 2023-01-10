@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Elements Form</title>
+    
     <link rel="stylesheet" href="./style-form.css">
     <link rel="icon" href="./dumatutu.png" type="image/png">
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://kit.fontawesome.com/f0b8f00674.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <header>
@@ -21,12 +24,27 @@
             <legend class="form-legend">Elements</legend>
             <label class="form-label">What's the name of your element?</label>
             <input id="system-name" type="text" name="sitio-name" size="40" required>
-            <label class="form-label">What does your system need (inputs)?</label>
-            <input id="system-inputs" type="text" name="system-inputs" size="40">
-            <label class="form-label">What does your system provide (outputs)?</label>
-            <input id="system-outputs" type="text" name="system-outputs" size="40">
-            <label class="form-label">What are the intrinsic characteristics of the system?</label>
-            <input id="system-outputs" type="text" name="system-outputs" size="40">
+            <div class="add-words-div">
+              <label class="form-label">What does your system need (inputs)?</label>
+              <input id="system-inputs" type="text" name="system-inputs" size="40">
+              <button class="add-btn">
+                <i class="fa-solid fa-plus"></i>Add
+              </button>
+            </div>
+            <div class="add-words-div">
+              <label class="form-label">What does your system provide (outputs)?</label>
+              <input id="system-outputs" type="text" name="system-outputs" size="40">
+              <button class="add-btn">
+                <i class="fa-solid fa-plus"></i>Add
+              </button>
+            </div>
+            <div class="add-words-div">
+              <label class="form-label">What are the intrinsic characteristics of the system?</label>
+              <input id="system-outputs" type="text" name="system-outputs" size="40">
+              <button class="add-btn">
+                <i class="fa-solid fa-plus"></i>Add
+              </button>
+            </div>
           </fieldset>
           <div class="buttom-div">
             <button id="submit-button" type="submit">Create an Element</button>
