@@ -11,12 +11,11 @@
   </head>
   <body>
     <header>
-      <h1>Permaculture</h1>
+      <h1 id="heading">Permaculture</h1>
     </header>
     <main>
-      <h3>Analysing and Connecting Components</h3>
+      <h3 class="sub-heading">Analysing and Connecting Components</h3>
       <div id="form-div">
-        <p></p>
         <form action="./index-form.js" method="post">
           <fieldset class="fieldset">
             <legend class="form-legend">Elements</legend>
@@ -29,7 +28,9 @@
             <label class="form-label">What are the intrinsic characteristics of the system?</label>
             <input id="system-outputs" type="text" name="system-outputs" size="40">
           </fieldset>
-          <button id="submit-button" type="submit">Create an Element</button>
+          <div class="buttom-div">
+            <button id="submit-button" type="submit">Create an Element</button>
+          </div>
         </form>
       </div>
     </main>

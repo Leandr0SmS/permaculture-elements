@@ -14,10 +14,23 @@ body {
     margin: 0;
 }
 
+#heading {
+    text-align: center;
+    background-color: var(--div);
+    margin: 0;
+    padding: 0.5rem;
+}
+
+.sub-heading {
+    margin: 1rem 0;
+    text-align: center;
+}
+
 .fieldset {
     display: flex;
     flex-direction: column;
-    margin: 1rem;
+    margin: 0 auto;
+    width: 60rem;
 }
 
 .form-legend {
@@ -29,9 +42,14 @@ body {
     margin-top: 1rem;
 }
 
+.buttom-div {
+    display: flex;
+    justify-content: center;
+}
+
 #submit-button {
     position: absolute;
-    margin: 3%;
+    margin: 3rem auto;
     font-family: monospace, Arial, Helvetica, sans-serif;
     background-color:var(--div);
     color: var(--font);
@@ -39,6 +57,7 @@ body {
     border-radius:10px;
     min-height:30px; 
     min-width: 120px;
+    padding: 0.8rem;
 }
 
 #submit-button:hover {
