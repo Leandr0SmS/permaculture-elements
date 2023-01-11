@@ -12,6 +12,7 @@
 body {
     background-color: var(--background);
     margin: 0;
+    font-family: monospace, Arial, Helvetica, sans-serif;
 }
 
 #heading {
@@ -19,11 +20,14 @@ body {
     background-color: var(--div);
     margin: 0;
     padding: 0.5rem;
+    box-shadow: 0.3rem 0.3rem 0.3rem black;
+    font-size: 2.5rem;
 }
 
 .sub-heading {
-    margin: 1rem 0;
+    margin: 2rem 0;
     text-align: center;
+    font-size: 1.5rem;
 }
 
 .card {
@@ -36,6 +40,7 @@ body {
     align-items: center;
     border-radius: 10%;
     margin: 2rem auto;
+    box-shadow: 0.5rem 0.5rem 0.5rem black;
 }
 
 .card form {
@@ -54,6 +59,38 @@ body {
     background-color: var(--background);
     padding: 0.7rem;
     margin: 2rem;
+    border-radius: 5rem;
+}
+
+.div-btn {
+    width: 20rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-btn {
+    background-color:var(--background);
+    color: var(--font);
+    border:none;
+    border-radius:10px;
+    min-height:30px; 
+    min-width: 120px;
+    padding: 0.8rem;
+}
+
+.card-btn:hover {
+    background-color:#032174;
+    transition: 0.2s;
+}
+
+.card-btn:focus {
+    outline-color: transparent;
+    outline-style:solid;
+    box-shadow: 0 0 0 4px #5a01a7;
+}
+
+.card-btn:active {
+    background-color: #ffbf00;
 }
 
 /*Form*/
