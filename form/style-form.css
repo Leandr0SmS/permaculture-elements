@@ -73,8 +73,6 @@ body {
     color: var(--font);
     border:none;
     border-radius:10px;
-    min-height:30px; 
-    min-width: 120px;
     padding: 0.8rem;
 }
 
@@ -91,6 +89,10 @@ body {
 
 .card-btn:active {
     background-color: #ffbf00;
+}
+
+.card-btn i {
+    margin: 0 0.7rem;
 }
 
 /*Form*/
