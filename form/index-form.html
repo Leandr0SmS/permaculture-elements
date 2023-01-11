@@ -18,7 +18,21 @@
     </header>
     <main>
       <h3 class="sub-heading">Analysing and Connecting Components</h3>
-      <div id="form-div">
+      <section class="form-card">
+        <div class="card">
+          <form action="./index-form.js" method="post">
+              <label class="form-label">What's the name of your system?</label>
+              <input class="text-input" id="system-name" type="text" name="sitio-name" size="40" required>
+          </form> 
+        </div>
+      </section>
+    </main>
+	  <script type="module" src="index-form.js"></script>
+  </body>
+</html>
+
+<!--
+  <div id="form-div">
         <form action="./index-form.js" method="post">
           <fieldset class="fieldset">
             <legend class="form-legend">Elements</legend>
@@ -51,7 +65,4 @@
           </div>
         </form>
       </div>
-    </main>
-	  <script type="module" src="index-form.js"></script>
-  </body>
-</html>
+-->

@@ -26,9 +26,39 @@ body {
     text-align: center;
 }
 
+.card {
+    background-color: var(--div);
+    width: 25rem;
+    height: 20rem;
+    border: 1px solid var(--font);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10%;
+    margin: 2rem auto;
+}
+
+.card form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-label {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.text-input {
+    background-color: var(--background);
+    padding: 0.7rem;
+    margin: 2rem;
+}
+
 /*Form*/
 
-.fieldset {
+/*.fieldset {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
@@ -53,8 +83,6 @@ body {
     color: var(--div);
 }
 
-
-/*submit buttom*/
 
 .buttom-div {
     display: flex;
@@ -87,4 +115,4 @@ body {
 
 #submit-button:active {
     background-color: #ffbf00;
-}
+}*/
