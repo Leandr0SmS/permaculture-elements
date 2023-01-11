@@ -32,13 +32,13 @@ body {
 
 .card {
     background-color: var(--div);
-    width: 25rem;
+    width: 35rem;
     height: 20rem;
     border: 1px solid var(--font);
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10%;
+    border-radius: 2rem;
     margin: 3rem auto;
     box-shadow: 0.5rem 0.5rem 0.5rem black;
 }
@@ -53,6 +53,7 @@ body {
 .form-label {
     font-size: 1.5rem;
     text-align: center;
+    margin: 0 1rem;
 }
 
 .text-input {
@@ -63,7 +64,7 @@ body {
 }
 
 .div-btn {
-    width: 20rem;
+    width: 25rem;
     display: flex;
     justify-content: space-between;
 }
