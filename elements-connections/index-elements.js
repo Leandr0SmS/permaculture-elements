@@ -22,7 +22,7 @@ const elementList = d3.select("#listElements").selectAll('div')
             d3.select(this)
                   .style('padding', '2% 2%')
                   .style('width', '20rem')
-                  .text((d) => `${d.name.toUpperCase()}: Inputs:  ${d.inputs.join(', ')} / Outputs: ${d.outputs.join(', ')}`);
+                  .text((d) => `${d.name.toUpperCase()} => Inputs:  ${d.inputs.join(', ')} / Outputs: ${d.outputs.join(', ')}`);
             })
       .on('mouseleave', function () {
             d3.select(this)
