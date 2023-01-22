@@ -95,3 +95,7 @@ body {
 .card-btn i {
     margin: 0 0.7rem;
 }
+
+#card-name-two{
+    visibility: hidden;
+}
