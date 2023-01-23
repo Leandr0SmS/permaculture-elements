@@ -1,9 +1,13 @@
-# Project Title
+# Permaculture network design
 
-        This is a project to help people how pretend to make a permaculture desing. 
-        It helps to undestand what type of connection your system have
 
 ## Description
+
+        It's a beginners project, to practice JavaScript, Jquery and D3.
+        This project intend to help people to make a permaculture design.
+        It helps to understand how many, what type of connection and how sustainable is your system.
+
+        The form still not working to generate the element connections.
 
 ### Intro to Permaculture:
         
