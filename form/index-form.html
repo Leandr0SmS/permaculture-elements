@@ -25,18 +25,14 @@
               <label class="form-label">What's the name of your system?</label>
               <input class="text-input" id="system-name" type="text" name="sitio-name" size="40" required>
               <div class="div-btn">
-                <button class="prev card-btn">
-                  <i class="fa-solid fa-circle-arrow-left"></i>
-                  Preview
-                </button>
-                <button class="next card-btn">
+                <button class="next card-btn" id="next-div-one">
                   Next 
                   <i class="fa-solid fa-circle-arrow-right"></i>
                 </button>
               </div>
           </form> 
         </div>
-        <div id="card-two" class="card" hidden>
+        <div id="card-two" class="card">
           <form action="./index-form.js" method="post">
               <h2 class="card-heading">Let's create some elements!</h2>
               <label class="form-label">Whats the name of one element of your system?</label>
@@ -52,7 +48,7 @@
                   <i class="fa-solid fa-circle-arrow-left"></i>
                   Preview
                 </button>
-                <button class="next card-btn">
+                <button class="next card-btn" id="next-div-two">
                   Next 
                   <i class="fa-solid fa-circle-arrow-right"></i>
                 </button>
