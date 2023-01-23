@@ -8,5 +8,4 @@ $(document).ready(() => {
         $('#card-two').css('visibility', 'visible');
     });
 
-
 })
