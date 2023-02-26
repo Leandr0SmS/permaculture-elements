@@ -5,6 +5,8 @@ class Element {
         this._outputs = outputs;
         this.elements = elements;
         this.randomXY = [];
+        this.location = [];
+        this.map;
 
     };
 
@@ -26,9 +28,6 @@ class Element {
     };
     set outputs (outputs) {
         this._outputs = [outputs];
-    };
-    get numOfelements () {
-        return this.elements.length
     };
 
     //tell to terminal what element is
