@@ -114,7 +114,7 @@ class Element {
         return {relationshipsLines, counter, relationships}
       }
 
-    // define cirles positions
+    // define random positions
     newRandomXY (w, h) {
         function randomRange(myMin, myMax) {
             return Math.floor(Math.random() * (myMax - myMin + 1)) + myMin; 

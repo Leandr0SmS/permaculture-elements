@@ -8,7 +8,7 @@ document.getElementById('elementsNames').innerText = `Elements: ${elements.lengt
 
 //D3 elements
 //elements name
-const elementList = d3.select("#listElements").selectAll('div')
+d3.select("#listElements").selectAll('div')
       .data(elements)
       .enter()
       .append('div')
