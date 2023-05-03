@@ -1,6 +1,10 @@
+import { matutu } from "../elements/elements.js";
+
+console.log(matutu)
+
 function App() {
     return (
-        <h1>permaculture</h1>
+        <h1>{matutu.howAmI()}</h1>
     )
 }
 

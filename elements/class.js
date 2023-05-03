@@ -1,4 +1,4 @@
-class Element {
+export class Element {
     constructor (name, inputs, outputs, elements) {
         this._name = name;
         this._inputs = inputs;
@@ -104,7 +104,7 @@ class Element {
                         'output': this.elements[ii].outputs[iiii],
                         'elementInput': this.elements[i],
                         'input': this.elements[i].inputs[iii],
-                        }
+                    }
                   )
                 }
               }
@@ -154,11 +154,3 @@ class Element {
     }
 };
 
-const matutu = new Element ("Sítio São José do Matutu", ['food', 'portion', 'gas', 'oil'], ['fertilizer', 'bananas', 'açaí'], []);
-const chicken = new Element ("chicken", ["food", "water", "shelter", "portion"], ["food", "fertilizer"], []);
-const house = new Element ("house", ["water", "eletricity", "gas", "food", "medicins"], ['shelter', "seeds", "sewage"], []);
-const garden = new Element ("garden", ["water", "work", "seeds", "fertilizer"], ["food", "portion", "medicins"], []);
-const fosse = new Element ('Fosse', ['sewage'], [], []);
-matutu.elements.push(chicken, house, garden, fosse);
-
-export {matutu};
