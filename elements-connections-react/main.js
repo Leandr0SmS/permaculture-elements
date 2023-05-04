@@ -38,10 +38,24 @@ function calculateTextPositions(centerX, centerY, radius, points) {
     const textPositions = angles.map((angle, i) => {
       const x = centerX + radius * Math.cos(angle);
       const y = centerY + radius * Math.sin(angle);
-      return [x + (x - centerX) * 0.3, y + (y - centerY) * 0.2];
+      return [x + (x - centerX) * 0.05, y + (y - centerY) * 0.1];
     });
-  
-    return textPositions;
+
+    const correction = textPositions.map(point => {
+        let x = point[0];
+        let y = point[1];
+        if (x < centerX && y > centerY) {
+            point[0] = x - 35;
+            point[1] = y + 5;
+        }
+        if (x < centerX && y < centerY) {
+            point[0] = x - 25;
+            point[1] = y - 5;
+        }
+        return point;
+    })
+    
+    return correction
   }
   
   // Call the function to get the text positions
