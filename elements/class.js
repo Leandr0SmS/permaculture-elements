@@ -4,7 +4,7 @@ export class Element {
         this._inputs = inputs;
         this._outputs = outputs;
         this.elements = elements;
-        this.randomXY = [];
+        this.circlePosition = [];
         this.location = [];
         this.map;
 
@@ -92,9 +92,9 @@ export class Element {
                   counter ++;
                   relationshipsLines.push( 
                     {
-                        'positionX1Y1': this.elements[ii].randomXY, 
+                        'positionX1Y1': this.elements[ii].circlePosition, 
                         'outputsX1Y1': this.elements[ii].outputs[iiii], 
-                        'positionX2Y2': this.elements[i].randomXY, 
+                        'positionX2Y2': this.elements[i].circlePosition, 
                         'inputsX2Y2': this.elements[i].inputs[iii]
                     }
                   )
@@ -115,12 +115,19 @@ export class Element {
       }
 
     // define circle positions
-    newRandomXY (w, h) {
-        function randomRange(myMin, myMax) {
-            return Math.floor(Math.random() * (myMax - myMin + 1)) + myMin; 
+    positionElementsInCircle(centerX, centerY, radius, elements) {
+        let positions = [];
+        let numElements = elements.length;
+        let angleBetweenElements = 2 * Math.PI / numElements;
+      
+        for (var i = 0; i < numElements; i++) {
+          let angle = i * angleBetweenElements;
+          let x = centerX + radius * Math.cos(angle);
+          let y = centerY + radius * Math.sin(angle);
+          positions.push([x, y]);
         }
         for (let i = 0; i < this.elements.length; i ++) {
-            this.elements[i].randomXY.push(randomRange((w / 8), (w * 7 / 8)), randomRange((h / 8), (h * 7 / 8)));
+            this.elements[i].circlePosition = positions[i];
         }
     }
 
@@ -133,8 +140,8 @@ export class Element {
                 outputsLines.push(
                     {
                         'elemOutputName': obj.elementOutput.name,
-                        'outputsX1Y1': obj.elementOutput.randomXY,
-                        'InputsX2Y2': obj.elementInput.randomXY,
+                        'outputsX1Y1': obj.elementOutput.circlePosition,
+                        'InputsX2Y2': obj.elementInput.circlePosition,
                         'output': obj.output
                     }
                 )
@@ -143,8 +150,8 @@ export class Element {
                 inputsLines.push(
                     {
                         'elemInputName': obj.elementInput.name,
-                        'inputsX1Y1': obj.elementInput.randomXY,
-                        'outputsX2Y2': obj.elementOutput.randomXY,
+                        'inputsX1Y1': obj.elementInput.circlePosition,
+                        'outputsX2Y2': obj.elementOutput.circlePosition,
                         'input': obj.input
                     }
                 )

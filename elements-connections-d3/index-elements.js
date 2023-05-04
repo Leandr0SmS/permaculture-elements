@@ -39,7 +39,8 @@ const h = 500;
 //function to find relations between elements of matutu
 const elementsRelations = matutu.getRelationships().relationships;
 //generating random positions for the elements
-matutu.newRandomXY(w, h);
+matutu.positionElementsInCircle((w/2), (h/2), 200, elements);
+console.log(elements)
 
 const visSvg = d3.select("#svgGraph")
       .append("svg")
@@ -155,8 +156,8 @@ const circle = visSvg.selectAll('circle')
       .enter()
       .append('circle')
       .attr('r', 15)
-      .attr('cx', (d) => d.randomXY[0])
-      .attr('cy', (d) => h - d.randomXY[1]) // y is always inverted
+      .attr('cx', (d) => d.circlePosition[0])
+      .attr('cy', (d) => h - d.circlePosition[1]) // y is always inverted
       .style("fill", "Tomato")
       .append('title')
       .text((d) => d.howAmI());
@@ -167,6 +168,6 @@ const circlesTextLegend = visSvg.selectAll('textLegend')
       .append('text')
       .text((d) => d.name)
       .attr('class', 'textLegend')
-      .attr('x', (d) => d.randomXY[0] + 25)
-      .attr('y', (d) => h - d.randomXY[1])
+      .attr('x', (d) => d.circlePosition[0] + 25)
+      .attr('y', (d) => h - d.circlePosition[1])
       .style("fill", "white");
