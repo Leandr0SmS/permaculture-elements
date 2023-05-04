@@ -1,6 +1,6 @@
 import { matutu } from "../elements/elements.js";
 
-//console.log(matutu.getRelationships().relationships)
+console.log(matutu.getRelationships().relationships)
 
 function Sitio() {
     return (
@@ -22,29 +22,45 @@ function Sitio() {
     )
 }
 
-function positionElementsInCircle(centerX, centerY, radius, numElements) {
+function positionElementsInCircle(centerX, centerY, radius, elements) {
     var positions = [];
+    var numElements = elements.length;
     var angleBetweenElements = 2 * Math.PI / numElements;
   
     for (var i = 0; i < numElements; i++) {
+      var element = elements[i];
       var angle = i * angleBetweenElements;
       var x = centerX + radius * Math.cos(angle);
       var y = centerY + radius * Math.sin(angle);
-      positions.push({id: i, x: x, y: y});
+      var xText = x + 5;
+      positions.push({name: element.name, id: i, x: x, y: y, xText: xText, yText: y});
     }
   
     return positions;
-}
+ }
 
-console.log(positionElementsInCircle(400, 250, 100, 4));
-const positions = positionElementsInCircle(400, 250, 100, 4)
+ function createLines(relations, positions) {
+    const relationshipsLines = [];
+    
+ } 
+
+const positions = positionElementsInCircle(400, 250, 200, matutu.elements)
+console.log(positions);
 
 function App() {
     return (
         <React.Fragment>
             <Sitio/>
             <svg width="800" height="500">
-                {positions.map(elem => <circle key={elem.id} cx={elem.x} cy={elem.y} r="2"/>)}
+                {positions.map(elem => {
+                    return (
+                        <React.Fragment key={elem.id}>
+                            <circle key={elem.id} cx={elem.x} cy={elem.y} r="5" />
+                            <text x={elem.xText} y={elem.y} rotate={elem.rotate}>{elem.name}</text>
+                            
+                        </React.Fragment>    
+                    )
+                })}
             </svg>
         </React.Fragment>
     )

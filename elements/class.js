@@ -114,7 +114,7 @@ export class Element {
         return {relationshipsLines, counter, relationships}
       }
 
-    // define random positions
+    // define circle positions
     newRandomXY (w, h) {
         function randomRange(myMin, myMax) {
             return Math.floor(Math.random() * (myMax - myMin + 1)) + myMin; 

@@ -1,0 +1,79 @@
+:root {
+    --background: #3b3b4f;
+    --div: #1b1b32;
+    --font: #f5f6f7;
+    --background-mouseover: #5f5f6e;
+    --div-mouseover: #31313f;
+}
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+    background-color: var(--background);
+    color: var(--font);
+}
+
+/*header*/
+
+#sitoName {
+    font-family: Tahoma, monospace, Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 2rem;
+    background-color: var(--div);
+    padding: 1rem;
+    margin: 0 auto;
+    border-bottom: 3px solid var(--font);
+}
+
+/*Elements counter and list*/
+
+#elementsNames-container {
+    margin: 0 auto;
+    border-radius: 20px;
+}
+
+#elementsNames {
+    font-family: monospace, Arial, Helvetica, sans-serif;
+    margin: 0 auto;
+    margin-top: 1rem;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#listElements {
+    align-items: center;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.elements-list-div {
+    font-family: monospace, Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    width: 5rem;
+    padding: 0.2rem 0.8rem;
+    margin: 1rem;
+    text-align: center;
+    background-color: var(--div);
+    border: 1px solid var(--font);
+    border-radius: 25px;
+}
+
+/*SVG*/
+
+#svgGraph {
+    display: flex;
+    justify-content: center;
+}
+
+svg {
+    border: 1px solid var(--font);
+    margin-bottom: 2%;
+}
+
+.textLegend {
+    font-size: 120%;
+    font-family: monospace, Arial, Helvetica, sans-serif;
+    color:rgb(127, 133, 249);
+}
