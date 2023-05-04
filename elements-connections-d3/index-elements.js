@@ -40,7 +40,6 @@ const h = 500;
 const elementsRelations = matutu.getRelationships().relationships;
 //generating random positions for the elements
 matutu.positionElementsInCircle((w/2), (h/2), 200, elements);
-console.log(elements)
 
 const visSvg = d3.select("#svgGraph")
       .append("svg")
