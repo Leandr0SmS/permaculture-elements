@@ -1,7 +1,9 @@
 import { matutu } from "../elements/elements.js";
 
-console.log(matutu.elements)
+const r = 200, w=800, h=500, cx=(w/2), cy=(h/2);
 const elements = matutu.elements;
+matutu.positionElementsInCircle((w/2), (h/2), r, matutu.elements);
+const linesData = matutu.getRelationships().relationshipsLines;
 
 function Sitio() {
     return (
@@ -11,34 +13,82 @@ function Sitio() {
             <div>
                 <h3>My elements are: </h3>
                 <ul>
-                    {elements.map(elem => <li key={elem.name}>{elem.name}</li>)}
+                    {elements.map((elem, i) => <li key={i}>{elem.name}</li>)}
                 </ul>
             </div>
         </div>
     )
 }
 
- function createLines(relations, positions) {
-    const relationshipsLines = [];
+const dotsPosition = elements.map(elem => elem.circlePosition);
+console.log(dotsPosition)
 
- } 
 
-matutu.positionElementsInCircle(400, 250, 200, matutu.elements);
+const offset = 20, text_offset = 10;
+
+
+function calculateTextPositions(centerX, centerY, radius, points) {
+
+    const angles = points.map(point => {
+      const dx = point[0] - centerX;
+      const dy = point[1] - centerY;
+      return Math.atan2(dy, dx);
+    });
+  
+    const textPositions = angles.map((angle, i) => {
+      const x = centerX + radius * Math.cos(angle);
+      const y = centerY + radius * Math.sin(angle);
+      return [x + (x - centerX) * 0.3, y + (y - centerY) * 0.2];
+    });
+  
+    return textPositions;
+  }
+  
+  // Call the function to get the text positions
+  const textPositions = calculateTextPositions(cx, cy, r, dotsPosition);
+  
+  // Output the text positions
+  console.log(textPositions);
+
+
+function Lines(props) {
+    return (
+        <React.Fragment>
+            {textPositions.map((elem, i) =>  <text key={i} x={elem[0]} y={elem[1]}>{elements[i].name}</text>)}
+        </React.Fragment>
+    )
+}
+
+function Text() {
+    return (
+        <React.Fragment>
+            {linesData.map((elem, i) =>  <line key={i} x1={elem.positionX1Y1[0]} y1={elem.positionX1Y1[1]} x2={elem.positionX2Y2[0]} y2={elem.positionX2Y2[1]} stroke="black" />)}
+        </React.Fragment>
+    )
+}
+
+function ElementsNetwork(props) {
+    return (
+        <svg width={props.width} height={props.height}>
+            {elements.map((elem, i) => {
+                return (
+                    <React.Fragment key={i}>
+                        <circle key={i} cx={elem.circlePosition[0]} cy={elem.circlePosition[1]} r="5" />
+                        {/*<text x={elem.circlePosition[0] + 5} y={elem.circlePosition[1]} >{elem.name}</text>*/}
+                        <Lines/>
+                        <Text/>
+                    </React.Fragment>    
+                )
+            })}
+        </svg>
+    )
+}
 
 function App() {
     return (
         <React.Fragment>
             <Sitio/>
-            <svg width="800" height="500">
-                {elements.map(elem => {
-                    return (
-                        <React.Fragment key={elem.name}>
-                            <circle key={elem.name} cx={elem.circlePosition[0]} cy={elem.circlePosition[1]} r="5" />
-                            <text x={elem.circlePosition[0] + 5} y={elem.circlePosition[1]} >{elem.name}</text>
-                        </React.Fragment>    
-                    )
-                })}
-            </svg>
+            <ElementsNetwork width={800} height={500}/>
         </React.Fragment>
     )
 }
