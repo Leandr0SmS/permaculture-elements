@@ -1,0 +1,155 @@
+@import url(
+    'https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap'
+);
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Space Mono', monospace;
+}
+* {
+    margin: 0;
+}
+body {
+    height: 100%;
+    min-height: 100vh;
+    font-family: 'Space Mono', monospace;
+    background-color: #ccc;;
+    color: #fff;
+    background-image: url(../images/jucaras.JPG);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#root {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.element {
+    padding: 1rem 0.3rem 2rem;
+
+    border: 1px solid rgba(255, 255, 255, .25);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(15px);
+  
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.svg {
+    background: #E6E0E9;
+    /* M3/Elevation Light/5 */
+    margin-top: 1rem;
+    
+    box-shadow: 0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+}
+
+.element--title--info {
+    width: 35rem;
+}
+
+.element--title--info > h1 {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.element--title--info > p {
+    text-align: center;
+    padding: 1rem 3rem;
+}
+
+.element--title--info > p > span {
+    text-decoration: underline;
+}
+
+.elements--cards {
+    width: 20rem;
+    padding: 1rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 160px);
+    grid-template-rows: repeat(auto-fit, 1fr);
+    justify-content: center;
+}
+
+.elements--cards .card{
+    position: relative;
+    cursor: pointer;
+}
+
+.elements--cards .card .face{
+    width: 150px;
+    height: 100px;
+    transition: 0.5s;
+    border-radius: 10px;
+}
+
+.elements--cards .card .face.face1{
+    position: relative;
+    background: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transform: translateY(50px);
+}
+
+.elements--cards .card:hover .face.face1{
+    background: #ff0057;
+    transform: translateY(0);
+}
+
+.elements--cards .card .face.face1 .content{
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
+.elements--cards .card:hover .face.face1 .content{
+    opacity: 1;
+}
+
+.elements--cards .card .face.face1 .content h1{
+    margin: 10px 0 0;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+.elements--cards .card .face.face2{
+    position: relative;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    transform: translateY(-50px);
+}
+
+.elements--cards .card:hover .face.face2{
+    transform: translateY(0);
+}
+
+.elements--cards .card .face.face2 .content p{
+    margin: 0;
+    padding: 0;
+    color: #333;
+    margin-bottom: 0.7rem;
+    font-size: 0.6em;
+}
+
+.elements--cards .card .face.face2 .content a:hover{
+    background: #333;
+    color: #fff;
+}
+
