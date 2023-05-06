@@ -35,8 +35,8 @@ function textCorrection (centerX, centerY, points) {
           point[0] = x - 35;
           point[1] = y + 15;
       }
-      if (x < centerX && y < centerY) {
-          point[0] = x - 25;
+      if (x < centerX && y <= centerY) {
+          point[0] = x - 50;
           point[1] = y - 5;
       }
       if (x >= centerX && y < centerY) {
@@ -45,7 +45,7 @@ function textCorrection (centerX, centerY, points) {
     }
     if (x >= centerX && y >= centerY) {
         point[0] = x + 5;
-        point[1] = y + 5;
+        point[1] = y + 15;
     }
       return point;
   })
@@ -61,12 +61,6 @@ function Sitio() {
             <h1>{matutu.name}</h1>
             <p><span>Inputs:</span> {matutu.inputs.join(" / ")}</p>
             <p><span>Outputs:</span> {matutu.outputs.join(" / ")}</p>
-            {/*<div className="elements--list">
-                <h3>Elements: </h3>
-                <ul>
-                    {elements.map((elem, i) => <li key={i}>{elem.name}</li>)}
-                </ul>
-            </div>*/}
         </div>
     )
 }
