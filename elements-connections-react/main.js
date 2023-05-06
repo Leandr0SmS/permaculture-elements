@@ -109,19 +109,6 @@ function InputsCards () {
         <div className="elements--cards">
                 {elements.map((elem, i) => {
                     return (
-                        /*<div key={i} className="card">
-                            <div className="face face1">
-                                <div className="content">
-                                    <h1>{elem.name}</h1>
-                                </div>
-                            </div>
-                            <div className="face face2">
-                                <div className="content">
-                                    <p>Inputs: {elem.inputs.join(" / ")}</p>
-                                    <p>Outputs: {elem.outputs.join(" / ")}</p>
-                                </div>
-                            </div>
-                        </div>*/
                         <div key={i} className="box-item">
                             <div className="flip-box">
                                 <div className="flip-box-front text-center">

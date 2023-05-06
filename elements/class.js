@@ -32,7 +32,7 @@ export class Element {
 
     //tell to terminal what element is
     howAmI () {
-        return `\nI am a(n) ${this.name}:\nI need: ${this.inputs.join(', ')}.\nI produce: ${this.outputs.join(', ')}.`;
+        return `${this.name}: Inputs: ${this.inputs.join(', ')}. Outputs: ${this.outputs.join(', ')}.`;
     };
     
     //Method to compare two elements inputs and outputs. 
