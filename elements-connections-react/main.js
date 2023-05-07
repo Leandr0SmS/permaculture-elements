@@ -1,5 +1,52 @@
 import { matutu } from "../elements/elements.js";
 
+const HandlePreventDefault = (e) => e.preventDefault();
+
+function  FormSitioInput (props) {
+    return (
+        <div id="card-one" className="card">
+          <form onSubmit={HandlePreventDefault}>
+              <label className="form-label">What's the name of your system?</label>
+              <input className="text-input" id="system-name" type="text" name="sitio-name" size="40" required/>
+              <div className="div-btn">
+                <button className="next card-btn" id="next-div-one">
+                  Next 
+                  <img src="../images/arrow-right.svg"/>
+                </button>
+              </div>
+          </form> 
+        </div>
+    )
+}
+
+function FormElement(props) {
+    return (
+        <div id="card-two" className="card">
+            <form onSubmit={HandlePreventDefault}>
+                <h2 className="card-heading">Let's add elements!</h2>
+                <label className="form-label">Whats the name of the element?</label>
+                <input className="text-input" id="element-name" type="text" name="sitio-name" size="40" required/>
+                <label className="form-label">What does your element need (inputs)?</label>
+                <input className="text-input" id="system-inputs" type="text" name="system-inputs" size="40" required/>
+                <label className="form-label">What does your element provide (outputs)?</label>
+                <input className="text-input" id="system-outputs" type="text" name="system-outputs" size="40" required/>
+                <label className="form-label">What are the intrinsic characteristics of this element?</label>
+                <input className="text-input" id="intrinsic-characteristics" type="text" name="intrinsic-characteristics" size="40" required/>
+                <div className="div-btn">
+                    <button className="prev card-btn">
+                        <i className="fa-solid fa-circle-arrow-left"></i>
+                        Preview
+                    </button>
+                    <button className="next card-btn" id="next-div-two">
+                        Next 
+                        <i className="fa-solid fa-circle-arrow-right"></i>
+                    </button>
+                </div>
+            </form> 
+        </div>
+    )
+}
+
 const w = 450, h = 300, r = w > h ? w/4 : h/4, cx=(w/2), cy=(h/2);
 
 const elements = matutu.elements;
@@ -136,8 +183,9 @@ function ElementCard(props) {
 function App() {
     return (
         <React.Fragment>
-            <ElementCard width={w} height={h} />
-            <InputsCards/>
+            {/*<ElementCard width={w} height={h} />
+            <InputsCards/>*/}
+            <FormElement/>
         </React.Fragment>
     )
 }
