@@ -8,11 +8,11 @@ function  FormSitioInput (props) {
         <div id="card-one" className="card">
           <form className="form" onSubmit={HandlePreventDefault}>
               <label className="form-label">What's the name of your system?</label>
-              <input className="text-input" id="system-name" onChange={props.handleSitioFormChange} type="text" name="sitio-name" size="40" required/>
+              <input className="text-input" id="system-name" onChange={props.handleSitioFormChange} type="text" name="name" size="40" required/>
               <label className="form-label">What does your element need (inputs)?</label>
-              <input className="text-input" type="text" name="sitio-inputs" onChange={props.handleSitioFormChange} size="40" required/>
+              <input className="text-input" type="text" name="inputs" onChange={props.handleSitioFormChange} size="40" required/>
               <label className="form-label">What does your element provide (outputs)?</label>
-              <input className="text-input" type="text" name="sitio-outputs" onChange={props.handleSitioFormChange} size="40" required/>
+              <input className="text-input" type="text" name="outputs" onChange={props.handleSitioFormChange} size="40" required/>
               <div className="div-btn">
                 <button className="next card-btn" id="next-div-one" onClick={props.handleSitioCreate}>
                   Next 
@@ -208,12 +208,13 @@ function App() {
 
     function handleSitioCreate() {
         let name = formSitioData.name;
-        let outputs = formSitioData.outputs;
-        let inputs = formSitioData.inputs;
+        let outputs = formSitioData.outputs.split(', ');;
+        let inputs = formSitioData.inputs.split(', ');;
         return setSitioData(new Element (name, [inputs], [outputs], []))
     }
 
-    console.log(sitioData)
+    console.log(formSitioData);
+    console.log(sitioData);
     return (
         <React.Fragment>
             {/*<ElementCard width={w} height={h} />
