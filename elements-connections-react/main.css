@@ -29,7 +29,7 @@ body {
     gap: 3rem;
 }
 
-.element {
+.element, .form {
     padding: 1rem 0.3rem 2rem;
 
     border: 1px solid rgba(255, 255, 255, .25);
@@ -43,6 +43,33 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.form {
+  gap: 1rem;
+  padding: 2rem 1rem;
+}
+
+.text-input {
+  padding: 0.3rem 1rem;
+  border-radius: 0.3rem;
+}
+
+.form-btn {
+  border-radius: 0.7rem;
+  padding: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.form-btn:hover {
+  cursor: pointer;
+}
+
+.btn-icon {
+  width: 0.8rem;
+  padding-top: 0.2rem;
 }
 
 .svg {
