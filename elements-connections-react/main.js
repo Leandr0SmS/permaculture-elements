@@ -1,17 +1,22 @@
 import { matutu } from "../elements/elements.js";
+import {Element} from "../elements/class.js";
 
 const HandlePreventDefault = (e) => e.preventDefault();
 
 function  FormSitioInput (props) {
     return (
         <div id="card-one" className="card">
-          <form onSubmit={HandlePreventDefault}>
+          <form className="form" onSubmit={HandlePreventDefault}>
               <label className="form-label">What's the name of your system?</label>
-              <input className="text-input" id="system-name" type="text" name="sitio-name" size="40" required/>
+              <input className="text-input" id="system-name" onChange={props.handleSitioFormChange} type="text" name="sitio-name" size="40" required/>
+              <label className="form-label">What does your element need (inputs)?</label>
+              <input className="text-input" type="text" name="sitio-inputs" onChange={props.handleSitioFormChange} size="40" required/>
+              <label className="form-label">What does your element provide (outputs)?</label>
+              <input className="text-input" type="text" name="sitio-outputs" onChange={props.handleSitioFormChange} size="40" required/>
               <div className="div-btn">
-                <button className="next card-btn" id="next-div-one">
+                <button className="next card-btn" id="next-div-one" onClick={props.handleSitioCreate}>
                   Next 
-                  <img src="../images/arrow-right.svg"/>
+                  <img src="../images/arrow-right.svg" alt="arrow icon to the rigth"/>
                 </button>
               </div>
           </form> 
@@ -22,7 +27,7 @@ function  FormSitioInput (props) {
 function FormElement(props) {
     return (
         <div id="card-two" className="card">
-            <form onSubmit={HandlePreventDefault}>
+            <form className="form" onSubmit={HandlePreventDefault}>
                 <h2 className="card-heading">Let's add elements!</h2>
                 <label className="form-label">Whats the name of the element?</label>
                 <input className="text-input" id="element-name" type="text" name="sitio-name" size="40" required/>
@@ -34,12 +39,16 @@ function FormElement(props) {
                 <input className="text-input" id="intrinsic-characteristics" type="text" name="intrinsic-characteristics" size="40" required/>
                 <div className="div-btn">
                     <button className="prev card-btn">
-                        <i className="fa-solid fa-circle-arrow-left"></i>
+                        <img src="../images/arrow-right.svg" alt="arrow icon to the rigth"/>
                         Preview
                     </button>
                     <button className="next card-btn" id="next-div-two">
-                        Next 
-                        <i className="fa-solid fa-circle-arrow-right"></i>
+                        Add
+                        <img src="../images/Plus.svg" alt="Plus icon"/>
+                    </button>
+                    <button className="next card-btn" id="next-div-two">
+                        Connect
+                        <img src="../images/Connect.svg" alt="Connect icon"/>
                     </button>
                 </div>
             </form> 
@@ -181,11 +190,35 @@ function ElementCard(props) {
 }
 
 function App() {
+    const [formSitioData, setFormSitioData] = React.useState({
+        name: "",
+        inputs: "",
+        outputs: ""
+    });
+
+    const [sitioData, setSitioData] = React.useState({});
+
+    function handleSitioFormChange(e) {
+        const {value, name} = e.target;
+        setFormSitioData(p => ({
+            ...p,
+            [name]: value
+        }))
+    }
+
+    function handleSitioCreate() {
+        let name = formSitioData.name;
+        let outputs = formSitioData.outputs;
+        let inputs = formSitioData.inputs;
+        return setSitioData(new Element (name, [inputs], [outputs], []))
+    }
+
+    console.log(sitioData)
     return (
         <React.Fragment>
             {/*<ElementCard width={w} height={h} />
             <InputsCards/>*/}
-            <FormElement/>
+            <FormSitioInput handleSitioCreate={handleSitioCreate} handleSitioFormChange={handleSitioFormChange}/>
         </React.Fragment>
     )
 }
