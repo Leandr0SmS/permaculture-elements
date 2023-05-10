@@ -42,11 +42,11 @@ function FormElement(props) {
                         <img className="btn-icon prev" src="../images/arrow-right.svg" alt="arrow icon to the rigth"/>
                         Preview
                     </button>
-                    <button className="next form-btn" id="next-div-two" type="button" onClick={props.onAddClick}>
+                    <button className="next form-btn" type="button" onClick={props.onAddClick}>
                         Add
                         <img className="btn-icon" src="../images/Plus.svg" alt="Plus icon"/>
                     </button>
-                    <button className="next form-btn" id="next-div-two" type="button">
+                    <button className="next form-btn" type="button" name="formElement" value="elementCard" onClick={props.onConnectClick}>
                         Connect
                         <img className="btn-icon" src="../images/Connect.svg" alt="Connect icon"/>
                     </button>
@@ -56,15 +56,18 @@ function FormElement(props) {
     )
 }
 
+
+//Connectios and elements
+
 const w = 450, h = 300, r = w > h ? w/4 : h/4, cx=(w/2), cy=(h/2);
 
-const elements = matutu.elements;
-
-matutu.positionElementsInCircle((w/2), (h/2), r, matutu.elements);
-
-const linesData = matutu.getRelationships().relationshipsLines;
-
-const dotsPosition = elements.map(elem => elem.circlePosition);
+//const elements = matutu.elements;
+//
+//matutu.positionElementsInCircle((w/2), (h/2), r, matutu.elements);
+//
+//const linesData = matutu.getRelationships().relationshipsLines;
+//
+//const dotsPosition = elements.map(elem => elem.circlePosition);
 
 function calculateTextPositions(centerX, centerY, radius, points) {
 
@@ -109,30 +112,30 @@ function textCorrection (centerX, centerY, points) {
 }
 
 // Call the function to get the text positions
-const textPositions = textCorrection(cx, cy, calculateTextPositions(cx, cy, r, dotsPosition));
+//const textPositions = textCorrection(cx, cy, calculateTextPositions(cx, cy, r, dotsPosition));
 
-function Sitio() {
+function Sitio(props) {
     return (
         <div className="element--title--info">
-            <h1>{matutu.name}</h1>
-            <p><span>Inputs:</span> {matutu.inputs.join(" / ")}</p>
-            <p><span>Outputs:</span> {matutu.outputs.join(" / ")}</p>
+            <h1>{props.sitioName}</h1>
+            <p><span>Inputs:</span> {props.sitioInputs}</p>
+            <p><span>Outputs:</span> {props.sitioOutputs}</p>
         </div>
+    )
+}
+
+function Text(props) {
+    return (
+        <React.Fragment>
+            {props.textPositions.map((elem, i) =>  <text fill="" key={i} x={elem[0]} y={elem[1]}>{elements[i].name}</text>)}
+        </React.Fragment>
     )
 }
 
 function Lines(props) {
     return (
         <React.Fragment>
-            {textPositions.map((elem, i) =>  <text fill="" key={i} x={elem[0]} y={elem[1]}>{elements[i].name}</text>)}
-        </React.Fragment>
-    )
-}
-
-function Text() {
-    return (
-        <React.Fragment>
-            {linesData.map((elem, i) =>  <line key={i} x1={elem.positionX1Y1[0]} y1={elem.positionX1Y1[1]} x2={elem.positionX2Y2[0]} y2={elem.positionX2Y2[1]} stroke="black" />)}
+            {props.linesData.map((elem, i) =>  <line key={i} x1={elem.positionX1Y1[0]} y1={elem.positionX1Y1[1]} x2={elem.positionX2Y2[0]} y2={elem.positionX2Y2[1]} stroke="black" />)}
         </React.Fragment>
     )
 }
@@ -140,13 +143,15 @@ function Text() {
 function ElementsNetwork(props) {
     return (
         <svg width={props.width} height={props.height} className="svg">
-            {elements.map((elem, i) => {
+            {props.elements.map((elem, i) => {
                 return (
                     <React.Fragment key={i}>
                         <circle key={i} cx={elem.circlePosition[0]} cy={elem.circlePosition[1]} r="5" />
                         {/*<text x={elem.circlePosition[0] + 5} y={elem.circlePosition[1]} >{elem.name}</text>*/}
-                        <Lines/>
-                        <Text/>
+                        {/*<Lines
+                            linesData={props.linesData}
+                        />*/}
+                        {/*<Text/>*/}
                     </React.Fragment>    
                 )
             })}
@@ -180,14 +185,7 @@ function InputsCards () {
     )
 }
 
-function ElementCard(props) {
-    return (
-        <div className="element">
-            <Sitio/>
-            <ElementsNetwork width={props.width} height={props.height}/>
-        </div>
-    )
-}
+//App and States
 
 function App() {
 
@@ -265,9 +263,39 @@ function App() {
     }
 
 
+    // --- Extract from class.js
+    function positionElementsInCircle(centerX, centerY, radius, elements) {
+        let positions = [];
+        let numElements = elements.length;
+        let angleBetweenElements = 2 * Math.PI / numElements;
+      
+        for (let i = 0; i < numElements; i++) {
+          let angle = i * angleBetweenElements;
+          let x = centerX + radius * Math.cos(angle);
+          let y = centerY + radius * Math.sin(angle);
+          positions.push([x, y]);
+        }
+        for (let i = 0; i < elements.length; i ++) {
+            elements[i].circlePosition = positions[i];
+        }
+        return positions;
+    }
+    /// ---
+
+    function connectElements (e) {
+        const target = e.target;
+        const elem = sitioData.elements;
+        positionElementsInCircle((w/2), (h/2), r, elem);
+        handleFormSequence(e);
+    }
+
+    //consoles
+    //matutu.positionElementsInCircle((w/2), (h/2), r, matutu.elements);
+    //console.log(matutu.elements)
     //console.log(formSitioData);
     //console.log(sitioData);
-    console.log(sitioData)
+    console.log(sitioData);
+
     return (
         <React.Fragment>
             {componentsManagement.formSitio && <FormSitio
@@ -279,8 +307,9 @@ function App() {
                 sitio_outputs_value={formSitioData.element_outputs}
             />}
             {componentsManagement.formElement && <FormElement
-                onPrevclick={handleFormSequence}
+                onPrevClick={handleFormSequence}
                 onAddClick={handleAddElement}
+                onConnectClick={connectElements}
                 onchange={handleElementFormChange} 
                 //inputs values
                 element_name_value={formElementsData.element_name}
@@ -288,8 +317,23 @@ function App() {
                 element_Outputs_value={formElementsData.element_outputs}
                 element_intrinsic_characteristics_value={formElementsData.element_intrinsic_characteristics}
             />}
-            {/*<ElementCard width={w} height={h} />
-            <InputsCards/>*/}
+            {
+                componentsManagement.elementCard 
+                &&
+                <div className="element">
+                    <Sitio
+                        sitioName={sitioData.name}
+                        sitioInputs={sitioData.inputs}
+                        sitioOutputs={sitioData.outputs}
+                    />
+                    <ElementsNetwork 
+                        width={w} 
+                        height={h}
+                        elements={sitioData.elements}
+                        linesData={sitioData}
+                    />
+                </div> 
+            }
         </React.Fragment>
     )
 }
