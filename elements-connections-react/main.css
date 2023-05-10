@@ -57,6 +57,13 @@ body {
   border-radius: 0.3rem;
 }
 
+.div-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5em;
+}
+
 .form-btn {
   border-radius: 0.7rem;
   padding: 1rem;
@@ -72,6 +79,10 @@ body {
 .btn-icon {
   width: 0.8rem;
   padding-top: 0.2rem;
+}
+
+.prev {
+  transform: scaleX(-1);
 }
 
 .svg {

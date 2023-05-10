@@ -8,13 +8,13 @@ function  FormSitio (props) {
         <div className="card">
           <form className="form" onSubmit={HandlePreventDefault}>
               <label className="form-label" htmlFor="system_name">What's the name of your system?</label>
-              <input className="text-input" name="system_name" id="system_name" onChange={props.handleSitioFormChange} type="text" size="40" required/>
+              <input className="text-input" name="system_name" value={props.system_name_value} onChange={props.handleSitioFormChange} type="text" size="40" required/>
               <label className="form-label" htmlFor="sitio_inputs">What does your element need (inputs)?</label>
-              <input className="text-input" type="text" name="sitio_inputs" id="sitio_inputs" onChange={props.handleSitioFormChange} size="40" required/>
+              <input className="text-input" type="text" name="sitio_inputs" value={props.sitio_inputs_value} onChange={props.handleSitioFormChange} size="40" required/>
               <label className="form-label" htmlFor="sitio_outputs">What does your element provide (outputs)?</label>
-              <input className="text-input" type="text" name="sitio_outputs" id="sitio_outputs" onChange={props.handleSitioFormChange} size="40" required/>
+              <input className="text-input" type="text" name="sitio_outputs" value={props.sitio_outputs_value} onChange={props.handleSitioFormChange} size="40" required/>
               <div className="div-btn">
-                <button className="form-btn" id="formSitio" name="formSitio" value="formElement" type="button" onClick={props.onclick}>
+                <button className="form-btn" name="formSitio" value="formElement" type="button" onClick={props.onclick}>
                   NEXT
                   <img className="btn-icon" src="../images/arrow-right.svg" alt="arrow icon to the rigth"/>
                 </button>
@@ -29,20 +29,20 @@ function FormElement(props) {
         <div className="card">
             <form className="form" onSubmit={HandlePreventDefault}>
                 <h2 className="card-heading">Let's add elements!</h2>
-                <label className="form-label">Whats the name of the element?</label>
-                <input className="text-input" id="element-name" type="text" name="element_name" size="40" required/>
-                <label className="form-label">What does your element need (inputs)?</label>
-                <input className="text-input" id="system-inputs" type="text" name="element_inputs" size="40" required/>
-                <label className="form-label">What does your element provide (outputs)?</label>
-                <input className="text-input" id="system-outputs" type="text" name="element_outputs" size="40" required/>
-                <label className="form-label">What are the intrinsic characteristics of this element?</label>
-                <input className="text-input" id="intrinsic-characteristics" type="text" name="element_intrinsic_characteristics" size="40" required/>
+                <label className="form-label" htmlFor="element_name">Whats the name of the element?</label>
+                <input className="text-input" type="text" name="element_name" value={props.element_name_value} onChange={props.onchange} size="40" required/>
+                <label className="form-label" htmlFor="element_inputs">What does your element need (inputs)?</label>
+                <input className="text-input" type="text" name="element_inputs" value={props.element_inputs_value} onChange={props.onchange} size="40" required/>
+                <label className="form-label" htmlFor="element_outputs">What does your element provide (outputs)?</label>
+                <input className="text-input" type="text" name="element_outputs" value={props.element_Outputs_value} onChange={props.onchange} size="40" required/>
+                <label className="form-label" htmlFor="element_intrinsic_characteristics">What are the intrinsic characteristics of this element?</label>
+                <input className="text-input" type="text" name="element_intrinsic_characteristics" value={props.element_intrinsic_characteristics_value} onChange={props.onchange} size="40" required/>
                 <div className="div-btn">
-                    <button className="prev form-btn" type="button">
-                        <img className="btn-icon" src="../images/arrow-right.svg" alt="arrow icon to the rigth"/>
+                    <button className="form-btn" type="button" name="formElement" value="formSitio" onClick={props.onPrevClick}>
+                        <img className="btn-icon prev" src="../images/arrow-right.svg" alt="arrow icon to the rigth"/>
                         Preview
                     </button>
-                    <button className="next form-btn" id="next-div-two" type="button">
+                    <button className="next form-btn" id="next-div-two" type="button" onClick={props.onAddClick}>
                         Add
                         <img className="btn-icon" src="../images/Plus.svg" alt="Plus icon"/>
                     </button>
@@ -190,6 +190,7 @@ function ElementCard(props) {
 }
 
 function App() {
+
     const [componentsManagement, setComponentsManagement] = React.useState({
         formSitio: true,
         formElement: false,
@@ -201,11 +202,7 @@ function App() {
     const [formSitioData, setFormSitioData] = React.useState({
         system_name: "",
         sitio_inputs: "",
-        sitio_outputs: "",
-        element_name: "",
-        element_inputs: "",
-        element_outputs: "",
-        element_intrinsic_characteristics: ""
+        sitio_outputs: ""
     });
 
     function handleSitioFormChange(e) {
@@ -218,9 +215,9 @@ function App() {
 
     function handleSitioCreate() {
         let name = formSitioData.system_name;
-        let outputs = formSitioData.sitio_outputs.split(', ');;
-        let inputs = formSitioData.sitio_inputs.split(', ');;
-        return setSitioData(new Element (name, [inputs], [outputs], []))
+        let outputs = formSitioData.sitio_outputs.split(', ');
+        let inputs = formSitioData.sitio_inputs.split(', ');
+        return setSitioData(new Element (name, inputs, outputs, []))
     }
 
     function handleFormSequence (e) {
@@ -237,22 +234,60 @@ function App() {
         handleSitioCreate();
     }
 
-    const [formElementsData, setFormElementData] = React.useState({
+    const [elementsData, setElementsData] = React.useState([])
 
-    })
+    const initalformElementsData = {
+        element_name: "",
+        element_inputs: "",
+        element_outputs: "",
+        element_intrinsic_characteristics: ""
+    }
+
+    const [formElementsData, setFormElementData] = React.useState(initalformElementsData);
+
+    function handleElementFormChange(e) {
+        const {name, value} = e.target;
+        setFormElementData(p => ({
+            ...p,
+            [name]: value
+        }))
+    };
+
+    function handleAddElement() {
+        const name = formElementsData.element_name;
+        const inputs = formElementsData.element_inputs.split(', ');
+        const outputs = formElementsData.element_outputs.split(', ');
+        setSitioData(p => ({
+            ...p,
+            elements: [...p.elements, new Element (name, inputs, outputs, [])]
+        }));
+        setFormElementData(initalformElementsData);
+    }
 
 
     //console.log(formSitioData);
     //console.log(sitioData);
-    console.log(componentsManagement)
+    console.log(sitioData)
     return (
         <React.Fragment>
             {componentsManagement.formSitio && <FormSitio
                 onclick={onClickNext} 
                 handleSitioFormChange={handleSitioFormChange}
-
+                //Inputs values
+                system_name_value={formSitioData.element_name}
+                sitio_inputs_value={formSitioData.element_inputs}
+                sitio_outputs_value={formSitioData.element_outputs}
             />}
-            {componentsManagement.formElement && <FormElement/>}
+            {componentsManagement.formElement && <FormElement
+                onPrevclick={handleFormSequence}
+                onAddClick={handleAddElement}
+                onchange={handleElementFormChange} 
+                //inputs values
+                element_name_value={formElementsData.element_name}
+                element_inputs_value={formElementsData.element_inputs}
+                element_Outputs_value={formElementsData.element_outputs}
+                element_intrinsic_characteristics_value={formElementsData.element_intrinsic_characteristics}
+            />}
             {/*<ElementCard width={w} height={h} />
             <InputsCards/>*/}
         </React.Fragment>
