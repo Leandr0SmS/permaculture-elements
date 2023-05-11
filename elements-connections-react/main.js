@@ -61,7 +61,7 @@ function FormElement(props) {
 
 const w = 450, h = 300, r = w > h ? w/4 : h/4, cx=(w/2), cy=(h/2);
 
-//const elements = matutu.elements;
+const elements = matutu.elements;
 //
 //matutu.positionElementsInCircle((w/2), (h/2), r, matutu.elements);
 //
@@ -196,6 +196,11 @@ function App() {
     })
 
     const [sitioData, setSitioData] = React.useState({});
+    const sitioRef = React.useRef(null);
+    const [updateRef, setUpdateRef] = React.useState(0);
+    React.useEffect(() => {
+        sitioRef.current = sitioData;
+      }, [updateRef]);
 
     const [formSitioData, setFormSitioData] = React.useState({
         system_name: "",
@@ -215,7 +220,9 @@ function App() {
         let name = formSitioData.system_name;
         let outputs = formSitioData.sitio_outputs.split(', ');
         let inputs = formSitioData.sitio_inputs.split(', ');
-        return setSitioData(new Element (name, inputs, outputs, []))
+        let sitio = new Element (name, inputs, outputs, [])
+        setSitioData(sitio)
+        setUpdateRef(p => p + 1)
     }
 
     function handleFormSequence (e) {
@@ -264,28 +271,36 @@ function App() {
 
 
     // --- Extract from class.js
-    function positionElementsInCircle(centerX, centerY, radius, elements) {
-        let positions = [];
-        let numElements = elements.length;
-        let angleBetweenElements = 2 * Math.PI / numElements;
-      
-        for (let i = 0; i < numElements; i++) {
-          let angle = i * angleBetweenElements;
-          let x = centerX + radius * Math.cos(angle);
-          let y = centerY + radius * Math.sin(angle);
-          positions.push([x, y]);
-        }
-        for (let i = 0; i < elements.length; i ++) {
-            elements[i].circlePosition = positions[i];
-        }
-        return positions;
-    }
+    //function positionElementsInCircle(centerX, centerY, radius, elements) {
+    //    let positions = [];
+    //    let numElements = elements.length;
+    //    let angleBetweenElements = 2 * Math.PI / numElements;
+    //  
+    //    for (let i = 0; i < numElements; i++) {
+    //      let angle = i * angleBetweenElements;
+    //      let x = centerX + radius * Math.cos(angle);
+    //      let y = centerY + radius * Math.sin(angle);
+    //      positions.push([x, y]);
+    //    }
+    //    for (let i = 0; i < elements.length; i ++) {
+    //        elements[i].circlePosition = positions[i];
+    //    }
+    //    return positions;
+    //}
     /// ---
 
     function connectElements (e) {
         const target = e.target;
         const elem = sitioData.elements;
-        positionElementsInCircle((w/2), (h/2), r, elem);
+        const positions = sitioRef.current.positionElementsInCircle((w/2), (h/2), r, elem);
+        positions.map((loc, i) => {
+            setSitioData(p => {
+                p.elements[i].circlePosition = loc;
+                return ({
+                    ...p
+                })
+            })
+        })
         handleFormSequence(e);
     }
 
@@ -293,7 +308,7 @@ function App() {
     //matutu.positionElementsInCircle((w/2), (h/2), r, matutu.elements);
     //console.log(matutu.elements)
     //console.log(formSitioData);
-    //console.log(sitioData);
+    console.log(sitioRef);
     console.log(sitioData);
 
     return (
