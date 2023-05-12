@@ -1,11 +1,9 @@
 import { matutu } from "../elements/elements.js";
 import {Element} from "../elements/class.js";
 
-//Connectios and elements
-
 const w = 450, h = 300, r = w > h ? w/4 : h/4, cx=(w/2), cy=(h/2);
 
-const elements = matutu.elements;
+//const elements = matutu.elements;
 //
 //matutu.positionElementsInCircle((w/2), (h/2), r, matutu.elements);
 //
@@ -13,102 +11,76 @@ const elements = matutu.elements;
 //
 //const dotsPosition = elements.map(elem => elem.circlePosition);
 
-function calculateTextPositions(centerX, centerY, radius, points) {
+//function calculateTextPositions(centerX, centerY, radius, points) {
+//
+//    const angles = points.map(point => {
+//      const dx = point[0] - centerX;
+//      const dy = point[1] - centerY;
+//      return Math.atan2(dy, dx);
+//    });
+//  
+//    const textPositions = angles.map((angle, i) => {
+//      const x = centerX + radius * Math.cos(angle);
+//      const y = centerY + radius * Math.sin(angle);
+//      return [x + (x - centerX) * 0.05, y + (y - centerY) * 0.05];
+//    });
+//    
+//    return textPositions
+//}
 
-    const angles = points.map(point => {
-      const dx = point[0] - centerX;
-      const dy = point[1] - centerY;
-      return Math.atan2(dy, dx);
-    });
-  
-    const textPositions = angles.map((angle, i) => {
-      const x = centerX + radius * Math.cos(angle);
-      const y = centerY + radius * Math.sin(angle);
-      return [x + (x - centerX) * 0.05, y + (y - centerY) * 0.05];
-    });
-    
-    return textPositions
-  }
-
-function textCorrection (centerX, centerY, points) {
-  const correction = points.map(point => {
-      let x = point[0];
-      let y = point[1];
-      if (x < centerX && y > centerY) {
-          point[0] = x - 35;
-          point[1] = y + 15;
-      }
-      if (x < centerX && y <= centerY) {
-          point[0] = x - 50;
-          point[1] = y - 5;
-      }
-      if (x >= centerX && y < centerY) {
-        point[0] = x + 5;
-        point[1] = y - 5;
-    }
-    if (x >= centerX && y >= centerY) {
-        point[0] = x + 5;
-        point[1] = y + 15;
-    }
-      return point;
-  })
-  return correction;
-}
+//function textCorrection (centerX, centerY, points) {
+//  const correction = points.map(point => {
+//      let x = point[0];
+//      let y = point[1];
+//      if (x < centerX && y > centerY) {
+//          point[0] = x - 35;
+//          point[1] = y + 15;
+//      }
+//      if (x < centerX && y <= centerY) {
+//          point[0] = x - 50;
+//          point[1] = y - 5;
+//      }
+//      if (x >= centerX && y < centerY) {
+//        point[0] = x + 5;
+//        point[1] = y - 5;
+//    }
+//    if (x >= centerX && y >= centerY) {
+//        point[0] = x + 5;
+//        point[1] = y + 15;
+//    }
+//      return point;
+//  })
+//  return correction;
+//}
 
 // Call the function to get the text positions
 //const textPositions = textCorrection(cx, cy, calculateTextPositions(cx, cy, r, dotsPosition));
 
-function Sitio({sitioName, sitioInputs, sitioOutputs}) {
-    return (
-        <div className="element--title--info">
-            <h1>{sitioName}</h1>
-            <p><span>Inputs:</span> {sitioInputs}</p>
-            <p><span>Outputs:</span> {sitioOutputs}</p>
-        </div>
-    )
-}
-
-function Text(props) {
-    return (
-        <React.Fragment>
-            {props.textPositions.map((elem, i) =>  <text fill="" key={i} x={elem[0]} y={elem[1]}>{elements[i].name}</text>)}
-        </React.Fragment>
-    )
-}
-
-function Lines(props) {
-    return (
-        <React.Fragment>
-            {props.linesData.map((elem, i) =>  <line key={i} x1={elem.positionX1Y1[0]} y1={elem.positionX1Y1[1]} x2={elem.positionX2Y2[0]} y2={elem.positionX2Y2[1]} stroke="black" />)}
-        </React.Fragment>
-    )
-}
-
-function InputsCards () {
-    return (
-        <div className="elements--cards">
-                {elements.map((elem, i) => {
-                    return (
-                        <div key={i} className="box-item">
-                            <div className="flip-box">
-                                <div className="flip-box-front text-center">
-                                    <div className="inner color-white">
-                                        <h1>{elem.name}</h1>
-                                    </div>
-                                </div>
-                                <div className="flip-box-back text-center">
-                                    <div className="inner color-white">
-                                        <p>Inputs: {elem.inputs.join(" / ")}</p>
-                                        <p>Outputs: {elem.outputs.join(" / ")}</p>
-                                    </div>
-                                </div>
-                            </div>
-	                    </div>
-                    )
-                })}
-            </div>
-    )
-}
+//function InputsCards () {
+//    return (
+//        <div className="elements--cards">
+//                {elements.map((elem, i) => {
+//                    return (
+//                        <div key={i} className="box-item">
+//                            <div className="flip-box">
+//                                <div className="flip-box-front text-center">
+//                                    <div className="inner color-white">
+//                                        <h1>{elem.name}</h1>
+//                                    </div>
+//                                </div>
+//                                <div className="flip-box-back text-center">
+//                                    <div className="inner color-white">
+//                                        <p>Inputs: {elem.inputs.join(" / ")}</p>
+//                                        <p>Outputs: {elem.outputs.join(" / ")}</p>
+//                                    </div>
+//                                </div>
+//                            </div>
+//	                    </div>
+//                    )
+//                })}
+//            </div>
+//    )
+//}
 
 //fomrs
 
@@ -179,6 +151,17 @@ function FormElement({
                     </button>
                 </div>
             </form> 
+        </div>
+    )
+}
+
+//Connectios and elements
+function Sitio({sitioName, sitioInputs, sitioOutputs}) {
+    return (
+        <div className="element--title--info">
+            <h1>{sitioName}</h1>
+            <p><span>Inputs:</span> {sitioInputs}</p>
+            <p><span>Outputs:</span> {sitioOutputs}</p>
         </div>
     )
 }
