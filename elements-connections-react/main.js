@@ -3,18 +3,24 @@ import {Element} from "../elements/class.js";
 
 const HandlePreventDefault = (e) => e.preventDefault();
 
-function  FormSitio (props) {
+function  FormSitio ({
+                        system_name_value, 
+                        handleSitioFormChange, 
+                        sitio_inputs_value, 
+                        sitio_outputs_value, 
+                        onclick
+                    }) {
     return (
         <div className="card">
           <form className="form" onSubmit={HandlePreventDefault}>
               <label className="form-label" htmlFor="system_name">What's the name of your system?</label>
-              <input className="text-input" name="system_name" value={props.system_name_value} onChange={props.handleSitioFormChange} type="text" size="40" required/>
+              <input className="text-input" name="system_name" value={system_name_value} onChange={handleSitioFormChange} type="text" size="40" required/>
               <label className="form-label" htmlFor="sitio_inputs">What does your element need (inputs)?</label>
-              <input className="text-input" type="text" name="sitio_inputs" value={props.sitio_inputs_value} onChange={props.handleSitioFormChange} size="40" required/>
+              <input className="text-input" type="text" name="sitio_inputs" value={sitio_inputs_value} onChange={handleSitioFormChange} size="40" required/>
               <label className="form-label" htmlFor="sitio_outputs">What does your element provide (outputs)?</label>
-              <input className="text-input" type="text" name="sitio_outputs" value={props.sitio_outputs_value} onChange={props.handleSitioFormChange} size="40" required/>
+              <input className="text-input" type="text" name="sitio_outputs" value={sitio_outputs_value} onChange={handleSitioFormChange} size="40" required/>
               <div className="div-btn">
-                <button className="form-btn" name="formSitio" value="formElement" type="button" onClick={props.onclick}>
+                <button className="form-btn" name="formSitio" value="formElement" type="button" onClick={onclick}>
                   NEXT
                   <img className="btn-icon" src="../images/arrow-right.svg" alt="arrow icon to the rigth"/>
                 </button>
@@ -24,29 +30,38 @@ function  FormSitio (props) {
     )
 }
 
-function FormElement(props) {
+function FormElement({
+                        element_name_value, 
+                        element_inputs_value, 
+                        element_Outputs_value, 
+                        element_intrinsic_characteristics_value, 
+                        onchange, 
+                        onPrevClick, 
+                        onAddClick, 
+                        onConnectClick
+                    }) {
     return (
         <div className="card">
             <form className="form" onSubmit={HandlePreventDefault}>
                 <h2 className="card-heading">Let's add elements!</h2>
                 <label className="form-label" htmlFor="element_name">Whats the name of the element?</label>
-                <input className="text-input" type="text" name="element_name" value={props.element_name_value} onChange={props.onchange} size="40" required/>
+                <input className="text-input" type="text" name="element_name" value={element_name_value} onChange={onchange} size="40" required/>
                 <label className="form-label" htmlFor="element_inputs">What does your element need (inputs)?</label>
-                <input className="text-input" type="text" name="element_inputs" value={props.element_inputs_value} onChange={props.onchange} size="40" required/>
+                <input className="text-input" type="text" name="element_inputs" value={element_inputs_value} onChange={onchange} size="40" required/>
                 <label className="form-label" htmlFor="element_outputs">What does your element provide (outputs)?</label>
-                <input className="text-input" type="text" name="element_outputs" value={props.element_Outputs_value} onChange={props.onchange} size="40" required/>
+                <input className="text-input" type="text" name="element_outputs" value={element_Outputs_value} onChange={onchange} size="40" required/>
                 <label className="form-label" htmlFor="element_intrinsic_characteristics">What are the intrinsic characteristics of this element?</label>
-                <input className="text-input" type="text" name="element_intrinsic_characteristics" value={props.element_intrinsic_characteristics_value} onChange={props.onchange} size="40" required/>
+                <input className="text-input" type="text" name="element_intrinsic_characteristics" value={element_intrinsic_characteristics_value} onChange={onchange} size="40" required/>
                 <div className="div-btn">
-                    <button className="form-btn" type="button" name="formElement" value="formSitio" onClick={props.onPrevClick}>
+                    <button className="form-btn" type="button" name="formElement" value="formSitio" onClick={onPrevClick}>
                         <img className="btn-icon prev" src="../images/arrow-right.svg" alt="arrow icon to the rigth"/>
                         Preview
                     </button>
-                    <button className="next form-btn" type="button" onClick={props.onAddClick}>
+                    <button className="next form-btn" type="button" onClick={onAddClick}>
                         Add
                         <img className="btn-icon" src="../images/Plus.svg" alt="Plus icon"/>
                     </button>
-                    <button className="next form-btn" type="button" name="formElement" value="elementCard" onClick={props.onConnectClick}>
+                    <button className="next form-btn" type="button" name="formElement" value="elementCard" onClick={onConnectClick}>
                         Connect
                         <img className="btn-icon" src="../images/Connect.svg" alt="Connect icon"/>
                     </button>
