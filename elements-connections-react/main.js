@@ -129,12 +129,12 @@ function textCorrection (centerX, centerY, points) {
 // Call the function to get the text positions
 //const textPositions = textCorrection(cx, cy, calculateTextPositions(cx, cy, r, dotsPosition));
 
-function Sitio(props) {
+function Sitio({sitioName, sitioInputs, sitioOutputs}) {
     return (
         <div className="element--title--info">
-            <h1>{props.sitioName}</h1>
-            <p><span>Inputs:</span> {props.sitioInputs}</p>
-            <p><span>Outputs:</span> {props.sitioOutputs}</p>
+            <h1>{sitioName}</h1>
+            <p><span>Inputs:</span> {sitioInputs}</p>
+            <p><span>Outputs:</span> {sitioOutputs}</p>
         </div>
     )
 }
@@ -155,10 +155,10 @@ function Lines(props) {
     )
 }
 
-function ElementsNetwork(props) {
+function ElementsNetwork({width, height, elements}) {
     return (
-        <svg width={props.width} height={props.height} className="svg">
-            {props.elements.map((elem, i) => {
+        <svg width={width} height={height} className="svg">
+            {elements.map((elem, i) => {
                 return (
                     <React.Fragment key={i}>
                         <circle key={i} cx={elem.circlePosition[0]} cy={elem.circlePosition[1]} r="5" />
@@ -204,6 +204,15 @@ function InputsCards () {
 
 function App() {
 
+    const initalformElementsData = {
+        element_name: "",
+        element_inputs: "",
+        element_outputs: "",
+        element_intrinsic_characteristics: ""
+    }
+
+    const [formElementsData, setFormElementData] = React.useState(initalformElementsData);
+
     const [componentsManagement, setComponentsManagement] = React.useState({
         formSitio: true,
         formElement: false,
@@ -211,17 +220,20 @@ function App() {
     })
 
     const [sitioData, setSitioData] = React.useState({});
-    const sitioRef = React.useRef(null);
+    
     const [updateRef, setUpdateRef] = React.useState(0);
-    React.useEffect(() => {
-        sitioRef.current = sitioData;
-      }, [updateRef]);
+    
+    const sitioRef = React.useRef(null);
 
     const [formSitioData, setFormSitioData] = React.useState({
         system_name: "",
         sitio_inputs: "",
         sitio_outputs: ""
     });
+    
+    React.useEffect(() => {
+        sitioRef.current = sitioData;
+      }, [updateRef]);
 
     function handleSitioFormChange(e) {
         const {value, name} = e.target;
@@ -254,17 +266,6 @@ function App() {
         handleSitioCreate();
     }
 
-    const [elementsData, setElementsData] = React.useState([])
-
-    const initalformElementsData = {
-        element_name: "",
-        element_inputs: "",
-        element_outputs: "",
-        element_intrinsic_characteristics: ""
-    }
-
-    const [formElementsData, setFormElementData] = React.useState(initalformElementsData);
-
     function handleElementFormChange(e) {
         const {name, value} = e.target;
         setFormElementData(p => ({
@@ -284,26 +285,6 @@ function App() {
         setFormElementData(initalformElementsData);
     }
 
-
-    // --- Extract from class.js
-    //function positionElementsInCircle(centerX, centerY, radius, elements) {
-    //    let positions = [];
-    //    let numElements = elements.length;
-    //    let angleBetweenElements = 2 * Math.PI / numElements;
-    //  
-    //    for (let i = 0; i < numElements; i++) {
-    //      let angle = i * angleBetweenElements;
-    //      let x = centerX + radius * Math.cos(angle);
-    //      let y = centerY + radius * Math.sin(angle);
-    //      positions.push([x, y]);
-    //    }
-    //    for (let i = 0; i < elements.length; i ++) {
-    //        elements[i].circlePosition = positions[i];
-    //    }
-    //    return positions;
-    //}
-    /// ---
-
     function connectElements (e) {
         const target = e.target;
         const elem = sitioData.elements;
@@ -320,9 +301,6 @@ function App() {
     }
 
     //consoles
-    //matutu.positionElementsInCircle((w/2), (h/2), r, matutu.elements);
-    //console.log(matutu.elements)
-    //console.log(formSitioData);
     console.log(sitioRef);
     console.log(sitioData);
 
