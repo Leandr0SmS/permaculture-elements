@@ -1,77 +1,6 @@
 import { matutu } from "../elements/elements.js";
 import {Element} from "../elements/class.js";
 
-const HandlePreventDefault = (e) => e.preventDefault();
-
-function  FormSitio ({
-                        system_name_value, 
-                        handleSitioFormChange, 
-                        sitio_inputs_value, 
-                        sitio_outputs_value, 
-                        onclick
-                    }) {
-    return (
-        <div className="card">
-          <form className="form" onSubmit={HandlePreventDefault}>
-              <label className="form-label" htmlFor="system_name">What's the name of your system?</label>
-              <input className="text-input" name="system_name" value={system_name_value} onChange={handleSitioFormChange} type="text" size="40" required/>
-              <label className="form-label" htmlFor="sitio_inputs">What does your element need (inputs)?</label>
-              <input className="text-input" type="text" name="sitio_inputs" value={sitio_inputs_value} onChange={handleSitioFormChange} size="40" required/>
-              <label className="form-label" htmlFor="sitio_outputs">What does your element provide (outputs)?</label>
-              <input className="text-input" type="text" name="sitio_outputs" value={sitio_outputs_value} onChange={handleSitioFormChange} size="40" required/>
-              <div className="div-btn">
-                <button className="form-btn" name="formSitio" value="formElement" type="button" onClick={onclick}>
-                  NEXT
-                  <img className="btn-icon" src="../images/arrow-right.svg" alt="arrow icon to the rigth"/>
-                </button>
-              </div>
-          </form> 
-        </div>
-    )
-}
-
-function FormElement({
-                        element_name_value, 
-                        element_inputs_value, 
-                        element_Outputs_value, 
-                        element_intrinsic_characteristics_value, 
-                        onchange, 
-                        onPrevClick, 
-                        onAddClick, 
-                        onConnectClick
-                    }) {
-    return (
-        <div className="card">
-            <form className="form" onSubmit={HandlePreventDefault}>
-                <h2 className="card-heading">Let's add elements!</h2>
-                <label className="form-label" htmlFor="element_name">Whats the name of the element?</label>
-                <input className="text-input" type="text" name="element_name" value={element_name_value} onChange={onchange} size="40" required/>
-                <label className="form-label" htmlFor="element_inputs">What does your element need (inputs)?</label>
-                <input className="text-input" type="text" name="element_inputs" value={element_inputs_value} onChange={onchange} size="40" required/>
-                <label className="form-label" htmlFor="element_outputs">What does your element provide (outputs)?</label>
-                <input className="text-input" type="text" name="element_outputs" value={element_Outputs_value} onChange={onchange} size="40" required/>
-                <label className="form-label" htmlFor="element_intrinsic_characteristics">What are the intrinsic characteristics of this element?</label>
-                <input className="text-input" type="text" name="element_intrinsic_characteristics" value={element_intrinsic_characteristics_value} onChange={onchange} size="40" required/>
-                <div className="div-btn">
-                    <button className="form-btn" type="button" name="formElement" value="formSitio" onClick={onPrevClick}>
-                        <img className="btn-icon prev" src="../images/arrow-right.svg" alt="arrow icon to the rigth"/>
-                        Preview
-                    </button>
-                    <button className="next form-btn" type="button" onClick={onAddClick}>
-                        Add
-                        <img className="btn-icon" src="../images/Plus.svg" alt="Plus icon"/>
-                    </button>
-                    <button className="next form-btn" type="button" name="formElement" value="elementCard" onClick={onConnectClick}>
-                        Connect
-                        <img className="btn-icon" src="../images/Connect.svg" alt="Connect icon"/>
-                    </button>
-                </div>
-            </form> 
-        </div>
-    )
-}
-
-
 //Connectios and elements
 
 const w = 450, h = 300, r = w > h ? w/4 : h/4, cx=(w/2), cy=(h/2);
@@ -155,25 +84,6 @@ function Lines(props) {
     )
 }
 
-function ElementsNetwork({width, height, elements}) {
-    return (
-        <svg width={width} height={height} className="svg">
-            {elements.map((elem, i) => {
-                return (
-                    <React.Fragment key={i}>
-                        <circle key={i} cx={elem.circlePosition[0]} cy={elem.circlePosition[1]} r="5" />
-                        {/*<text x={elem.circlePosition[0] + 5} y={elem.circlePosition[1]} >{elem.name}</text>*/}
-                        {/*<Lines
-                            linesData={props.linesData}
-                        />*/}
-                        {/*<Text/>*/}
-                    </React.Fragment>    
-                )
-            })}
-        </svg>
-    )
-}
-
 function InputsCards () {
     return (
         <div className="elements--cards">
@@ -200,9 +110,94 @@ function InputsCards () {
     )
 }
 
+//fomrs
+
+const HandlePreventDefault = (e) => e.preventDefault();
+
+function  FormSitio ({
+                        system_name_value, 
+                        handleSitioFormChange, 
+                        sitio_inputs_value, 
+                        sitio_outputs_value, 
+                        onNextclick
+                    }) 
+                {
+    return (
+        <div className="card">
+          <form className="form" onSubmit={HandlePreventDefault}>
+              <label className="form-label" htmlFor="system_name">What's the name of your system?</label>
+              <input className="text-input" name="system_name" value={system_name_value} onChange={handleSitioFormChange} type="text" size="40" required/>
+              <label className="form-label" htmlFor="sitio_inputs">What does your element need (inputs)?</label>
+              <input className="text-input" type="text" name="sitio_inputs" value={sitio_inputs_value} onChange={handleSitioFormChange} size="40" required/>
+              <label className="form-label" htmlFor="sitio_outputs">What does your element provide (outputs)?</label>
+              <input className="text-input" type="text" name="sitio_outputs" value={sitio_outputs_value} onChange={handleSitioFormChange} size="40" required/>
+              <div className="div-btn">
+                <button className="form-btn" name="formSitio" value="formElement" type="button" onClick={onNextclick}>
+                  NEXT
+                  <img className="btn-icon" src="../images/arrow-right.svg" alt="arrow icon to the rigth"/>
+                </button>
+              </div>
+          </form> 
+        </div>
+    )
+}
+
+function FormElement({
+                        element_name_value, 
+                        element_inputs_value, 
+                        element_Outputs_value, 
+                        element_intrinsic_characteristics_value, 
+                        onchange, 
+                        onPrevClick, 
+                        onAddClick, 
+                        onConnectClick
+                    }) {
+    return (
+        <div className="card">
+            <form className="form" onSubmit={HandlePreventDefault}>
+                <h2 className="card-heading">Let's add elements!</h2>
+                <label className="form-label" htmlFor="element_name">Whats the name of the element?</label>
+                <input className="text-input" type="text" name="element_name" value={element_name_value} onChange={onchange} size="40" required/>
+                <label className="form-label" htmlFor="element_inputs">What does your element need (inputs)?</label>
+                <input className="text-input" type="text" name="element_inputs" value={element_inputs_value} onChange={onchange} size="40" required/>
+                <label className="form-label" htmlFor="element_outputs">What does your element provide (outputs)?</label>
+                <input className="text-input" type="text" name="element_outputs" value={element_Outputs_value} onChange={onchange} size="40" required/>
+                <label className="form-label" htmlFor="element_intrinsic_characteristics">What are the intrinsic characteristics of this element?</label>
+                <input className="text-input" type="text" name="element_intrinsic_characteristics" value={element_intrinsic_characteristics_value} onChange={onchange} size="40" required/>
+                <div className="div-btn">
+                    <button className="form-btn" type="button" name="formElement" value="formSitio" onClick={onPrevClick}>
+                        <img className="btn-icon prev" src="../images/arrow-right.svg" alt="arrow icon to the rigth"/>
+                        Preview
+                    </button>
+                    <button className="next form-btn" type="button" onClick={onAddClick}>
+                        Add
+                        <img className="btn-icon" src="../images/Plus.svg" alt="Plus icon"/>
+                    </button>
+                    <button className="next form-btn" type="button" name="formElement" value="elementCard" onClick={onConnectClick}>
+                        Connect
+                        <img className="btn-icon" src="../images/Connect.svg" alt="Connect icon"/>
+                    </button>
+                </div>
+            </form> 
+        </div>
+    )
+}
+
 //App and States
 
 function App() {
+
+    const [componentsManagement, setComponentsManagement] = React.useState({
+        formSitio: true,
+        formElement: false,
+        elementCard: false
+    });
+
+    const [formSitioData, setFormSitioData] = React.useState({
+        system_name: "",
+        sitio_inputs: "",
+        sitio_outputs: ""
+    });
 
     const initalformElementsData = {
         element_name: "",
@@ -213,44 +208,9 @@ function App() {
 
     const [formElementsData, setFormElementData] = React.useState(initalformElementsData);
 
-    const [componentsManagement, setComponentsManagement] = React.useState({
-        formSitio: true,
-        formElement: false,
-        elementCard: false
-    })
-
     const [sitioData, setSitioData] = React.useState({});
-    
-    const [updateRef, setUpdateRef] = React.useState(0);
-    
-    const sitioRef = React.useRef(null);
 
-    const [formSitioData, setFormSitioData] = React.useState({
-        system_name: "",
-        sitio_inputs: "",
-        sitio_outputs: ""
-    });
-    
-    React.useEffect(() => {
-        sitioRef.current = sitioData;
-      }, [updateRef]);
-
-    function handleSitioFormChange(e) {
-        const {value, name} = e.target;
-        setFormSitioData(p => ({
-            ...p,
-            [name]: value
-        }))
-    }
-
-    function handleSitioCreate() {
-        let name = formSitioData.system_name;
-        let outputs = formSitioData.sitio_outputs.split(', ');
-        let inputs = formSitioData.sitio_inputs.split(', ');
-        let sitio = new Element (name, inputs, outputs, [])
-        setSitioData(sitio)
-        setUpdateRef(p => p + 1)
-    }
+    const [elementsArray, setElementsArray] = React.useState([]);
 
     function handleFormSequence (e) {
         const {name, value} = e.target;
@@ -259,12 +219,19 @@ function App() {
             [name]: false,
             [value]: true
         }))
-    }
+    };
 
-    function onClickNext (e) {
+    function handleSitioFormChange(e) {
+        const {value, name} = e.target;
+        setFormSitioData(p => ({
+            ...p,
+            [name]: value
+        }))
+    };
+
+    function onNextClick (e) {
         handleFormSequence(e);
-        handleSitioCreate();
-    }
+    };
 
     function handleElementFormChange(e) {
         const {name, value} = e.target;
@@ -278,36 +245,57 @@ function App() {
         const name = formElementsData.element_name;
         const inputs = formElementsData.element_inputs.split(', ');
         const outputs = formElementsData.element_outputs.split(', ');
-        setSitioData(p => ({
-            ...p,
-            elements: [...p.elements, new Element (name, inputs, outputs, [])]
-        }));
+        setElementsArray([
+            ...elementsArray,
+            new Element (name, inputs, outputs, [])
+        ]);
         setFormElementData(initalformElementsData);
-    }
+    };
+
+    function handleSitioCreate() {
+        let name = formSitioData.system_name;
+        let outputs = formSitioData.sitio_outputs.split(', ');
+        let inputs = formSitioData.sitio_inputs.split(', ');
+        let sitio = new Element (name, inputs, outputs, elementsArray);
+        sitio.positionElementsInCircle((w/2), (h/2), r, elementsArray)
+        setSitioData(sitio);
+    };
 
     function connectElements (e) {
-        const target = e.target;
-        const elem = sitioData.elements;
-        const positions = sitioRef.current.positionElementsInCircle((w/2), (h/2), r, elem);
-        positions.map((loc, i) => {
-            setSitioData(p => {
-                p.elements[i].circlePosition = loc;
-                return ({
-                    ...p
-                })
-            })
-        })
+        //const target = e.target;
+        //const elem = sitioData.elements;
+        //const positions = sitioRef.current.positionElementsInCircle((w/2), (h/2), r, elem);
+        //positions.map((loc, i) => {
+        //    setSitioData(p => {
+        //        p.elements[i].circlePosition = loc;
+        //        return ({
+        //            ...p
+        //        })
+        //    })
+        //})
+        handleSitioCreate();
         handleFormSequence(e);
+    };
+
+    let circles;
+    if (Object.keys(sitioData).length !== 0) {
+        circles = sitioData.elements.map((elem, i) => {
+            console.log(elem)
+            return (
+                <React.Fragment>
+                    <circle key={i} cx={elem.circlePosition[0]} cy={elem.circlePosition[1]} r={5} fill="red" />
+                </React.Fragment>
+            )
+        })
     }
 
     //consoles
-    console.log(sitioRef);
     console.log(sitioData);
 
     return (
         <React.Fragment>
             {componentsManagement.formSitio && <FormSitio
-                onclick={onClickNext} 
+                onNextclick={onNextClick} 
                 handleSitioFormChange={handleSitioFormChange}
                 //Inputs values
                 system_name_value={formSitioData.element_name}
@@ -334,12 +322,9 @@ function App() {
                         sitioInputs={sitioData.inputs}
                         sitioOutputs={sitioData.outputs}
                     />
-                    <ElementsNetwork 
-                        width={w} 
-                        height={h}
-                        elements={sitioData.elements}
-                        linesData={sitioData}
-                    />
+                    <svg width={w} height={h} className="svg">
+                        {circles}
+                    </svg>
                 </div> 
             }
         </React.Fragment>
@@ -348,4 +333,4 @@ function App() {
 
 const app = document.getElementById('root');
 const root = ReactDOM.createRoot(app);
-root.render(<App/>)
+root.render(<App/>);
