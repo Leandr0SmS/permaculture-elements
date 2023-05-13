@@ -231,13 +231,13 @@ function App() {
         //define position in a circle pattern
         const positions = sitio.positionElementsInCircle((w/2), (h/2), r, elementsArray);
         //Add texet to dots
-        const textPosiitons = calculateTextPositions(cx, cy, r, positions);
+        const textPositons = calculateTextPositions(cx, cy, r, positions);
         //correct text depend on the position at the circle
-        const textPosiitonsCorrected = textCorrection(cx, cy, textPosiitons);
+        const textPositonsCorrected = textCorrection(cx, cy, textPositons);
         //create relations
         sitio.getRelationships();
         //Set states
-        setConnectionsData(p => ({...p, textPosiitonsCorrected}));
+        setConnectionsData(p => ({...p, textPositonsCorrected}));
         setSitioData(sitio);
     };
 
@@ -248,6 +248,7 @@ function App() {
 
     let circles;
     let lines;
+    let dotsText;
     if (Object.keys(sitioData).length !== 0) {
         circles = sitioData.elements.map((elem, i) => {
             return (
@@ -260,6 +261,13 @@ function App() {
             return (
                 <React.Fragment key={i}>
                     <line key={i} x1={elem.positionX1Y1[0]} y1={elem.positionX1Y1[1]} x2={elem.positionX2Y2[0]} y2={elem.positionX2Y2[1]} stroke="black" />
+                </React.Fragment>
+            )
+        });
+        dotsText = connectionsData.textPositonsCorrected.map((elem, i) => {
+            return (
+                <React.Fragment key={i}>
+                    <text x={elem[0]} y={elem[1]}>{sitioData.elements[i].name}</text>
                 </React.Fragment>
             )
         })
@@ -303,6 +311,7 @@ function App() {
                     <svg width={w} height={h} className="svg">
                         {circles}
                         {lines}
+                        {dotsText}
                     </svg>
                 </div> 
             }
