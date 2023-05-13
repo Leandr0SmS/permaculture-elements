@@ -3,10 +3,6 @@ import {Element} from "../elements/class.js";
 
 const w = 450, h = 300, r = w > h ? w/4 : h/4, cx=(w/2), cy=(h/2);
 
-//const elements = matutu.elements;
-//
-//matutu.positionElementsInCircle((w/2), (h/2), r, matutu.elements);
-//
 //const linesData = matutu.getRelationships().relationshipsLines;
 //
 //const dotsPosition = elements.map(elem => elem.circlePosition);
@@ -160,8 +156,8 @@ function Sitio({sitioName, sitioInputs, sitioOutputs}) {
     return (
         <div className="element--title--info">
             <h1>{sitioName}</h1>
-            <p><span>Inputs:</span> {sitioInputs}</p>
-            <p><span>Outputs:</span> {sitioOutputs}</p>
+            <p><span>Inputs:</span> {sitioInputs.join(', ')}</p>
+            <p><span>Outputs:</span> {sitioOutputs.join(', ')}</p>
         </div>
     )
 }
@@ -265,11 +261,11 @@ function App() {
         circles = sitioData.elements.map((elem, i) => {
             console.log(elem)
             return (
-                <React.Fragment>
+                <React.Fragment key={i}>
                     <circle key={i} cx={elem.circlePosition[0]} cy={elem.circlePosition[1]} r={5} fill="red" />
                 </React.Fragment>
             )
-        })
+        });
     }
 
     //consoles
