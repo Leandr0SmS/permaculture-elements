@@ -242,32 +242,29 @@ function App() {
     };
 
     function connectElements (e) {
-        //const target = e.target;
-        //const elem = sitioData.elements;
-        //const positions = sitioRef.current.positionElementsInCircle((w/2), (h/2), r, elem);
-        //positions.map((loc, i) => {
-        //    setSitioData(p => {
-        //        p.elements[i].circlePosition = loc;
-        //        return ({
-        //            ...p
-        //        })
-        //    })
-        //})
         handleSitioCreate();
         handleFormSequence(e);
     };
 
     let circles;
+    let lines;
     if (Object.keys(sitioData).length !== 0) {
         circles = sitioData.elements.map((elem, i) => {
-            console.log(elem)
             return (
                 <React.Fragment key={i}>
                     <circle key={i} cx={elem.circlePosition[0]} cy={elem.circlePosition[1]} r={5} fill="red" />
                 </React.Fragment>
             )
         });
+        lines = sitioData.relationshipsLines.map((elem, i) => {
+            return (
+                <React.Fragment key={i}>
+                    <line key={i} x1={elem.positionX1Y1[0]} y1={elem.positionX1Y1[1]} x2={elem.positionX2Y2[0]} y2={elem.positionX2Y2[1]} stroke="black" />
+                </React.Fragment>
+            )
+        })
     }
+    
 
     //consoles
     console.log(sitioData);
@@ -304,6 +301,7 @@ function App() {
                     />
                     <svg width={w} height={h} className="svg">
                         {circles}
+                        {lines}
                     </svg>
                 </div> 
             }
