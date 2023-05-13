@@ -142,11 +142,13 @@ function FormElement({
 
 //Connectios and elements
 function Sitio({sitioName, sitioInputs, sitioOutputs}) {
+    let inputs = sitioInputs.map(str => str.charAt(0).toUpperCase() + str.slice(1));
+    let outputs = sitioInputs.map(str => str.charAt(0).toUpperCase() + str.slice(1));
     return (
         <div className="element--title--info">
             <h1>{sitioName}</h1>
-            <p><span>Inputs:</span> {sitioInputs.join(', ')}</p>
-            <p><span>Outputs:</span> {sitioOutputs.join(', ')}</p>
+            <p><span>Entradas:</span> {inputs.join(', ')}</p>
+            <p><span>Saídas:</span> {outputs.join(', ')}</p>
         </div>
     )
 }
