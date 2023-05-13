@@ -3,54 +3,45 @@ import {Element} from "../elements/class.js";
 
 const w = 450, h = 300, r = w > h ? w/4 : h/4, cx=(w/2), cy=(h/2);
 
-//const linesData = matutu.getRelationships().relationshipsLines;
-//
-//const dotsPosition = elements.map(elem => elem.circlePosition);
+function calculateTextPositions(centerX, centerY, radius, points) {
+    const angles = points.map(point => {
+        const dx = point[0] - centerX;
+        const dy = point[1] - centerY;
+        return Math.atan2(dy, dx);
+    });
+    const textPositions = angles.map((angle, i) => {
+        const x = centerX + radius * Math.cos(angle);
+        const y = centerY + radius * Math.sin(angle);
+        return [x + (x - centerX) * 0.05, y + (y - centerY) * 0.05];
+    });
+    return textPositions
+}
 
-//function calculateTextPositions(centerX, centerY, radius, points) {
-//
-//    const angles = points.map(point => {
-//      const dx = point[0] - centerX;
-//      const dy = point[1] - centerY;
-//      return Math.atan2(dy, dx);
-//    });
-//  
-//    const textPositions = angles.map((angle, i) => {
-//      const x = centerX + radius * Math.cos(angle);
-//      const y = centerY + radius * Math.sin(angle);
-//      return [x + (x - centerX) * 0.05, y + (y - centerY) * 0.05];
-//    });
-//    
-//    return textPositions
-//}
+function textCorrection (centerX, centerY, points) {
+  const correction = points.map(point => {
+      let x = point[0];
+      let y = point[1];
+      if (x < centerX && y > centerY) {
+          point[0] = x - 35;
+          point[1] = y + 15;
+      }
+      if (x < centerX && y <= centerY) {
+          point[0] = x - 50;
+          point[1] = y - 5;
+      }
+      if (x >= centerX && y < centerY) {
+        point[0] = x + 5;
+        point[1] = y - 5;
+    }
+    if (x >= centerX && y >= centerY) {
+        point[0] = x + 5;
+        point[1] = y + 15;
+    }
+      return point;
+  })
+  return correction;
+}
 
-//function textCorrection (centerX, centerY, points) {
-//  const correction = points.map(point => {
-//      let x = point[0];
-//      let y = point[1];
-//      if (x < centerX && y > centerY) {
-//          point[0] = x - 35;
-//          point[1] = y + 15;
-//      }
-//      if (x < centerX && y <= centerY) {
-//          point[0] = x - 50;
-//          point[1] = y - 5;
-//      }
-//      if (x >= centerX && y < centerY) {
-//        point[0] = x + 5;
-//        point[1] = y - 5;
-//    }
-//    if (x >= centerX && y >= centerY) {
-//        point[0] = x + 5;
-//        point[1] = y + 15;
-//    }
-//      return point;
-//  })
-//  return correction;
-//}
-
-// Call the function to get the text positions
-//const textPositions = textCorrection(cx, cy, calculateTextPositions(cx, cy, r, dotsPosition));
 
 //function InputsCards () {
 //    return (
@@ -80,8 +71,6 @@ const w = 450, h = 300, r = w > h ? w/4 : h/4, cx=(w/2), cy=(h/2);
 
 //fomrs
 
-const HandlePreventDefault = (e) => e.preventDefault();
-
 function  FormSitio ({
                         system_name_value, 
                         handleSitioFormChange, 
@@ -92,7 +81,7 @@ function  FormSitio ({
                 {
     return (
         <div className="card">
-          <form className="form" onSubmit={HandlePreventDefault}>
+          <form className="form" onSubmit={(e) => e.preventDefault()}>
               <label className="form-label" htmlFor="system_name">What's the name of your system?</label>
               <input className="text-input" name="system_name" value={system_name_value} onChange={handleSitioFormChange} type="text" size="40" required/>
               <label className="form-label" htmlFor="sitio_inputs">What does your element need (inputs)?</label>
@@ -122,7 +111,7 @@ function FormElement({
                     }) {
     return (
         <div className="card">
-            <form className="form" onSubmit={HandlePreventDefault}>
+            <form className="form" onSubmit={(e) => e.preventDefault()}>
                 <h2 className="card-heading">Let's add elements!</h2>
                 <label className="form-label" htmlFor="element_name">Whats the name of the element?</label>
                 <input className="text-input" type="text" name="element_name" value={element_name_value} onChange={onchange} size="40" required/>
@@ -189,6 +178,8 @@ function App() {
 
     const [sitioData, setSitioData] = React.useState({});
 
+    const [connectionsData, setConnectionsData] = React.useState({})
+
     const [elementsArray, setElementsArray] = React.useState([]);
 
     function handleFormSequence (e) {
@@ -232,12 +223,21 @@ function App() {
     };
 
     function handleSitioCreate() {
-        let name = formSitioData.system_name;
-        let outputs = formSitioData.sitio_outputs.split(', ');
-        let inputs = formSitioData.sitio_inputs.split(', ');
-        let sitio = new Element (name, inputs, outputs, elementsArray);
-        sitio.positionElementsInCircle((w/2), (h/2), r, elementsArray);
+        const name = formSitioData.system_name;
+        const outputs = formSitioData.sitio_outputs.split(', ');
+        const inputs = formSitioData.sitio_inputs.split(', ');
+        //create a sitio
+        const sitio = new Element (name, inputs, outputs, elementsArray);
+        //define position in a circle pattern
+        const positions = sitio.positionElementsInCircle((w/2), (h/2), r, elementsArray);
+        //Add texet to dots
+        const textPosiitons = calculateTextPositions(cx, cy, r, positions);
+        //correct text depend on the position at the circle
+        const textPosiitonsCorrected = textCorrection(cx, cy, textPosiitons);
+        //create relations
         sitio.getRelationships();
+        //Set states
+        setConnectionsData(p => ({...p, textPosiitonsCorrected}));
         setSitioData(sitio);
     };
 
@@ -268,6 +268,7 @@ function App() {
 
     //consoles
     console.log(sitioData);
+    console.log(connectionsData);
 
     return (
         <React.Fragment>
