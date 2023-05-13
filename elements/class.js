@@ -131,6 +131,7 @@ export class Element {
         for (let i = 0; i < this.elements.length; i ++) {
             this.elements[i].circlePosition = positions[i];
         }
+        return positions;
     }
 
     //function to creat outputs lines for each node
