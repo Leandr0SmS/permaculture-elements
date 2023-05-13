@@ -23,9 +23,6 @@
         step is analysing and connecting system components. That's the goal of this project.
          Another objective of this project is to improve the learning of code in html, css and javascript.
 
-## Pages
-
-* [Elements connectios](./elements-connections-react/index.html)
 ## Authors
 
 * [Leandro Simões](https://github.com/Leandr0SmS)
