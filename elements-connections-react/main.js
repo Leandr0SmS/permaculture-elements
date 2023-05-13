@@ -236,7 +236,8 @@ function App() {
         let outputs = formSitioData.sitio_outputs.split(', ');
         let inputs = formSitioData.sitio_inputs.split(', ');
         let sitio = new Element (name, inputs, outputs, elementsArray);
-        sitio.positionElementsInCircle((w/2), (h/2), r, elementsArray)
+        sitio.positionElementsInCircle((w/2), (h/2), r, elementsArray);
+        sitio.getRelationships();
         setSitioData(sitio);
     };
 

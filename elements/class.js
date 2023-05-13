@@ -6,8 +6,8 @@ export class Element {
         this.elements = elements;
         this.circlePosition = [];
         this.location = [];
-        this.map;
-
+        this.relationships = [];
+        this.relationshipsLines = [];
     };
 
     //getter and setters
@@ -111,6 +111,8 @@ export class Element {
             }
           }
         }
+        this.relationships.push(...relationships);
+        this.relationshipsLines.push(...relationshipsLines);
         return {relationshipsLines, counter, relationships}
       }
 
