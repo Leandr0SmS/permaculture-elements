@@ -157,8 +157,8 @@ function App() {
 
     function handleFormSequence (e) {
         const {name, value} = e.target;
-        setComponentsManagement( p => ({
-            ...p,
+        setComponentsManagement( cm => ({
+            ...cm,
             [name]: false,
             [value]: true
         }))
