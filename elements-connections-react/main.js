@@ -166,8 +166,8 @@ function App() {
 
     function handleSitioFormChange(e) {
         const {value, name} = e.target;
-        setFormSitioData(p => ({
-            ...p,
+        setFormSitioData(fsd => ({
+            ...fsd,
             [name]: value
         }))
     };
@@ -178,8 +178,8 @@ function App() {
 
     function handleElementFormChange(e) {
         const {name, value} = e.target;
-        setFormElementData(p => ({
-            ...p,
+        setFormElementData(fed => ({
+            ...fed,
             [name]: value
         }))
     };
@@ -210,7 +210,7 @@ function App() {
         //create relations
         sitio.getRelationships();
         //Set states
-        setConnectionsData(p => ({...p, textPositonsCorrected}));
+        setConnectionsData(cd => ({...cd, textPositonsCorrected}));
         setSitioData(sitio);
     };
 
