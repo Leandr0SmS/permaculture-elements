@@ -1,0 +1,21 @@
+@import url(
+    'https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400;700&display=swap'
+);
+
+/* CSS HEX */
+$chamoisee: #90784Eff;
+$dim-gray: #5F635Eff;
+$eerie-black: #1F2527ff;
+$lemon-chiffon: #E4E2B9ff;
+$ash-gray: #AFB2A7ff;
+$harvest-gold: #CA9318ff;
+$boston-blue: #3F91B8;
+$white: #FFFFFFff;
+$onyx: #303331ff;
+$walnut-brown: #524B3Fff;
+
+%center-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
