@@ -1,18 +1,18 @@
 export const operatorsData = [
     {
-        id: "add",
-        sign: "+"
+        id: "next",
+        sign: ">"
     },
     {
-        id: "subtract",
-        sign: "-"
+        id: "prev",
+        sign: "<"
     },
     {
-        id: "divide",
-        sign: "/"
+        id: "yes",
+        sign: "sim"
     },
     {
-        id: "multiply",
-        sign: "x"
+        id: "no",
+        sign: "não"
     },
 ]
