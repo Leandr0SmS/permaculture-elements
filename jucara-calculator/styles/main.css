@@ -34,7 +34,7 @@ body {
 .btn {
   border-radius: 0.2rem;
   margin: 0.3rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 .btn:hover {
   cursor: pointer;
@@ -48,8 +48,6 @@ body {
 #screen {
   background-color: #afb2a7;
   min-width: 25rem;
-  width: -moz-fit-content;
-  width: fit-content;
   padding: 0.5rem;
   margin-bottom: 1.5rem;
   border: 0.5rem solid #5f635e;
@@ -63,15 +61,23 @@ body {
 }
 
 #formula, #display {
-  font-size: 1.2rem;
   height: 1rem;
-  text-align: right;
   font-family: "Press Start 2P", cursive;
+}
+
+#formula {
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+#display {
+  font-size: 1.2rem;
+  text-align: right;
 }
 
 #clear {
   background-color: #ca9318;
-  grid-column: 10/-1;
+  grid-column: 11/-1;
   grid-row: 4/8;
 }
 
@@ -79,7 +85,7 @@ body {
   background-color: #90784e;
   display: grid;
   grid-template-columns: 3fr 1fr;
-  grid-column: 1/10;
+  grid-column: 1/11;
   grid-row: 4/-1;
 }
 
@@ -100,9 +106,9 @@ body {
   background-color: #524b3f;
 }
 
-#equals {
+#start {
   background-color: #3F91B8;
-  grid-column: 10/-1;
+  grid-column: 11/-1;
   grid-row: 8/-1;
   margin-top: 0.5rem;
 }
@@ -113,7 +119,7 @@ body {
     padding: 1rem;
   }
   .btn {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
   .big {
     margin-left: 0.3rem;

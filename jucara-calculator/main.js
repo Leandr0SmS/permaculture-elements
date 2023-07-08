@@ -1,10 +1,10 @@
 import { numbersData } from "./data/numbers.js";
 import { operatorsData } from "./data/operators.js";
-import { calculations } from "./functions/calc-functions.js"
+import { questions } from "./data/questions.js"
 const { createRoot } = ReactDOM;
 const { useState } = React;
 
-const Calculator = ({ onNumCLick, onOprCLick, onAcClick, display, formula, onEqualsClick }) => {
+const Calculator = ({ onNumCLick, onOprCLick, onAcClick, display, formula, onStartClick }) => {
 
     const numbers = numbersData.map(num => {
         return (
@@ -61,11 +61,11 @@ const Calculator = ({ onNumCLick, onOprCLick, onAcClick, display, formula, onEqu
             <button 
                 type="button" 
                 className="btn big" 
-                id="equals" 
+                id="start" 
                 value="="
-                onClick={onEqualsClick} 
+                onClick={onStartClick} 
             >
-                =
+                Start
             </button>
         </div>
     )
@@ -73,15 +73,11 @@ const Calculator = ({ onNumCLick, onOprCLick, onAcClick, display, formula, onEqu
 
 const App = () => {
 
-    const [formula, setFormula] = useState([]);
+    const [questionIndex, setQuestionIndex] = useState(-1);
     const [display, setDisplay] = useState([0]);
 
-    //result logic => Handle Equal button
-    let result;
-    if (formula[formula.length - 1] == "=") {
-        result = calculations(formula.slice(0, formula.length - 1));
-        setDisplay(result)
-        setFormula([...formula.slice(0, formula.length - 1)])
+    const handleStartClick = () => {
+        setQuestionIndex(0)
     }
 
     const handleNumberCLick = (e) => {
@@ -103,71 +99,25 @@ const App = () => {
         }
     };
 
-    const handleOperatorClick = (e) => {
-        const operator = e.target.value;
-        const displayNumber = parseFloat(display.join(""));
-        if (display == "-") {
-            if (operator == "-") {
-                setDisplay(["-"])
-            } else {
-                setFormula(f => {
-                    const removeLastItem = [...f];
-                    removeLastItem.pop();
-                    return [
-                        ...removeLastItem,
-                        operator
-                    ]
-                })
-                setDisplay([0]);
-            }
-        } else if (display == "0") {
-            if (operator == "-") {
-                setDisplay(["-"])
-            } else {
-                setFormula(f => {
-                    const removeLastItem = [...f];
-                    removeLastItem.pop();
-                    return [
-                        ...removeLastItem,
-                        operator
-                    ]
-                })
-                setDisplay([0]);
-            }
-        } else {
-            setFormula((f) => {
-                //handle result and continue colculation
-                if (typeof f[f.length - 1] == "number") {
-                    return [
-                        displayNumber,
-                        operator
-                    ]
-                } else {
-                    return [
-                        ...f,
-                        displayNumber,
-                        operator
-                    ]
-                }
-            });
-            setDisplay([0]);
-        }
-    };
-
     const handleAcClick = () => {
         setDisplay([0]);
-        setFormula([]);
+        setQuestionIndex(-1);
     };
 
-    let removeZeroDisplay = display.join('')
+    const removeZeroDisplay = display.join('');
+
+    const displayQuestion = questionIndex >= 0 ? questions[questionIndex].question : "Press Start"
+
+    console.log(displayQuestion)
+    console.log(questionIndex)
+
     return (
         <Calculator
+            onStartClick={handleStartClick}
             onNumCLick={handleNumberCLick}
-            onOprCLick={handleOperatorClick}
             onAcClick={handleAcClick}
-            onEqualsClick={handleOperatorClick}
             display={removeZeroDisplay}
-            formula={formula}
+            formula={displayQuestion}
         />
     )
 };
