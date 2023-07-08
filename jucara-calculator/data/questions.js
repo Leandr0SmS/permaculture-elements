@@ -1,10 +1,10 @@
 export const questions = [
     {
-        id: 1,
+        id: "weight",
         question: "Quantos kilos de fruto?"
     },
     {
-        id: 2,
+        id: "waterPercent",
         question: "Qual a porcentagem de água?"
     },
     {

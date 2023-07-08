@@ -75,6 +75,10 @@ const App = () => {
 
     const [questionIndex, setQuestionIndex] = useState(-1);
     const [display, setDisplay] = useState([0]);
+    const [jucaraData, setJucaraData] = useState({
+        weight: 0,
+        waterPercent: 0,
+    });
 
     const handleStartClick = () => {
         setQuestionIndex(0)
@@ -104,18 +108,45 @@ const App = () => {
         setQuestionIndex(-1);
     };
 
+    const handleOperators = (e) => {
+        const operator = e.target.value;
+        const questionId = questions[questionIndex].id;
+        console.log(questionId)
+        switch (operator) {
+            case ">":
+                setJucaraData(j => ({
+                    ...j,
+                    [questionId]: parseFloat(display.join(''))
+                }));
+                setQuestionIndex(q => q + 1);
+                setDisplay([0]);
+                break;
+            case "<":
+                setQuestionIndex(q => q - 1)
+                break;
+            case "sim":
+                return 'sim';
+            case "não":
+                return 'nao';
+            default:
+                return "not valid operators"
+        }
+    };
+
     const removeZeroDisplay = display.join('');
 
     const displayQuestion = questionIndex >= 0 ? questions[questionIndex].question : "Press Start"
 
-    console.log(displayQuestion)
-    console.log(questionIndex)
+    console.log(questionIndex);
+    console.log(display);
+    console.log(jucaraData)
 
     return (
         <Calculator
             onStartClick={handleStartClick}
             onNumCLick={handleNumberCLick}
             onAcClick={handleAcClick}
+            onOprCLick={handleOperators}
             display={removeZeroDisplay}
             formula={displayQuestion}
         />
