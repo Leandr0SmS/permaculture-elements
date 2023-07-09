@@ -50,15 +50,14 @@ body {
     grid-row: 1 / 4;
 }
 #formula, #display {
+    font-size: 0.8rem;
     height: 1rem;
     font-family: 'Press Start 2P', cursive;
 }
 #formula {
-    font-size: 0.8rem;
     text-align: center;
 }
 #display {
-    font-size: 1.2rem;
     text-align: right;
 }
 #clear {
