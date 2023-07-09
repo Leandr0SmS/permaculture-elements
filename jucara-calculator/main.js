@@ -1,6 +1,7 @@
 import { numbersData } from "./data/numbers.js";
 import { operatorsData } from "./data/operators.js";
 import { questions } from "./data/questions.js"
+import { divide } from "./functions/calc-functions.js"
 const { createRoot } = ReactDOM;
 const { useState } = React;
 
@@ -74,7 +75,7 @@ const Calculator = ({ onNumCLick, onOprCLick, onAcClick, display, formula, onSta
 const App = () => {
 
     const [questionIndex, setQuestionIndex] = useState(-1);
-    const [display, setDisplay] = useState([0]);
+    const [display, setDisplay] = useState([]);
     const [jucaraData, setJucaraData] = useState({
         weight: 0,
         waterPercent: 0,
@@ -104,23 +105,31 @@ const App = () => {
     };
 
     const handleAcClick = () => {
-        setDisplay([0]);
+        setDisplay([]);
         setQuestionIndex(-1);
     };
 
     const handleOperators = (e) => {
         const operator = e.target.value;
         const questionId = questions[questionIndex].id;
-        console.log(questionId)
         switch (operator) {
             case ">":
-                setJucaraData(j => ({
-                    ...j,
-                    [questionId]: parseFloat(display.join(''))
-                }));
-                setQuestionIndex(q => q + 1);
-                setDisplay([0]);
-                break;
+                if (questionId == "calcular") {
+                    setQuestionIndex(q => q + 1);
+                    const response = divide(jucaraData.weight);
+                    setDisplay(`
+                        Batidas:${response.rounds} Frutos/Kg:${response.weight} Água/L:${(response.weight / 100) * jucaraData.waterPercent}`
+                        );
+                    break;
+                } else {
+                    setJucaraData(j => ({
+                        ...j,
+                        [questionId]: parseFloat(display.join(''))
+                    }));
+                    setQuestionIndex(q => q + 1);
+                    setDisplay([0]);
+                    break;
+                }
             case "<":
                 setQuestionIndex(q => q - 1)
                 break;
@@ -133,13 +142,7 @@ const App = () => {
         }
     };
 
-    const removeZeroDisplay = display.join('');
-
     const displayQuestion = questionIndex >= 0 ? questions[questionIndex].question : "Press Start"
-
-    console.log(questionIndex);
-    console.log(display);
-    console.log(jucaraData)
 
     return (
         <Calculator
@@ -147,7 +150,7 @@ const App = () => {
             onNumCLick={handleNumberCLick}
             onAcClick={handleAcClick}
             onOprCLick={handleOperators}
-            display={removeZeroDisplay}
+            display={display}
             formula={displayQuestion}
         />
     )

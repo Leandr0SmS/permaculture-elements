@@ -7,8 +7,6 @@ const divide = (weigth) => {
         while (operation > 9) {
             divider ++;
             operation = weigth / divider;
-            console.log(divider)
-            console.log(operation)
         }
         return {"rounds": divider, "weight": parseFloat(operation.toFixed(2))};
     }

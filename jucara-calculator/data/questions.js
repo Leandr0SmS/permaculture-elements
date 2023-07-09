@@ -8,7 +8,11 @@ export const questions = [
         question: "Qual a porcentagem de água?"
     },
     {
-        id: 3,
-        question: "Qual a porcentagem de água?"
+        id: "calcular",
+        question: "Calcular?"
+    },
+    {
+        id: "resultado",
+        question: "Resultado:"
     },
 ]
