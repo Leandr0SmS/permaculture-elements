@@ -4,17 +4,17 @@ const projects = [
     {
         id:"elements-connections-d3",
         title: "Elements Connectios D3",
-        link: ".\elements-connections-d3\index-elements.html"
+        link: "./elements-connections-d3/index-elements.html"
     },
     {
         id:"elements-connections-react",
         title: "Elements Connectios React",
-        link: ".\elements-connections-react\index.html"
+        link: "./elements-connections-react/index.html"
     },
     {
         id:"jucara-calculator",
         title: "Jucara Calculator",
-        link: ".\jucara-calculator\index.html"
+        link: "./jucara-calculator/index.html"
     },
 ]
 
