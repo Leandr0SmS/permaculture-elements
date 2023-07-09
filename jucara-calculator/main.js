@@ -118,7 +118,7 @@ const App = () => {
                     setQuestionIndex(q => q + 1);
                     const response = divide(jucaraData.weight);
                     setDisplay(`
-                        Batidas:${response.rounds} Frutos/Kg:${response.weight} Água/L:${(response.weight / 100) * jucaraData.waterPercent}`
+                        Batidas:${response.rounds} Frutos:${response.weight}Kg Água:${(response.weight / 100) * jucaraData.waterPercent}L`
                         );
                     break;
                 } else {

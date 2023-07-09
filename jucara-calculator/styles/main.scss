@@ -50,8 +50,9 @@ body {
     grid-row: 1 / 4;
 }
 #formula, #display {
+    height: min-content;
     font-size: 0.8rem;
-    height: 1rem;
+    line-height: 1.3rem;
     font-family: 'Press Start 2P', cursive;
 }
 #formula {

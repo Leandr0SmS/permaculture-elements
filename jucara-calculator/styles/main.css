@@ -61,8 +61,10 @@ body {
 }
 
 #formula, #display {
+  height: -moz-min-content;
+  height: min-content;
   font-size: 0.8rem;
-  height: 1rem;
+  line-height: 1.3rem;
   font-family: "Press Start 2P", cursive;
 }
 
