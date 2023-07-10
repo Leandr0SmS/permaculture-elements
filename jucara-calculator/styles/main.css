@@ -25,7 +25,6 @@ body {
   box-shadow: 0rem 1rem 1.875rem -0.625rem #1f2527;
   border-radius: 0.5rem;
   padding: 1.5rem;
-  color: #e4e2b9;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
@@ -35,6 +34,7 @@ body {
   border-radius: 0.2rem;
   margin: 0.3rem;
   font-size: 1.2rem;
+  background-color: #1f2527;
 }
 .btn:hover {
   cursor: pointer;
@@ -47,6 +47,7 @@ body {
 
 #screen {
   background-color: #afb2a7;
+  color: #e4e2b9;
   min-width: 25rem;
   padding: 0.5rem;
   margin-bottom: 1.5rem;
