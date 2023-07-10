@@ -18,8 +18,8 @@ body {
     border-radius: 0.5rem;
     padding: 1.5rem;
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(12, 1fr);
+    grid-template-columns: repeat(12, 2.3rem);
+    grid-template-rows: repeat(12, 2rem);
 }
 .btn {
     @extend %center-flex;
@@ -98,6 +98,8 @@ body {
     #calculator {
         box-shadow: 0rem 1rem 1.875rem -0.625rem $eerie-black;
         padding: 1rem;
+        grid-template-columns: repeat(12, 1.5rem);
+        grid-template-rows: repeat(12, 1.8rem);
     }
     .btn {
         font-size: 1rem;
@@ -106,11 +108,12 @@ body {
         margin-left: 0.3rem;
     }
     #screen {
+        height:auto;
         min-width: 18rem;
         margin-bottom: 1rem;
         border: 0.3rem solid $dim-gray;
     }
     #formula, #display {
-        font-size: 0.9rem;
+        font-size: 0.6rem;
     }
 }
