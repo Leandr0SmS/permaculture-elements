@@ -35,6 +35,7 @@ body {
   margin: 0.3rem;
   font-size: 1.2rem;
   background-color: #1f2527;
+  color: black;
 }
 .btn:hover {
   cursor: pointer;
@@ -85,7 +86,6 @@ body {
 
 #main {
   background-color: #90784e;
-  color: #1f2527;
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-column: 1/11;
