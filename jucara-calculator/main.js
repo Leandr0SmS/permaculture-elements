@@ -83,6 +83,7 @@ const App = () => {
 
     const handleStartClick = () => {
         setQuestionIndex(0)
+        setDisplay([])
     }
 
     const handleNumberCLick = (e) => {
@@ -113,7 +114,7 @@ const App = () => {
         const operator = e.target.value;
         const questionId = questions[questionIndex].id;
         switch (operator) {
-            case ">":
+            case "Next":
                 if (questionId == "calcular") {
                     setQuestionIndex(q => q + 1);
                     const response = divide(jucaraData.weight);
@@ -130,8 +131,9 @@ const App = () => {
                     setDisplay([0]);
                     break;
                 }
-            case "<":
+            case "Prev":
                 setQuestionIndex(q => q - 1)
+                setDisplay([]);
                 break;
             case "sim":
                 return 'sim';
