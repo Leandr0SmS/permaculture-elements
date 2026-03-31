@@ -1,8 +1,9 @@
+import React from 'react'
+import { createRoot } from 'react-dom/client'
 import { numbersData } from "./data/numbers.js";
 import { operatorsData } from "./data/operators.js";
 import { questions } from "./data/questions.js"
 import { divide } from "./functions/calc-functions.js"
-const { createRoot } = ReactDOM;
 const { useState } = React;
 
 const Calculator = ({ onNumCLick, onOprCLick, onAcClick, display, formula, onStartClick }) => {

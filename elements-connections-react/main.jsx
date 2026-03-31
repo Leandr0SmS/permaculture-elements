@@ -1,4 +1,5 @@
-
+import React from 'react'
+import { createRoot } from 'react-dom/client'
 import {Element} from "../elements/class.js";
 
 const w = 450, h = 300, r = w > h ? w/4 : h/4, cx=(w/2), cy=(h/2);
@@ -293,5 +294,5 @@ function App() {
 }
 
 const app = document.getElementById('root');
-const root = ReactDOM.createRoot(app);
+const root = createRoot(app);
 root.render(<App/>);
