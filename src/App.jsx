@@ -1,4 +1,4 @@
-const { createRoot } = ReactDOM;
+import React from 'react'
 
 const projects = [
     {
@@ -41,9 +41,6 @@ const App = () => {
             </ul>
         </React.Fragment>
     )
-};
+}
 
-//Render
-const app = document.getElementById('root');
-const root = createRoot(app);
-root.render(<App/>)
+export default App
