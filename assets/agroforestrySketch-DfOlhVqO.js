@@ -1,0 +1,1 @@
+import"./modulepreload-polyfill-B5Qt9EMX.js";import{c as t,R as e,r as o}from"./client-B_nxkHEA.js";const r=()=>(o.useEffect(()=>{},[]),e.createElement("h1",null,"Hello")),c=document.getElementById("root"),n=t.createRoot(c);n.render(e.createElement(r));

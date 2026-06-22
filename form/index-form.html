@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Elements Form</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="icon" href="../elements-connections/dumatutu.png" type="image/png">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://kit.fontawesome.com/f0b8f00674.js" crossorigin="anonymous"></script>
+    <script type="module" crossorigin src="/permaculture-elements/assets/form-C-8wHk1F.js"></script>
+    <link rel="modulepreload" crossorigin href="/permaculture-elements/assets/modulepreload-polyfill-B5Qt9EMX.js">
+    <link rel="stylesheet" crossorigin href="/permaculture-elements/assets/form-COVLDV38.css">
+  </head>
+  <body>
+    <header>
+      <h1 id="heading">Permaculture</h1>
+    </header>
+    <main>
+      <h3 class="sub-heading">Analysing and Connecting Components</h3>
+      <section class="form-card">
+        <div id="card-one" class="card">
+          <form action="./index-form.js" method="post">
+              <label class="form-label">What's the name of your system?</label>
+              <input class="text-input" id="system-name" type="text" name="sitio-name" size="40" required>
+              <div class="div-btn">
+                <button class="next card-btn" id="next-div-one">
+                  Next 
+                  <i class="fa-solid fa-circle-arrow-right"></i>
+                </button>
+              </div>
+          </form> 
+        </div>
+        <div id="card-two" class="card">
+          <form action="./index-form.js" method="post">
+              <h2 class="card-heading">Let's create some elements!</h2>
+              <label class="form-label">Whats the name of one element of your system?</label>
+              <input class="text-input" id="element-name" type="text" name="sitio-name" size="40" required>
+              <label class="form-label">What does your element need (inputs)?</label>
+              <input class="text-input" id="system-inputs" type="text" name="system-inputs" size="40" required>
+              <label class="form-label">What does your element provide (outputs)?</label>
+              <input class="text-input" id="system-outputs" type="text" name="system-outputs" size="40" required>
+              <label class="form-label">What are the intrinsic characteristics of this element?</label>
+              <input class="text-input" id="intrinsic-characteristics" type="text" name="intrinsic-characteristics" size="40" required>
+              <div class="div-btn">
+                <button class="prev card-btn">
+                  <i class="fa-solid fa-circle-arrow-left"></i>
+                  Preview
+                </button>
+                <a href="../elements-connections/index-elements.html">
+                  <button class="next card-btn" id="next-div-two">
+                    Next 
+                    <i class="fa-solid fa-circle-arrow-right"></i>
+                  </button>
+                </a>
+              </div>
+          </form> 
+        </div>
+      </section>
+    </main>
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous">
+    </script>
+  </body>
+</html>
+
+<!--
+  <div id="form-div">
+        <form action="./index-form.js" method="post">
+          <fieldset class="fieldset">
+            <legend class="form-legend">Elements</legend>
+            <label class="form-label">What's the name of your element?</label>
+            <input id="system-name" type="text" name="sitio-name" size="40" required>
+            <div class="add-words-div">
+              <label class="form-label">What does your system need (inputs)?</label>
+              <input id="system-inputs" type="text" name="system-inputs" size="40">
+              <button class="add-btn">
+                <i class="fa-solid fa-plus"></i>Add
+              </button>
+            </div>
+            <div class="add-words-div">
+              <label class="form-label">What does your system provide (outputs)?</label>
+              <input id="system-outputs" type="text" name="system-outputs" size="40">
+              <button class="add-btn">
+                <i class="fa-solid fa-plus"></i>Add
+              </button>
+            </div>
+            <div class="add-words-div">
+              <label class="form-label">What are the intrinsic characteristics of the system?</label>
+              <input id="system-outputs" type="text" name="system-outputs" size="40">
+              <button class="add-btn">
+                <i class="fa-solid fa-plus"></i>Add
+              </button>
+            </div>
+          </fieldset>
+          <div class="buttom-div">
+            <button id="submit-button" type="submit">Create an Element</button>
+          </div>
+        </form>
+      </div>
+-->
