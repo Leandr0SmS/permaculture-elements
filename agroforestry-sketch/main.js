@@ -1,5 +1,5 @@
-const { createRoot } = ReactDOM;
-const { useEffect } = React;
+import React, { useEffect } from "react";
+import { createRoot } from "react-dom/client";
 import { renderD3 } from "./d3/d3.js";
 
 const App = () => {
@@ -9,12 +9,10 @@ const App = () => {
         renderD3(percentWidth, 900)
     }, []);
 
-    return (
-        <h1>Hello</h1>
-    )
+    return React.createElement("h1", null, "Hello");
 };
 
 //Render
 const app = document.getElementById('root');
 const root = createRoot(app);
-root.render(<App/>);
+root.render(React.createElement(App));
